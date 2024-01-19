@@ -1,0 +1,7 @@
+1. Packages - Elias Nahas
+2. Products - Jack Li
+3. Products_suppliers - Lance Salvador
+4. Suppliers - Gurleen Dhillon
+5. Packages_products_suppliers - TBD
+
+Main GUI - All
