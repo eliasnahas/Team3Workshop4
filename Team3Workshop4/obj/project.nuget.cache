@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Q8hxt/kyrrXOuKLOYrZPA0zDpHUkHPaEryJKXblOJykPbnn0JFSWkDH+U7wqYXkaDnE59XwuobKMXoRdq7uV6A==",
+  "dgSpecHash": "uIQ5bVFeZM+K490zFTDx3YR0vwiDJQ+bQB5vwnpJEcumlcBf+knqZj3TM2J+AvR7UpYJHCPKgzP6fp/ilhxoDQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\skorp\\source\\repos\\Team3Workshop4\\Team3Workshop4\\Team3Workshop4.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\skorp\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\skorp\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",
@@ -13,6 +14,7 @@
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.1\\microsoft.entityframeworkcore.8.0.1.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.1\\microsoft.entityframeworkcore.abstractions.8.0.1.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.1\\microsoft.entityframeworkcore.analyzers.8.0.1.nupkg.sha512",
+    "C:\\Users\\skorp\\.nuget\\packages\\microsoft.entityframeworkcore.proxies\\8.0.1\\microsoft.entityframeworkcore.proxies.8.0.1.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.1\\microsoft.entityframeworkcore.relational.8.0.1.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\8.0.1\\microsoft.entityframeworkcore.sqlserver.8.0.1.nupkg.sha512",
     "C:\\Users\\skorp\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
