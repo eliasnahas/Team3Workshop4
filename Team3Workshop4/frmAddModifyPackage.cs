@@ -1,3 +1,6 @@
+using Castle.Core.Resource;
+using Microsoft.EntityFrameworkCore;
+using System;
 using TravelExpertsData;
 
 namespace Team3Workshop4
@@ -13,6 +16,7 @@ namespace Team3Workshop4
         // public declaration to provide access to main form
         public bool isAdd; // true when Add, false when Modify
         public Package? package; // new package data
+        // public List<Product>? products; // empty list of products
         public frmAddModifyPackage()
         {
             InitializeComponent();
@@ -39,15 +43,36 @@ namespace Team3Workshop4
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
                 package = db.Packages.FirstOrDefault();
+
+                var packagesProductsSupplier = db.Packages
+                    .Include(p => p.ProductSuppliers)
+                    .Select(p => new { p.PackageId, p.PkgName, p.ProductSuppliers })
+                    .ToList();
+
+                dgvProducts.DataSource = packagesProductsSupplier;
+                
+                
+               
             }
             if (package != null) // if not null
             {
                 txtPkgName.Text = package.PkgName;
-                dtpPkgStartDate.Value = (DateTime)package.PkgStartDate;
-                dtpPkgEndDate.Value = (DateTime)package.PkgEndDate;
+                if (package.PkgStartDate != null)
+                {
+                    dtpPkgStartDate.Value = (DateTime)package.PkgStartDate;
+                }
+                if (package.PkgEndDate != null)
+                {
+                    dtpPkgEndDate.Value = (DateTime)package.PkgEndDate;
+                }
                 txtPkgDesc.Text = package.PkgDesc;
                 txtPkgBasePrice.Text = package.PkgBasePrice.ToString("c");
-                txtPkgAgencyCommission.Text = package.PkgAgencyCommission.ToString();
+                if (package.PkgAgencyCommission != null)
+                {
+                    txtPkgAgencyCommission.Text = package.PkgAgencyCommission.Value.ToString("c");
+                }
+
+                
             }
         }
     }
