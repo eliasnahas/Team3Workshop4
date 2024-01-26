@@ -38,7 +38,8 @@ namespace Team3Workshop4
 
         private void modPackageButton_Click(object sender, EventArgs e)
         {
-            Application.Run(new frmAddModifyPackage());
+            frmAddModifyPackage modWindow = new frmAddModifyPackage();
+            modWindow.ShowDialog();
         }
     }
 }
