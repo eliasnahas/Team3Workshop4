@@ -41,11 +41,12 @@
             txtPkgAgencyCommission = new TextBox();
             label6 = new Label();
             label7 = new Label();
-            dgvProducts = new DataGridView();
             btnAccept = new Button();
             btnEditProducts = new Button();
             btnCancel = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
+            lvProducts = new ListView();
+            Products = new ColumnHeader();
+            Suppliers = new ColumnHeader();
             SuspendLayout();
             // 
             // label1
@@ -64,6 +65,7 @@
             txtPkgName.Name = "txtPkgName";
             txtPkgName.Size = new Size(477, 34);
             txtPkgName.TabIndex = 1;
+            txtPkgName.Tag = "Name";
             // 
             // label2
             // 
@@ -77,23 +79,25 @@
             // dtpPkgStartDate
             // 
             dtpPkgStartDate.Format = DateTimePickerFormat.Short;
-            dtpPkgStartDate.Location = new Point(134, 55);
+            dtpPkgStartDate.Location = new Point(444, 55);
             dtpPkgStartDate.Name = "dtpPkgStartDate";
-            dtpPkgStartDate.Size = new Size(149, 34);
+            dtpPkgStartDate.Size = new Size(167, 34);
             dtpPkgStartDate.TabIndex = 3;
+            dtpPkgStartDate.Tag = "End Date";
             // 
             // dtpPkgEndDate
             // 
             dtpPkgEndDate.Format = DateTimePickerFormat.Short;
-            dtpPkgEndDate.Location = new Point(420, 54);
+            dtpPkgEndDate.Location = new Point(134, 55);
             dtpPkgEndDate.Name = "dtpPkgEndDate";
-            dtpPkgEndDate.Size = new Size(149, 34);
+            dtpPkgEndDate.Size = new Size(167, 34);
             dtpPkgEndDate.TabIndex = 5;
+            dtpPkgEndDate.Tag = "Start Date";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(319, 60);
+            label3.Location = new Point(343, 60);
             label3.Name = "label3";
             label3.Size = new Size(95, 28);
             label3.TabIndex = 4;
@@ -115,6 +119,7 @@
             txtPkgDesc.Name = "txtPkgDesc";
             txtPkgDesc.Size = new Size(477, 34);
             txtPkgDesc.TabIndex = 7;
+            txtPkgDesc.Tag = "Description";
             // 
             // label5
             // 
@@ -131,6 +136,8 @@
             txtPkgBasePrice.Name = "txtPkgBasePrice";
             txtPkgBasePrice.Size = new Size(125, 34);
             txtPkgBasePrice.TabIndex = 9;
+            txtPkgBasePrice.Tag = "Base Price";
+            txtPkgBasePrice.TextAlign = HorizontalAlignment.Right;
             // 
             // txtPkgAgencyCommission
             // 
@@ -138,6 +145,8 @@
             txtPkgAgencyCommission.Name = "txtPkgAgencyCommission";
             txtPkgAgencyCommission.Size = new Size(125, 34);
             txtPkgAgencyCommission.TabIndex = 11;
+            txtPkgAgencyCommission.Tag = "Agency Commission";
+            txtPkgAgencyCommission.TextAlign = HorizontalAlignment.Right;
             // 
             // label6
             // 
@@ -156,15 +165,6 @@
             label7.Size = new Size(93, 28);
             label7.TabIndex = 12;
             label7.Text = "Products:";
-            // 
-            // dgvProducts
-            // 
-            dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Location = new Point(11, 209);
-            dgvProducts.Name = "dgvProducts";
-            dgvProducts.RowHeadersWidth = 51;
-            dgvProducts.Size = new Size(600, 188);
-            dgvProducts.TabIndex = 13;
             // 
             // btnAccept
             // 
@@ -193,6 +193,29 @@
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
+            // lvProducts
+            // 
+            lvProducts.Columns.AddRange(new ColumnHeader[] { Products, Suppliers });
+            lvProducts.Location = new Point(12, 209);
+            lvProducts.Name = "lvProducts";
+            lvProducts.OwnerDraw = true;
+            lvProducts.Size = new Size(599, 190);
+            lvProducts.TabIndex = 17;
+            lvProducts.UseCompatibleStateImageBehavior = false;
+            lvProducts.View = View.Details;
+            lvProducts.DrawColumnHeader += lvProducts_DrawColumnHeader;
+            lvProducts.DrawItem += lvProducts_DrawItem;
+            // 
+            // Products
+            // 
+            Products.Text = "Products";
+            Products.Width = 285;
+            // 
+            // Suppliers
+            // 
+            Suppliers.Text = "Suppliers";
+            Suppliers.Width = 285;
+            // 
             // frmAddModifyPackage
             // 
             AcceptButton = btnAccept;
@@ -200,10 +223,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
             ClientSize = new Size(625, 518);
+            Controls.Add(lvProducts);
             Controls.Add(btnCancel);
             Controls.Add(btnEditProducts);
             Controls.Add(btnAccept);
-            Controls.Add(dgvProducts);
             Controls.Add(label7);
             Controls.Add(txtPkgAgencyCommission);
             Controls.Add(label6);
@@ -223,7 +246,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += frmAddModifyPackage_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -243,9 +265,11 @@
         private TextBox txtPkgAgencyCommission;
         private Label label6;
         private Label label7;
-        private DataGridView dgvProducts;
         private Button btnAccept;
         private Button btnEditProducts;
         private Button btnCancel;
+        private ListView lvProducts;
+        private ColumnHeader Products;
+        private ColumnHeader Suppliers;
     }
 }

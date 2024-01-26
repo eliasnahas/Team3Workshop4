@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TravelExpertsData")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ff4fd0831447b7742994c6be267e49dc1e6c4c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a48a5d868b4b6df14254f345bc70fd42edf9cb7")]
 [assembly: System.Reflection.AssemblyProductAttribute("TravelExpertsData")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TravelExpertsData")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
