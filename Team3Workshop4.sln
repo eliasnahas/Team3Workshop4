@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Team3Workshop4", "Team3Workshop4\Team3Workshop4.csproj", "{4B917E60-C3C4-446F-8140-0FCF220E0560}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExpertsData", "TravelExpertsData\TravelExpertsData.csproj", "{AA71D629-01BD-4415-B31C-86C94821D80E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelExpertsData", "TravelExpertsData\TravelExpertsData.csproj", "{AA71D629-01BD-4415-B31C-86C94821D80E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelSources", "TravelSources\TravelSources.csproj", "{6AB4389E-2B50-45C7-B24F-C4A3574C486D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AA71D629-01BD-4415-B31C-86C94821D80E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA71D629-01BD-4415-B31C-86C94821D80E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA71D629-01BD-4415-B31C-86C94821D80E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AB4389E-2B50-45C7-B24F-C4A3574C486D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AB4389E-2B50-45C7-B24F-C4A3574C486D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AB4389E-2B50-45C7-B24F-C4A3574C486D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AB4389E-2B50-45C7-B24F-C4A3574C486D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

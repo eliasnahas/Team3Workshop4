@@ -914,6 +914,19 @@
         "runtime": {
           "bin/placeholder/TravelExpertsData.dll": {}
         }
+      },
+      "TravelSources/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "TravelExpertsData": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TravelSources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TravelSources.dll": {}
+        }
       }
     }
   },
@@ -2544,32 +2557,33 @@
       "type": "project",
       "path": "../TravelExpertsData/TravelExpertsData.csproj",
       "msbuildProject": "../TravelExpertsData/TravelExpertsData.csproj"
+    },
+    "TravelSources/1.0.0": {
+      "type": "project",
+      "path": "../TravelSources/TravelSources.csproj",
+      "msbuildProject": "../TravelSources/TravelSources.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "TravelExpertsData >= 1.0.0"
+      "TravelExpertsData >= 1.0.0",
+      "TravelSources >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\orangentle\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\nwolc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\Team3Workshop4\\Team3Workshop4.csproj",
+      "projectUniqueName": "C:\\Users\\nwolc\\Source\\Repos\\Team3Workshop4\\Team3Workshop4\\Team3Workshop4.csproj",
       "projectName": "Team3Workshop4",
-      "projectPath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\Team3Workshop4\\Team3Workshop4.csproj",
-      "packagesPath": "C:\\Users\\orangentle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\Team3Workshop4\\obj\\",
+      "projectPath": "C:\\Users\\nwolc\\Source\\Repos\\Team3Workshop4\\Team3Workshop4\\Team3Workshop4.csproj",
+      "packagesPath": "C:\\Users\\nwolc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nwolc\\Source\\Repos\\Team3Workshop4\\Team3Workshop4\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\orangentle\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\nwolc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2583,8 +2597,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\TravelExpertsData\\TravelExpertsData.csproj": {
-              "projectPath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\TravelExpertsData\\TravelExpertsData.csproj"
+            "C:\\Users\\nwolc\\Source\\Repos\\Team3Workshop4\\TravelExpertsData\\TravelExpertsData.csproj": {
+              "projectPath": "C:\\Users\\nwolc\\Source\\Repos\\Team3Workshop4\\TravelExpertsData\\TravelExpertsData.csproj"
+            },
+            "C:\\Users\\nwolc\\Source\\Repos\\Team3Workshop4\\TravelSources\\TravelSources.csproj": {
+              "projectPath": "C:\\Users\\nwolc\\Source\\Repos\\Team3Workshop4\\TravelSources\\TravelSources.csproj"
             }
           }
         }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExpertsData;
+using TravelSources;
 
 namespace Team3Workshop4
 {
@@ -20,15 +21,9 @@ namespace Team3Workshop4
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            using (TravelExpertsContext db = new TravelExpertsContext()) // connect to the database and get data
-            {
-                var prod = db.Products.Select(p => new
-                {
-                    p.ProductId,
-                    p.ProdName
-                }).ToList();
-                productsGrid.DataSource = prod;
-            }
+
+            productsGrid.DataSource = TravelSource.GetProducts();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
