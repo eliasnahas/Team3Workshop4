@@ -22,7 +22,7 @@ namespace Team3Workshop4
         private void MainForm_Load(object sender, EventArgs e)
         {
 
-            productsGrid.DataSource = TravelSource.GetProducts();
+            // productsGrid.DataSource = TravelSource.GetProducts();
             
         }
 
