@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Team3Workshop4", "Team3Work
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelExpertsData", "TravelExpertsData\TravelExpertsData.csproj", "{AA71D629-01BD-4415-B31C-86C94821D80E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelSources", "TravelSources\TravelSources.csproj", "{6AB4389E-2B50-45C7-B24F-C4A3574C486D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelSources", "TravelSources\TravelSources.csproj", "{6AB4389E-2B50-45C7-B24F-C4A3574C486D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
