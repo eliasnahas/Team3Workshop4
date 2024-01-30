@@ -8,7 +8,7 @@ namespace TravelSources
         // Gets and returns Products table as a List<Product> - by: Jack Li/Lance Salvador
         public static List<Product> GetProducts()
         {
-            // retrieving List<T> from database - by: Jack Li
+            // retrieving List<T> from Products database - by: Jack Li
             using (TravelExpertsContext db = new TravelExpertsContext()) // connect to the database and get data
             {
                 var prod = db.Products.Select(p => new
@@ -27,9 +27,10 @@ namespace TravelSources
             }
         }
 
-
+        // Gets and returns Products table as a List<ProductsSupplier> - by: Jack Li/Lance Salvador
         public static List<ProductsSupplier> GetProdSupps()
         {
+            // retrieving List<T> from ProductsSuppliers database - by: Jack Li
             using (TravelExpertsContext db = new TravelExpertsContext()) // connect to the database and get data
             {
                 var prodSupp = (from ps in db.ProductsSuppliers
@@ -39,6 +40,8 @@ namespace TravelSources
                                     ps.ProductId,
                                     ps.SupplierId
                                 }).ToList();
+
+                // conversion from List<T> to List<ProductsSupplier> - by: Lance Salvador
                 var result = prodSupp.Select(ps => new ProductsSupplier
                 {
                     ProductSupplierId = ps.ProductSupplierId,
@@ -47,6 +50,13 @@ namespace TravelSources
                 }).Cast<ProductsSupplier>().ToList();
                 return result;
             }
+        }
+
+
+        public static List<Package> GetPackages()
+        {
+            List<Package> placeholder = new List<Package>();
+            return placeholder;
         }
     }
 }

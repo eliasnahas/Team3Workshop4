@@ -38,7 +38,7 @@ namespace Team3Workshop4
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addPackageButton_Click(object sender, EventArgs e)
         {
 
         }
@@ -47,6 +47,23 @@ namespace Team3Workshop4
         {
             frmAddModifyPackage modWindow = new frmAddModifyPackage();
             modWindow.ShowDialog();
+        }
+
+        private void addProdButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modProdButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void remProdButton_Click(object sender, EventArgs e)
+        {
+            // Remove product from database
+            
+            // Refresh grid view
         }
     }
 }
