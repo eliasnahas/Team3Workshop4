@@ -2557,9 +2557,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lucid\\Source\\Repos\\Team3Workshop4\\TravelSources\\TravelSources.csproj",
+      "projectUniqueName": "C:\\Users\\lucid\\source\\repos\\Team3Workshop4\\TravelSources\\TravelSources.csproj",
       "projectName": "TravelSources",
-      "projectPath": "C:\\Users\\lucid\\Source\\Repos\\Team3Workshop4\\TravelSources\\TravelSources.csproj",
+      "projectPath": "C:\\Users\\lucid\\source\\repos\\Team3Workshop4\\TravelSources\\TravelSources.csproj",
       "packagesPath": "C:\\Users\\lucid\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\lucid\\Source\\Repos\\Team3Workshop4\\TravelSources\\obj\\",
       "projectStyle": "PackageReference",
@@ -2578,8 +2578,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\lucid\\Source\\Repos\\Team3Workshop4\\TravelExpertsData\\TravelExpertsData.csproj": {
-              "projectPath": "C:\\Users\\lucid\\Source\\Repos\\Team3Workshop4\\TravelExpertsData\\TravelExpertsData.csproj"
+            "C:\\Users\\lucid\\source\\repos\\Team3Workshop4\\TravelExpertsData\\TravelExpertsData.csproj": {
+              "projectPath": "C:\\Users\\lucid\\source\\repos\\Team3Workshop4\\TravelExpertsData\\TravelExpertsData.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uJDGRsmAhtCjmhHYkinj/+W0b09uMIKul6zF33yTnyfTuo4EpXhF8ml9x17fhkOHVefYdv0IDgDTf+HNzH/YdQ==",
+  "dgSpecHash": "C7O0v9tT12akPGCPtzbmkhQiIAPTK4wOz2JJa2SLmcb/gg7kiiGGxhD77wLy6Blht8J4l5ypwrCTevN8ve0/jQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucid\\Source\\Repos\\Team3Workshop4\\Team3Workshop4\\Team3Workshop4.csproj",
+  "projectFilePath": "C:\\Users\\lucid\\source\\repos\\Team3Workshop4\\Team3Workshop4\\Team3Workshop4.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucid\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\lucid\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -27,7 +27,6 @@ namespace TravelSources
             }
         }
 
-
         public static List<ProductsSupplier> GetProdSupps()
         {
             using (TravelExpertsContext db = new TravelExpertsContext()) // connect to the database and get data
@@ -47,6 +46,27 @@ namespace TravelSources
                 }).Cast<ProductsSupplier>().ToList();
                 return result;
             }
+        }
+
+        // Gets suppliers from database - by: Gurleen Dhillon
+        public static List<Supplier> GetSuppliers()
+        {
+            // connection to database
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var supp = db.Suppliers.Select(s => new
+                {
+                    s.SupplierId,
+                    s.SupName
+                }).ToList();
+                var result = supp.Select(s => new Supplier
+                {
+                    SupplierId = s.SupplierId,
+                    SupName = s.SupName
+                }).Cast<Supplier>().ToList();
+                return result;
+            }
+
         }
     }
 }

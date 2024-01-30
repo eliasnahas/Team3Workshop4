@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IMSiCtsef5CwYhhEYCS16vSZqPwaAxOLPWXrfvRBnJvCi8heuXaVSEwtjFDob0UfD93Qbi7FSfDYjKlyOTC+QA==",
+  "dgSpecHash": "0YHIWzjAw7t+4hGSWtBBHSWXUtbsu26nUQHPFMcdZT3bJLApZXhU3a6W5aNWVVAID5NPjJbWqrc2uq+kk3gJgg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucid\\Source\\Repos\\Team3Workshop4\\TravelExpertsData\\TravelExpertsData.csproj",
+  "projectFilePath": "C:\\Users\\lucid\\source\\repos\\Team3Workshop4\\TravelExpertsData\\TravelExpertsData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucid\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\lucid\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

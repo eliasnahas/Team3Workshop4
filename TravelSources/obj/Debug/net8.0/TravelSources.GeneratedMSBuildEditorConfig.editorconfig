@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TravelSources
-build_property.ProjectDir = C:\Users\lucid\Source\Repos\Team3Workshop4\TravelSources\
+build_property.ProjectDir = C:\Users\lucid\source\repos\Team3Workshop4\TravelSources\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
