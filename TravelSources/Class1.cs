@@ -8,7 +8,7 @@ namespace TravelSources
         // Gets and returns Products table as a List<Product> - by: Jack Li/Lance Salvador
         public static List<Product> GetProducts()
         {
-            // retrieving List<T> from Products database - by: Jack Li
+            // retrieving List<T> from database - by: Jack Li
             using (TravelExpertsContext db = new TravelExpertsContext()) // connect to the database and get data
             {
                 var prod = db.Products.Select(p => new
@@ -27,10 +27,9 @@ namespace TravelSources
             }
         }
 
-        // Gets and returns Products table as a List<ProductsSupplier> - by: Jack Li/Lance Salvador
+
         public static List<ProductsSupplier> GetProdSupps()
         {
-            // retrieving List<T> from ProductsSuppliers database - by: Jack Li
             using (TravelExpertsContext db = new TravelExpertsContext()) // connect to the database and get data
             {
                 var prodSupp = (from ps in db.ProductsSuppliers
@@ -40,8 +39,6 @@ namespace TravelSources
                                     ps.ProductId,
                                     ps.SupplierId
                                 }).ToList();
-
-                // conversion from List<T> to List<ProductsSupplier> - by: Lance Salvador
                 var result = prodSupp.Select(ps => new ProductsSupplier
                 {
                     ProductSupplierId = ps.ProductSupplierId,
@@ -52,11 +49,77 @@ namespace TravelSources
             }
         }
 
-
         public static List<Package> GetPackages()
         {
-            List<Package> placeholder = new List<Package>();
-            return placeholder;
+            List<Package> result = new List<Package>();
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                result = (from p in db.Packages
+                              select new Package
+                              {
+                                  PackageId = p.PackageId,
+                                  PkgName = p.PkgName,
+                                  PkgStartDate = p.PkgStartDate,
+                                  PkgEndDate = p.PkgEndDate,
+                                  PkgDesc = p.PkgDesc,
+                                  PkgBasePrice = p.PkgBasePrice,
+                                  PkgAgencyCommission = p.PkgAgencyCommission
+                              }).ToList();
+                return result;
+            }
+        }
+
+        public static Package FindPackage(int packageId)
+        {
+            Package result = null;
+
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                if (db.Packages.Find(packageId) != null)
+                {
+                    result = db.Packages.Find(packageId);
+                }
+            }
+            return result;
+        }
+
+        public static List<ProdSuppNames> GetProductsSupplierByPackage(int packageId)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                Package package = db.Packages.Find(packageId);
+
+
+                //var packagesProductsSuppliers = (from p in db.ProductsSuppliers
+                //                                 select new ProductsSupplier
+                //                                 {
+                //                                     p.Product.ProdName,
+                //                                     p.Supplier?.SupName
+                //                                 }.ToList();
+
+                var packagesProductsSuppliers = package?.ProductSuppliers
+                            .Select(p => new
+                            {
+                                Product = p.Product?.ProdName,
+                                Supplier = p.Supplier?.SupName
+                            })
+                            .ToList();
+                var result = packagesProductsSuppliers?.Select(p => new ProdSuppNames
+                {
+                    SuppName = p.Supplier,
+                    ProdName = p.Product
+                }).Cast<ProdSuppNames>().ToList();
+                return result;
+            }
+            // ProdSuppNames pair = new ProdSuppNames("blar", "wobbegong");
+
         }
     }
+    public partial class ProdSuppNames
+    {
+        public string? ProdName { get; set; }
+        public string? SuppName { get; set; }
+
+    }
+
 }

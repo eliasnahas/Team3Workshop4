@@ -2,6 +2,7 @@ using Castle.Core.Resource;
 using Microsoft.EntityFrameworkCore;
 using System;
 using TravelExpertsData;
+using TravelSources;
 
 namespace Team3Workshop4
 {
@@ -39,21 +40,33 @@ namespace Team3Workshop4
         // displays current package for Modify
         private void DisplayPackage()
         {
+            List<ProdSuppNames> ps = TravelSource.GetProductsSupplierByPackage(package.PackageId);
+            // MessageBox.Show(ps[0].ProductId.ToString());
             // mockup data
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                package = db.Packages.FirstOrDefault();
+                package = db.Packages.Find(package.PackageId);
 
-                var packagesProductsSupplier = db.Packages
-                    .Include(p => p.ProductSuppliers)
-                    .Select(p => new { p.PackageId, p.PkgName, p.ProductSuppliers })
-                    .ToList();
+                var packagesProductsSuppliers = package?.ProductSuppliers
+                            .Select(p => new
+                            {
+                                Product = p.Product?.ProdName,
+                                Supplier = p.Supplier?.SupName
+                            })
+                            .ToList();
 
-                dgvProducts.DataSource = packagesProductsSupplier;
-                
-                
-               
+                if (packagesProductsSuppliers != null)
+                {
+                    int i = 0;
+                    foreach (var packagesProductsSupplier in packagesProductsSuppliers)
+                    {
+                        lvProducts.Items.Add(packagesProductsSupplier.Product);
+                        lvProducts.Items[i].SubItems.Add(packagesProductsSupplier.Supplier);
+                        i += 1;
+                    }
+                }
             }
+
             if (package != null) // if not null
             {
                 txtPkgName.Text = package.PkgName;
@@ -71,9 +84,24 @@ namespace Team3Workshop4
                 {
                     txtPkgAgencyCommission.Text = package.PkgAgencyCommission.Value.ToString("c");
                 }
-
-                
             }
+        }
+
+        // implement alternating row colour
+        // from: https://stackoverflow.com/questions/2866730/winforms-how-to-alternate-the-color-of-rows-in-a-listview-control
+        private void lvProducts_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            e.DrawDefault = true;
+            if ((e.ItemIndex % 2) == 1)
+            {
+                e.Item.BackColor = Color.WhiteSmoke;
+                e.Item.UseItemStyleForSubItems = true;
+            }
+        }
+
+        private void lvProducts_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            e.DrawDefault = true;
         }
     }
 }
