@@ -2,6 +2,7 @@ using Castle.Core.Resource;
 using Microsoft.EntityFrameworkCore;
 using System;
 using TravelExpertsData;
+using TravelSources;
 
 namespace Team3Workshop4
 {
@@ -39,10 +40,12 @@ namespace Team3Workshop4
         // displays current package for Modify
         private void DisplayPackage()
         {
+            List<ProductsSupplier> ps = TravelSource.GetProductsSupplierByPackage(package.PackageId);
+            MessageBox.Show(ps[0].ProductId.ToString());
             // mockup data
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                package = db.Packages.Find(1);
+                package = db.Packages.Find(package.PackageId);
 
                 var packagesProductsSuppliers = package?.ProductSuppliers
                             .Select(p => new

@@ -48,5 +48,51 @@ namespace TravelSources
                 return result;
             }
         }
+
+        public static List<Package> GetPackages()
+        {
+            List<Package> result = new List<Package>();
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                result = (from p in db.Packages
+                              select new Package
+                              {
+                                  PackageId = p.PackageId,
+                                  PkgName = p.PkgName,
+                                  PkgStartDate = p.PkgStartDate,
+                                  PkgEndDate = p.PkgEndDate,
+                                  PkgDesc = p.PkgDesc,
+                                  PkgBasePrice = p.PkgBasePrice,
+                                  PkgAgencyCommission = p.PkgAgencyCommission
+                              }).ToList();
+                return result;
+            }
+        }
+
+        public static Package FindPackage(int packageId)
+        {
+            Package result = null;
+
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                if (db.Packages.Find(packageId) != null)
+                {
+                    result = db.Packages.Find(packageId);
+                }
+            }
+            return result;
+        }
+
+        public static List<ProductsSupplier> GetProductsSupplierByPackage(int packageId)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                Package package = db.Packages.Find(packageId);
+
+
+                var result = package?.ProductSuppliers
+                                            .ToList(); return result;
+            }
+        }
     }
 }
