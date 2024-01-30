@@ -45,6 +45,9 @@
             suppliersGrid = new DataGridView();
             tabPackProdSupp = new TabPage();
             packProdSuppGrid = new DataGridView();
+            remProdSuppButton = new Button();
+            modProdSuppButton = new Button();
+            addProdSuppButton = new Button();
             tabControl1.SuspendLayout();
             tabPackages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)packagesGrid).BeginInit();
@@ -91,7 +94,7 @@
             remPackageButton.Name = "remPackageButton";
             remPackageButton.Size = new Size(107, 24);
             remPackageButton.TabIndex = 3;
-            remPackageButton.Text = "Remove Package";
+            remPackageButton.Text = "Remove";
             remPackageButton.UseVisualStyleBackColor = true;
             // 
             // packagesGrid
@@ -108,7 +111,7 @@
             modPackageButton.Name = "modPackageButton";
             modPackageButton.Size = new Size(107, 24);
             modPackageButton.TabIndex = 2;
-            modPackageButton.Text = "Modify Package";
+            modPackageButton.Text = "Modify";
             modPackageButton.UseVisualStyleBackColor = true;
             modPackageButton.Click += modPackageButton_Click;
             // 
@@ -118,7 +121,7 @@
             addPackageButton.Name = "addPackageButton";
             addPackageButton.Size = new Size(107, 24);
             addPackageButton.TabIndex = 1;
-            addPackageButton.Text = "Add Package";
+            addPackageButton.Text = "Add";
             addPackageButton.UseVisualStyleBackColor = true;
             addPackageButton.Click += addPackageButton_Click;
             // 
@@ -142,7 +145,7 @@
             remProdButton.Name = "remProdButton";
             remProdButton.Size = new Size(107, 24);
             remProdButton.TabIndex = 6;
-            remProdButton.Text = "Remove Product";
+            remProdButton.Text = "Remove";
             remProdButton.UseVisualStyleBackColor = true;
             remProdButton.Click += remProdButton_Click;
             // 
@@ -160,7 +163,7 @@
             modProdButton.Name = "modProdButton";
             modProdButton.Size = new Size(107, 24);
             modProdButton.TabIndex = 5;
-            modProdButton.Text = "Modify Product";
+            modProdButton.Text = "Modify";
             modProdButton.UseVisualStyleBackColor = true;
             modProdButton.Click += modProdButton_Click;
             // 
@@ -170,13 +173,16 @@
             addProdButton.Name = "addProdButton";
             addProdButton.Size = new Size(107, 24);
             addProdButton.TabIndex = 4;
-            addProdButton.Text = "Add Product";
+            addProdButton.Text = "Add";
             addProdButton.UseVisualStyleBackColor = true;
             addProdButton.Click += addProdButton_Click;
             // 
             // tabProdSupp
             // 
+            tabProdSupp.Controls.Add(remProdSuppButton);
             tabProdSupp.Controls.Add(prodSuppGrid);
+            tabProdSupp.Controls.Add(modProdSuppButton);
+            tabProdSupp.Controls.Add(addProdSuppButton);
             tabProdSupp.Location = new Point(4, 24);
             tabProdSupp.Name = "tabProdSupp";
             tabProdSupp.Size = new Size(813, 494);
@@ -228,11 +234,38 @@
             packProdSuppGrid.Size = new Size(813, 455);
             packProdSuppGrid.TabIndex = 1;
             // 
+            // remProdSuppButton
+            // 
+            remProdSuppButton.Location = new Point(499, 461);
+            remProdSuppButton.Name = "remProdSuppButton";
+            remProdSuppButton.Size = new Size(107, 24);
+            remProdSuppButton.TabIndex = 9;
+            remProdSuppButton.Text = "Remove";
+            remProdSuppButton.UseVisualStyleBackColor = true;
+            // 
+            // modProdSuppButton
+            // 
+            modProdSuppButton.Location = new Point(353, 461);
+            modProdSuppButton.Name = "modProdSuppButton";
+            modProdSuppButton.Size = new Size(107, 24);
+            modProdSuppButton.TabIndex = 8;
+            modProdSuppButton.Text = "Modify";
+            modProdSuppButton.UseVisualStyleBackColor = true;
+            // 
+            // addProdSuppButton
+            // 
+            addProdSuppButton.Location = new Point(209, 461);
+            addProdSuppButton.Name = "addProdSuppButton";
+            addProdSuppButton.Size = new Size(107, 24);
+            addProdSuppButton.TabIndex = 7;
+            addProdSuppButton.Text = "Add";
+            addProdSuppButton.UseVisualStyleBackColor = true;
+            // 
             // frmDatabaseViewer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(845, 593);
+            ClientSize = new Size(845, 543);
             Controls.Add(tabControl1);
             Name = "frmDatabaseViewer";
             Text = "Database Viewer";
@@ -270,5 +303,8 @@
         private Button remProdButton;
         private Button modProdButton;
         private Button addProdButton;
+        private Button remProdSuppButton;
+        private Button modProdSuppButton;
+        private Button addProdSuppButton;
     }
 }
