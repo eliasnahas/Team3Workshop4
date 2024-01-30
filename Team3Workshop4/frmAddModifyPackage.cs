@@ -40,8 +40,8 @@ namespace Team3Workshop4
         // displays current package for Modify
         private void DisplayPackage()
         {
-            List<ProductsSupplier> ps = TravelSource.GetProductsSupplierByPackage(package.PackageId);
-            MessageBox.Show(ps[0].ProductId.ToString());
+            List<ProdSuppNames> ps = TravelSource.GetProductsSupplierByPackage(package.PackageId);
+            // MessageBox.Show(ps[0].ProductId.ToString());
             // mockup data
             using (TravelExpertsContext db = new TravelExpertsContext())
             {

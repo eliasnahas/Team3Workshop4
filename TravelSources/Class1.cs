@@ -83,16 +83,43 @@ namespace TravelSources
             return result;
         }
 
-        public static List<ProductsSupplier> GetProductsSupplierByPackage(int packageId)
+        public static List<ProdSuppNames> GetProductsSupplierByPackage(int packageId)
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
                 Package package = db.Packages.Find(packageId);
 
 
-                var result = package?.ProductSuppliers
-                                            .ToList(); return result;
+                //var packagesProductsSuppliers = (from p in db.ProductsSuppliers
+                //                                 select new ProductsSupplier
+                //                                 {
+                //                                     p.Product.ProdName,
+                //                                     p.Supplier?.SupName
+                //                                 }.ToList();
+
+                var packagesProductsSuppliers = package?.ProductSuppliers
+                            .Select(p => new
+                            {
+                                Product = p.Product?.ProdName,
+                                Supplier = p.Supplier?.SupName
+                            })
+                            .ToList();
+                var result = packagesProductsSuppliers?.Select(p => new ProdSuppNames
+                {
+                    SuppName = p.Supplier,
+                    ProdName = p.Product
+                }).Cast<ProdSuppNames>().ToList();
+                return result;
             }
+            // ProdSuppNames pair = new ProdSuppNames("blar", "wobbegong");
+
         }
     }
+    public partial class ProdSuppNames
+    {
+        public string? ProdName { get; set; }
+        public string? SuppName { get; set; }
+
+    }
+
 }
