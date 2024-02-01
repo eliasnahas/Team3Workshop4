@@ -186,7 +186,7 @@
             addPackageButton.TabIndex = 1;
             addPackageButton.Text = "Add Package";
             addPackageButton.UseVisualStyleBackColor = true;
-            addPackageButton.Click += button1_Click;
+            addPackageButton.Click += addPackageButton_Click;
             // 
             // modPackageButton
             // 
@@ -208,6 +208,7 @@
             remPackageButton.TabIndex = 3;
             remPackageButton.Text = "Remove Package";
             remPackageButton.UseVisualStyleBackColor = true;
+            remPackageButton.Click += remPackageButton_Click;
             // 
             // frmDatabaseViewer
             // 

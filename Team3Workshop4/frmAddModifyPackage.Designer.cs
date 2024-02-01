@@ -31,8 +31,8 @@
             label1 = new Label();
             txtPkgName = new TextBox();
             label2 = new Label();
-            dtpPkgStartDate = new DateTimePicker();
             dtpPkgEndDate = new DateTimePicker();
+            dtpPkgStartDate = new DateTimePicker();
             label3 = new Label();
             label4 = new Label();
             txtPkgDesc = new TextBox();
@@ -76,23 +76,29 @@
             label2.TabIndex = 2;
             label2.Text = "Start Date:";
             // 
-            // dtpPkgStartDate
-            // 
-            dtpPkgStartDate.Format = DateTimePickerFormat.Short;
-            dtpPkgStartDate.Location = new Point(444, 55);
-            dtpPkgStartDate.Name = "dtpPkgStartDate";
-            dtpPkgStartDate.Size = new Size(167, 34);
-            dtpPkgStartDate.TabIndex = 3;
-            dtpPkgStartDate.Tag = "End Date";
-            // 
             // dtpPkgEndDate
             // 
-            dtpPkgEndDate.Format = DateTimePickerFormat.Short;
-            dtpPkgEndDate.Location = new Point(134, 55);
+            dtpPkgEndDate.CustomFormat = " ";
+            dtpPkgEndDate.Format = DateTimePickerFormat.Custom;
+            dtpPkgEndDate.Location = new Point(444, 55);
             dtpPkgEndDate.Name = "dtpPkgEndDate";
             dtpPkgEndDate.Size = new Size(167, 34);
-            dtpPkgEndDate.TabIndex = 5;
-            dtpPkgEndDate.Tag = "Start Date";
+            dtpPkgEndDate.TabIndex = 3;
+            dtpPkgEndDate.Tag = "End Date";
+            dtpPkgEndDate.ValueChanged += dtpPkgEndDate_ValueChanged;
+            dtpPkgEndDate.KeyDown += dtpPkgEndDate_KeyDown;
+            // 
+            // dtpPkgStartDate
+            // 
+            dtpPkgStartDate.CustomFormat = " ";
+            dtpPkgStartDate.Format = DateTimePickerFormat.Custom;
+            dtpPkgStartDate.Location = new Point(134, 55);
+            dtpPkgStartDate.Name = "dtpPkgStartDate";
+            dtpPkgStartDate.Size = new Size(167, 34);
+            dtpPkgStartDate.TabIndex = 5;
+            dtpPkgStartDate.Tag = "Start Date";
+            dtpPkgStartDate.ValueChanged += dtpPkgStartDate_ValueChanged;
+            dtpPkgStartDate.KeyDown += dtpPkgStartDate_KeyDown;
             // 
             // label3
             // 
@@ -174,6 +180,7 @@
             btnAccept.TabIndex = 14;
             btnAccept.Text = "&Accept";
             btnAccept.UseVisualStyleBackColor = true;
+            btnAccept.Click += btnAccept_Click;
             // 
             // btnEditProducts
             // 
@@ -234,9 +241,9 @@
             Controls.Add(label5);
             Controls.Add(txtPkgDesc);
             Controls.Add(label4);
-            Controls.Add(dtpPkgEndDate);
-            Controls.Add(label3);
             Controls.Add(dtpPkgStartDate);
+            Controls.Add(label3);
+            Controls.Add(dtpPkgEndDate);
             Controls.Add(label2);
             Controls.Add(txtPkgName);
             Controls.Add(label1);
@@ -255,8 +262,8 @@
         private Label label1;
         private TextBox txtPkgName;
         private Label label2;
-        private DateTimePicker dtpPkgStartDate;
         private DateTimePicker dtpPkgEndDate;
+        private DateTimePicker dtpPkgStartDate;
         private Label label3;
         private Label label4;
         private TextBox txtPkgDesc;

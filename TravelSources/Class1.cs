@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using TravelExpertsData;
 using System.Linq;
+using Microsoft.Data.SqlClient;
 namespace TravelSources
 {
     public static class TravelSource
@@ -81,6 +82,42 @@ namespace TravelSources
                 }
             }
             return result;
+        }
+
+        public static void AddPackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Packages.Add(package);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static void ModifyPackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Packages.Update(package);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static void DeletePackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db= new TravelExpertsContext())
+                {
+                    db.Packages.Remove(package);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public static List<ProdSuppNames> GetProductsSupplierByPackage(int packageId)
