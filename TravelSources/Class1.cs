@@ -83,38 +83,28 @@ namespace TravelSources
             return result;
         }
 
-        public static List<ProdSuppNames> GetProductsSupplierByPackage(int packageId)
+        public static List<ProdSuppNames>? GetProductsSupplierByPackage(int packageId)
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                Package package = db.Packages.Find(packageId);
+                Package? package = db.Packages.Find(packageId);
 
 
-                //var packagesProductsSuppliers = (from p in db.ProductsSuppliers
-                //                                 select new ProductsSupplier
-                //                                 {
-                //                                     p.Product.ProdName,
-                //                                     p.Supplier?.SupName
-                //                                 }.ToList();
-
-                var packagesProductsSuppliers = package?.ProductSuppliers
-                            .Select(p => new
+                var result = package?.ProductSuppliers
+                            .Select(p => new ProdSuppNames
                             {
-                                Product = p.Product?.ProdName,
-                                Supplier = p.Supplier?.SupName
+                                ProdName = p.Product?.ProdName,
+                                SuppName = p.Supplier?.SupName
                             })
                             .ToList();
-                var result = packagesProductsSuppliers?.Select(p => new ProdSuppNames
-                {
-                    SuppName = p.Supplier,
-                    ProdName = p.Product
-                }).Cast<ProdSuppNames>().ToList();
                 return result;
             }
             // ProdSuppNames pair = new ProdSuppNames("blar", "wobbegong");
 
         }
     }
+
+    // Custom class to display Product/Supplier Names in the Packages Add/Modify Form - By: Lance Salvador
     public partial class ProdSuppNames
     {
         public string? ProdName { get; set; }

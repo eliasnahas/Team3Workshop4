@@ -132,3 +132,4 @@ C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-win
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\bin\Debug\net8.0-windows\TravelSources.dll
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\bin\Debug\net8.0-windows\TravelSources.pdb
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmDatabaseViewer.resources
+C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\TravelExpertsGUI.frmAddModifyProduct.resources

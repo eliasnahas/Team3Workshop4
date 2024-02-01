@@ -24,18 +24,26 @@ namespace Team3Workshop4
         // Operations done when the Database Viewer loads
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Set DataGridViewer sources, display without extra fields
+            // gets width of grid for calculating even column widths;
+            int dgvWidth = packagesGrid.Width;
+
+        // Set DataGridViewer sources, display without extra fields
             // Packages
+            
             packagesGrid.DataSource = TravelSource.GetPackages();
             packagesGrid.Columns.Remove("Bookings");
             packagesGrid.Columns.Remove("ProductSuppliers");
 
             // Products
             productsGrid.DataSource = TravelSource.GetProducts();
-            productsGrid.Columns.Remove("ProductsSuppliers");
+
+                // can't .Remove() this field (???)
+            productsGrid.Columns["ProductsSuppliers"].Visible = false;
+            productsGrid.Columns["ProdName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             // Products_Suppliers
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
+            
             prodSuppGrid.Columns.Remove("BookingDetails");
             prodSuppGrid.Columns.Remove("Product");
             prodSuppGrid.Columns.Remove("Supplier");
