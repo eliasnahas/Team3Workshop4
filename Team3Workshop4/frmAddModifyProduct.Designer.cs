@@ -1,4 +1,4 @@
-﻿namespace Team3Workshop4
+﻿namespace TravelExpertsGUI
 {
     partial class frmAddModifyProduct
     {
@@ -28,12 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            txtProductName = new TextBox();
+            label1 = new Label();
+            btnConfirm = new Button();
+            SuspendLayout();
+            // 
+            // txtProductName
+            // 
+            txtProductName.Location = new Point(134, 51);
+            txtProductName.Margin = new Padding(4);
+            txtProductName.MaxLength = 50;
+            txtProductName.Name = "txtProductName";
+            txtProductName.Size = new Size(156, 29);
+            txtProductName.TabIndex = 1;
+            txtProductName.Tag = "Product Name";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(13, 54);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(113, 21);
+            label1.TabIndex = 2;
+            label1.Text = "Product Name:";
+            // 
+            // btnConfirm
+            // 
+            btnConfirm.Location = new Point(120, 126);
+            btnConfirm.Name = "btnConfirm";
+            btnConfirm.Size = new Size(75, 30);
+            btnConfirm.TabIndex = 3;
+            btnConfirm.Text = "Confirm";
+            btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Click += btnConfirm_Click;
+            // 
+            // frmAddModifyProduct
+            // 
+            AutoScaleDimensions = new SizeF(9F, 21F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(326, 168);
+            Controls.Add(btnConfirm);
+            Controls.Add(label1);
+            Controls.Add(txtProductName);
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Margin = new Padding(4);
+            Name = "frmAddModifyProduct";
+            Text = "Add/Modify";
+            Load += frmAddModify_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+        private TextBox txtProductName;
+        private Label label1;
+        private Button btnConfirm;
     }
 }

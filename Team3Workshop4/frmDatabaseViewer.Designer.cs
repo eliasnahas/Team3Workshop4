@@ -186,7 +186,6 @@
             addPackageButton.TabIndex = 1;
             addPackageButton.Text = "Add Package";
             addPackageButton.UseVisualStyleBackColor = true;
-            addPackageButton.Click += button1_Click;
             // 
             // modPackageButton
             // 

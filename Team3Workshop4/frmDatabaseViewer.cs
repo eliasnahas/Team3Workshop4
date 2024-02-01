@@ -24,25 +24,24 @@ namespace Team3Workshop4
         // Operations done when the Database Viewer loads
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Set DataGridViewer sources, display without extra fields
+            // gets width of grid for calculating even column widths;
+            int dgvWidth = packagesGrid.Width;
+
+        // Set DataGridViewer sources, display without extra fields
             // Packages
+            
             packagesGrid.DataSource = TravelSource.GetPackages();
-            packagesGrid.Columns.Remove("Bookings");
-            packagesGrid.Columns.Remove("ProductSuppliers");
 
             // Products
             productsGrid.DataSource = TravelSource.GetProducts();
-            productsGrid.Columns.Remove("ProductsSuppliers");
+            productsGrid.Columns["ProdName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             // Products_Suppliers
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
 
-
-
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addPackageButton_Click(object sender, EventArgs e)
         {
 
         }
@@ -58,6 +57,23 @@ namespace Team3Workshop4
                 };
                 DialogResult result = addModifyPackageForm.ShowDialog();
             }
+        }
+
+        private void addProdButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modProdButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void remProdButton_Click(object sender, EventArgs e)
+        {
+            // Remove product from database
+            
+            // Refresh grid view
         }
     }
 }
