@@ -45,11 +45,6 @@ namespace Team3Workshop4
 
         }
 
-        private void addPackageButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void modPackageButton_Click(object sender, EventArgs e)
         {
             selectedPackage = TravelSource.FindPackage((int)packagesGrid.SelectedRows[0].Cells[0].Value);

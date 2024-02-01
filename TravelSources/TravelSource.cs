@@ -58,6 +58,57 @@ namespace TravelSources
             }
         }
 
+        public static Package FindPackage(int packageId)
+        {
+            Package result = null;
+
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                if (db.Packages.Find(packageId) != null)
+                {
+                    result = db.Packages.Find(packageId);
+                }
+            }
+            return result;
+        }
+
+        public static void AddPackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Packages.Add(package);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static void ModifyPackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Packages.Update(package);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static void DeletePackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Packages.Remove(package);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+
         // Gets suppliers from database - by: Gurleen Dhillon
         public static List<SupplierNameID>? GetSuppliers()
         {
@@ -72,22 +123,7 @@ namespace TravelSources
                 return result;
             }
 
-        }
-
-        public static Package? FindPackage(int packageId)
-        {
-            Package? result = null;
-            using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                if (db.Packages.Find(packageId) != null)
-                {
-                    return db.Packages.Find(packageId);
-                }
-            }
-            return result;
-        }
-
-        
+        }        
 
         public static List<ProdSuppNames>? GetProductsSupplierByPackage(int packageId)
         {
