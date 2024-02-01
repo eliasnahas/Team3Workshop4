@@ -39,6 +39,9 @@ namespace Team3Workshop4
             // Products_Suppliers
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
 
+            // Suppliers
+            suppliersGrid.DataSource = TravelSource.GetSuppliers();
+
         }
 
         private void addPackageButton_Click(object sender, EventArgs e)

@@ -16,6 +16,11 @@ namespace GridData
         public int ProductId { get; set; }
         public string ProdName { get; set; } = null!;
     }
+    public partial class SupplierNameID
+    {
+        public int SupplierId { get; set; }
+        public string SupName { get; set; } = null!;
+    }
     public partial class ProdSuppIDs
     {
         public int ProductSupplierId { get; set; }

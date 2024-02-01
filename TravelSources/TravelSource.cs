@@ -38,6 +38,7 @@ namespace TravelSources
             }
         }
 
+        // Gets Packages from database - by: Elias Nahas
         public static List<PackageData> GetPackages()
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
@@ -57,6 +58,22 @@ namespace TravelSources
             }
         }
 
+        // Gets suppliers from database - by: Gurleen Dhillon
+        public static List<SupplierNameID>? GetSuppliers()
+        {
+            // connection to database
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var result = db.Suppliers.Select(s => new SupplierNameID
+                {
+                    SupplierId = s.SupplierId,
+                    SupName = s.SupName
+                }).ToList();
+                return result;
+            }
+
+        }
+
         public static Package? FindPackage(int packageId)
         {
             Package? result = null;
@@ -69,6 +86,8 @@ namespace TravelSources
             }
             return result;
         }
+
+        
 
         public static List<ProdSuppNames>? GetProductsSupplierByPackage(int packageId)
         {
