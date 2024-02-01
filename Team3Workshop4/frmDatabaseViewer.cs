@@ -36,10 +36,7 @@ namespace Team3Workshop4
 
             // Products_Suppliers
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
-            prodSuppGrid.Columns.Remove("BookingDetails");
-            prodSuppGrid.Columns.Remove("Product");
-            prodSuppGrid.Columns.Remove("Supplier");
-            prodSuppGrid.Columns.Remove("Packages");
+
 
 
 

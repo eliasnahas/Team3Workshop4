@@ -28,23 +28,30 @@ namespace TravelSources
         }
 
 
-        public static List<ProductsSupplier> GetProdSupps()
+        public static List<ProductsSupplierBT> GetProdSupps()
         {
             using (TravelExpertsContext db = new TravelExpertsContext()) // connect to the database and get data
             {
                 var prodSupp = (from ps in db.ProductsSuppliers
+                                join p in db.Products on ps.ProductId equals p.ProductId
+                                join s in db.Suppliers on ps.SupplierId equals s.SupplierId
+                                orderby ps.ProductSupplierId
                                 select new
                                 {
                                     ps.ProductSupplierId,
-                                    ps.ProductId,
-                                    ps.SupplierId
+                                    p.ProdName,
+                                    s.SupName
                                 }).ToList();
-                var result = prodSupp.Select(ps => new ProductsSupplier
-                {
-                    ProductSupplierId = ps.ProductSupplierId,
-                    ProductId = ps.ProductId,
-                    SupplierId = ps.SupplierId
-                }).Cast<ProductsSupplier>().ToList();
+                var result = (from ps in db.ProductsSuppliers
+                              join p in db.Products on ps.ProductId equals p.ProductId
+                              join s in db.Suppliers on ps.SupplierId equals s.SupplierId
+                              orderby ps.ProductSupplierId
+                              select new ProductsSupplierBT
+                              {
+                                  ProductSupplierId = ps.ProductSupplierId,
+                                  ProdName = p.ProdName,
+                                  SupName = s.SupName
+                              }).ToList();
                 return result;
             }
         }
