@@ -10,7 +10,7 @@
     <Compile Update="frmAddModifyPackage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmProductSupplier.cs">
+    <Compile Update="frmAddModifyProdSupp.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
