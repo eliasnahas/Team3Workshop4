@@ -32,19 +32,33 @@ namespace Team3Workshop4
             // Packages
             
             packagesGrid.DataSource = TravelSource.GetPackages();
+            
 
             // Products
             productsGrid.DataSource = TravelSource.GetProducts();
-            productsGrid.Columns["ProdName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            
 
             // Products_Suppliers
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
+            
 
             // Suppliers
             suppliersGrid.DataSource = TravelSource.GetSuppliers();
 
+            // Auto-scale columns to be at least as long as their data
+            productsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            prodSuppGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            suppliersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // except packages
+            // Stretch last 2 columns to *just* fit in its dgv
+            packagesGrid.Columns["PkgBasePrice"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            packagesGrid.Columns["PkgAgencyCommission"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //// Functions for Packages       
         private void modPackageButton_Click(object sender, EventArgs e)
         {
             selectedPackage = TravelSource.FindPackage((int)packagesGrid.SelectedRows[0].Cells[0].Value);
