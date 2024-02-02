@@ -10,8 +10,8 @@ namespace TravelExpertsData
     {
         public int ProductSupplierId { get; set; }
 
-        public string ProdName { get; set; }
+        public string? ProdName { get; set; }
 
-        public string SupName { get; set; }
+        public string? SupName { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace Team3Workshop4
         // public declaration to provide access to main form
         public bool isAdd; // true when Add, false when Modify
         public Package? package; // new package data
-        // public List<Product>? products; // empty list of products
         public frmAddModifyPackage()
         {
             InitializeComponent();
@@ -67,11 +66,11 @@ namespace Team3Workshop4
                 txtPkgName.Text = package.PkgName;
                 if (package.PkgStartDate != null)
                 {
-                    dtpPkgEndDate.Value = (DateTime)package.PkgStartDate;
+                    dtpPkgStartDate.Value = (DateTime)package.PkgStartDate;
                 }
                 if (package.PkgEndDate != null)
                 {
-                    dtpPkgStartDate.Value = (DateTime)package.PkgEndDate;
+                    dtpPkgEndDate.Value = (DateTime)package.PkgEndDate;
                 }
                 txtPkgDesc.Text = package.PkgDesc;
                 txtPkgBasePrice.Text = package.PkgBasePrice.ToString("f2");
@@ -166,6 +165,7 @@ namespace Team3Workshop4
             }
         }
 
+        // Empty datetimepicker solution: https://www.youtube.com/watch?v=eNgBGF98Mb8
         private void dtpPkgStartDate_ValueChanged(object sender, EventArgs e)
         {
             dtpPkgStartDate.Format = DateTimePickerFormat.Short;

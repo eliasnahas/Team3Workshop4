@@ -58,20 +58,22 @@ namespace TravelSources
             }
         }
 
+        // Finds package by ID - by: Elias Nahas
         public static Package FindPackage(int packageId)
         {
-            Package result = null;
+            Package result = null!;
 
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
                 if (db.Packages.Find(packageId) != null)
                 {
-                    result = db.Packages.Find(packageId);
+                    result = db.Packages.Find(packageId)!;
                 }
             }
             return result;
         }
 
+        // Adds package to database - by: Elias Nahas
         public static void AddPackage(Package package)
         {
             if (package != null)
@@ -84,6 +86,7 @@ namespace TravelSources
             }
         }
 
+        // Modifies package in database - by: Elias Nahas
         public static void ModifyPackage(Package package)
         {
             if (package != null)
@@ -96,6 +99,7 @@ namespace TravelSources
             }
         }
 
+        // Deletes package from database - by: Elias Nahas
         public static void DeletePackage(Package package)
         {
             if (package != null)
@@ -125,6 +129,7 @@ namespace TravelSources
 
         }        
 
+        // Gets list of Products and their Suppliers by package ID - by: Lance Salvador
         public static List<ProdSuppNames>? GetProductsSupplierByPackage(int packageId)
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
