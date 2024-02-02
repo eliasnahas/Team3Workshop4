@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Team3Workshop4")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+072108573a2ef179a93211fd41d4888af38d554e")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67958782f6687bda79d7411d205a8d1770481959")]
+>>>>>>> Lance-branch
 [assembly: System.Reflection.AssemblyProductAttribute("Team3Workshop4")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Team3Workshop4")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
