@@ -136,7 +136,7 @@ namespace Team3Workshop4
                 if ((int)row.Cells[0].Value == packageId)
                 {
                     packagesGrid.ClearSelection();
-                    row.Selected = true;
+                    packagesGrid.CurrentCell = packagesGrid.Rows[row.Index].Cells[0];
                 }
             }
         }
