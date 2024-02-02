@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TravelExpertsData")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a712bfc6a8de8096cdc60eb2d14592921cfe449")]
->>>>>>> master
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+072108573a2ef179a93211fd41d4888af38d554e")]
 [assembly: System.Reflection.AssemblyProductAttribute("TravelExpertsData")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TravelExpertsData")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
