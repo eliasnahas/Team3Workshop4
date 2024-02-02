@@ -38,6 +38,7 @@ namespace TravelSources
             }
         }
 
+        // Gets Packages from database - by: Elias Nahas
         public static List<PackageData> GetPackages()
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
@@ -57,18 +58,72 @@ namespace TravelSources
             }
         }
 
-        public static Package? FindPackage(int packageId)
+        public static Package FindPackage(int packageId)
         {
-            Package? result = null;
+            Package result = null;
+
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
                 if (db.Packages.Find(packageId) != null)
                 {
-                    return db.Packages.Find(packageId);
+                    result = db.Packages.Find(packageId);
                 }
             }
             return result;
         }
+
+        public static void AddPackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Packages.Add(package);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static void ModifyPackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Packages.Update(package);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static void DeletePackage(Package package)
+        {
+            if (package != null)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Packages.Remove(package);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+
+        // Gets suppliers from database - by: Gurleen Dhillon
+        public static List<SupplierNameID>? GetSuppliers()
+        {
+            // connection to database
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var result = db.Suppliers.Select(s => new SupplierNameID
+                {
+                    SupplierId = s.SupplierId,
+                    SupName = s.SupName
+                }).ToList();
+                return result;
+            }
+
+        }        
 
         public static List<ProdSuppNames>? GetProductsSupplierByPackage(int packageId)
         {
