@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,34 +20,106 @@ namespace Team3Workshop4
             InitializeComponent();
         }
 
+        private Package selectedPackage = null!;
+
         // Operations done when the Database Viewer loads
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Set DataGridViewer sources, display without extra fields 
+            // gets width of grid for calculating even column widths;
+            int dgvWidth = packagesGrid.Width;
+
+        // Set DataGridViewer sources, display without extra fields
+            // Packages
+            
+            packagesGrid.DataSource = TravelSource.GetPackages();
+            
+
             // Products
             productsGrid.DataSource = TravelSource.GetProducts();
-            productsGrid.Columns["ProductsSuppliers"].Visible = false;
+            
 
             // Products_Suppliers
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
-            prodSuppGrid.Columns["BookingDetails"].Visible = false;
-            prodSuppGrid.Columns["Product"].Visible = false;
-            prodSuppGrid.Columns["Supplier"].Visible = false;
-            prodSuppGrid.Columns["Packages"].Visible = false;
+            
 
+            // Suppliers
+            suppliersGrid.DataSource = TravelSource.GetSuppliers();
 
+            // Auto-scale columns to be at least as long as their data
+            productsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            prodSuppGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            suppliersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
+            // except packages
+            // Stretch last 2 columns to *just* fit in its dgv
+            packagesGrid.Columns["PkgBasePrice"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            packagesGrid.Columns["PkgAgencyCommission"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        }
-
+        //// Functions for Packages       
         private void modPackageButton_Click(object sender, EventArgs e)
         {
-            frmAddModifyPackage modWindow = new frmAddModifyPackage();
-            modWindow.ShowDialog();
+            selectedPackage = TravelSource.FindPackage((int)packagesGrid.SelectedRows[0].Cells[0].Value);
+            if (selectedPackage != null)
+            {
+                // display second form with current data
+                // and collect new data values
+                frmAddModifyPackage addModifyPackageForm = new()
+                {
+                    isAdd = false, // is Modify operation
+                    package = selectedPackage // pass selected package to second form
+                };
+                DialogResult result = addModifyPackageForm.ShowDialog();
+                if (result == DialogResult.OK) // second form collected new data
+                {
+                    selectedPackage = addModifyPackageForm.package;
+                    // perform the update
+                    TravelSource.ModifyPackage(selectedPackage);
+                    DisplayPackages();
+                }
+            }
+        }
+
+        private void addPackageButton_Click(object sender, EventArgs e)
+        {
+            // display second form to collect data
+            frmAddModifyPackage addModifyPackageForm = new()
+            {
+                isAdd = true, // is Add operation
+                package = null // no package yet
+            };
+            DialogResult result = addModifyPackageForm.ShowDialog();
+            if (result == DialogResult.OK) // second form collected data
+            {
+                selectedPackage = addModifyPackageForm.package;
+                // add it to the Packages table
+                TravelSource.AddPackage(selectedPackage);
+                DisplayPackages();
+            }
+        }
+
+        private void remPackageButton_Click(object sender, EventArgs e)
+        {
+            selectedPackage = TravelSource.FindPackage((int)packagesGrid.SelectedRows[0].Cells[0].Value);
+            if (selectedPackage != null)
+            {
+                DialogResult answer = MessageBox.Show(
+                    $"Do you really want to delete {selectedPackage.PkgName}?",
+                    "Confirm delete", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                if (answer == DialogResult.Yes) // user confirmed
+                {
+                    TravelSource.DeletePackage(selectedPackage);
+                    DisplayPackages();
+                }
+            }
+        }
+
+        private void DisplayPackages()
+        {
+            packagesGrid.DataSource = TravelSource.GetPackages();
         }
     }
 }
