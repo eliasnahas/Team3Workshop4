@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using TravelExpertsData;
 
-namespace TravelExpertsGUI
+namespace Team3Workshop4
 {
     public partial class frmAddModifyProduct : Form
     {
@@ -28,7 +28,7 @@ namespace TravelExpertsGUI
                 Text = "Add Product";
 
             }
-            else // if false, dior productcode
+            else // if false, display modify Product
             {
                 Text = "Modify Product";
                 DisplayProduct();
@@ -45,7 +45,8 @@ namespace TravelExpertsGUI
                     GetProductData();
                     DialogResult = DialogResult.OK; // close the form
                 }
-            } else
+            }
+            else
             {
                 GetProductData();
                 DialogResult = DialogResult.OK;
@@ -62,9 +63,15 @@ namespace TravelExpertsGUI
         {
             if (product != null)
             {
+                txtProductID.Text = product.ProductId.ToString();
                 txtProductName.Text = product.ProdName;
 
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

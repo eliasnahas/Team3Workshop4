@@ -1,4 +1,4 @@
-﻿namespace TravelExpertsGUI
+﻿namespace Team3Workshop4
 {
     partial class frmAddModifyProduct
     {
@@ -31,22 +31,25 @@
             txtProductName = new TextBox();
             label1 = new Label();
             btnConfirm = new Button();
+            btnCancel = new Button();
+            label2 = new Label();
+            txtProductID = new TextBox();
             SuspendLayout();
             // 
             // txtProductName
             // 
-            txtProductName.Location = new Point(134, 51);
+            txtProductName.Location = new Point(143, 62);
             txtProductName.Margin = new Padding(4);
             txtProductName.MaxLength = 50;
             txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(156, 29);
+            txtProductName.Size = new Size(127, 29);
             txtProductName.TabIndex = 1;
             txtProductName.Tag = "Product Name";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(13, 54);
+            label1.Location = new Point(25, 65);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(113, 21);
@@ -55,26 +58,60 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(120, 126);
+            btnConfirm.Location = new Point(25, 108);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(75, 30);
+            btnConfirm.Size = new Size(75, 34);
             btnConfirm.TabIndex = 3;
             btnConfirm.Text = "Confirm";
             btnConfirm.UseVisualStyleBackColor = true;
             btnConfirm.Click += btnConfirm_Click;
             // 
-            // frmAddModifyProduct
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(195, 108);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 34);
+            btnCancel.TabIndex = 4;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(25, 20);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(86, 21);
+            label2.TabIndex = 5;
+            label2.Text = "Product ID:";
+            // 
+            // txtProductID
+            // 
+            txtProductID.Location = new Point(143, 17);
+            txtProductID.Margin = new Padding(4);
+            txtProductID.MaxLength = 50;
+            txtProductID.Name = "txtProductID";
+            txtProductID.ReadOnly = true;
+            txtProductID.Size = new Size(127, 29);
+            txtProductID.TabIndex = 6;
+            txtProductID.Tag = "Product Name";
+            // 
+            // frmAddModify
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(326, 168);
+            ClientSize = new Size(309, 153);
+            Controls.Add(txtProductID);
+            Controls.Add(label2);
+            Controls.Add(btnCancel);
             Controls.Add(btnConfirm);
             Controls.Add(label1);
             Controls.Add(txtProductName);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
-            Name = "frmAddModifyProduct";
-            Text = "Add/Modify";
+            Name = "frmAddModify";
+            Text = "Form1";
             Load += frmAddModify_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -84,5 +121,8 @@
         private TextBox txtProductName;
         private Label label1;
         private Button btnConfirm;
+        private Button btnCancel;
+        private Label label2;
+        private TextBox txtProductID;
     }
 }

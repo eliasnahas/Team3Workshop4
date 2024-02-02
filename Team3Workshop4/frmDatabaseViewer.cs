@@ -19,8 +19,13 @@ namespace Team3Workshop4
         {
             InitializeComponent();
         }
+        // product variables
+        private Product? selectedProduct = null;
+        string p;
+        int pp;
 
         private Package selectedPackage = null!;
+
 
         // Operations done when the Database Viewer loads
         private void MainForm_Load(object sender, EventArgs e)
@@ -28,25 +33,25 @@ namespace Team3Workshop4
             // gets width of grid for calculating even column widths;
             int dgvWidth = packagesGrid.Width;
 
-        // Set DataGridViewer sources, display without extra fields
+            // Set DataGridViewer sources, display without extra fields
             // Packages
-            
+
             packagesGrid.DataSource = TravelSource.GetPackages();
-            
+
 
             // Products
-            productsGrid.DataSource = TravelSource.GetProducts();
-            
+            dgvProduct.DataSource = TravelSource.GetProducts();
+
 
             // Products_Suppliers
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
-            
+
 
             // Suppliers
             suppliersGrid.DataSource = TravelSource.GetSuppliers();
 
             // Auto-scale columns to be at least as long as their data
-            productsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             prodSuppGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             suppliersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
@@ -120,6 +125,59 @@ namespace Team3Workshop4
         private void DisplayPackages()
         {
             packagesGrid.DataSource = TravelSource.GetPackages();
+        }
+
+        private void addProdButton_Click(object sender, EventArgs e)
+        {
+            frmAddModifyProduct secondForm = new frmAddModifyProduct();
+            secondForm.isAdd = true;
+            DialogResult result = secondForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                selectedProduct = secondForm.product;
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Products.Add(selectedProduct);
+                    db.SaveChanges();
+                    dgvProduct.DataSource = TravelSource.GetProducts();
+                }
+            }
+        }
+
+        private void modProdButton_Click(object sender, EventArgs e)
+        {
+            p = dgvProduct.CurrentRow.Cells[0].Value.ToString();
+            pp = Convert.ToInt32(p);
+            TravelExpertsContext prod = new TravelExpertsContext();
+            selectedProduct = prod.Products.Find(pp);
+            frmAddModifyProduct secondForm = new frmAddModifyProduct();
+            secondForm.isAdd = false;
+            secondForm.product = selectedProduct;
+            DialogResult result = secondForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+
+                    db.Products.Update(secondForm.product);
+                    db.SaveChanges();
+                    dgvProduct.DataSource = TravelSource.GetProducts();
+                }
+            }
+        }
+
+        private void remProdButton_Click(object sender, EventArgs e)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                p = dgvProduct.CurrentRow.Cells[0].Value.ToString();
+                pp = Convert.ToInt32(p);
+                selectedProduct = db.Products.Find(pp);
+                db.Products.Remove(selectedProduct);
+                db.SaveChanges();
+            }
+            dgvProduct.DataSource = TravelSource.GetProducts();
         }
     }
 }
