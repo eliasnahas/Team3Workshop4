@@ -2,6 +2,7 @@
 using TravelExpertsData;
 using System.Linq;
 using GridData;
+using Microsoft.Identity.Client;
 namespace TravelSources
 {
     public static class TravelSource
@@ -60,13 +61,13 @@ namespace TravelSources
 
         public static Package FindPackage(int packageId)
         {
-            Package result = null;
+            Package result = null!;
 
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
                 if (db.Packages.Find(packageId) != null)
                 {
-                    result = db.Packages.Find(packageId);
+                    result = db.Packages.Find(packageId)!;
                 }
             }
             return result;
@@ -118,7 +119,7 @@ namespace TravelSources
                 var result = db.Suppliers.Select(s => new SupplierNameID
                 {
                     SupplierId = s.SupplierId,
-                    SupName = s.SupName
+                    SupName = s.SupName!
                 }).ToList();
                 return result;
             }
@@ -131,14 +132,58 @@ namespace TravelSources
             {
                 Package? package = db.Packages.Find(packageId);
 
-                var result = package?.ProductSuppliers
-                            .Select(p => new ProdSuppNames
-                            {
-                                ProdName = p.Product?.ProdName,
-                                SuppName = p.Supplier?.SupName
-                            })
-                            .ToList();
+                //var result = package?.ProductSuppliers
+                //            .Select(p => new ProdSuppNames
+                //            {
+                //                ProdName = p.Product?.ProdName,
+                //                SuppName = p.Supplier?.SupName
+                //            })
+                //            .ToList();
+
+                /// ^had to reimplement this due to the new context - Lance
+                var result = (from p in db.Packages
+                              join pps in db.PackagesProductsSuppliers on p.PackageId equals pps.PackageId
+                              join ps in db.ProductsSuppliers on pps.ProductSupplierId equals ps.ProductSupplierId
+                              where p.PackageId == package!.PackageId
+                              select new ProdSuppNames
+                              {
+                                  ProdName = ps.Product!.ProdName,
+                                  SuppName = ps.Supplier!.SupName
+                              }).ToList();
+
+
                 return result;
+            }
+        }
+        public static List<PackProdSuppIds> GetPacksProdsSupps()
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var result = db.PackagesProductsSuppliers.Select(p => new PackProdSuppIds
+                {
+                    PackageProductSupplierId = p.PackageProductSupplierId,
+                    PackageId = p.PackageId,
+                    ProductSupplierId = p.ProductSupplierId
+                }).ToList();
+                return result;
+            }
+        }
+
+        public static PackagesProductsSupplier GetPackProdSuppFromId(int PackProdSuppId)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var result = db.PackagesProductsSuppliers.Find(PackProdSuppId);
+                return result!;
+            }
+        }
+
+        public static void AddToPackProdSupps(PackagesProductsSupplier entry)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                db.PackagesProductsSuppliers.Add(entry);
+                db.SaveChanges();
             }
         }
     }

@@ -47,5 +47,12 @@ namespace GridData
         public string? SuppName { get; set; }
 
     }
+
+    public partial class PackProdSuppIds
+    {
+        public int? PackageProductSupplierId { get; set; }
+        public int PackageId { get; set; }
+        public int ProductSupplierId { get; set; }
+    }
     
 }

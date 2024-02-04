@@ -136,3 +136,4 @@ C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-win
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\TravelExpertsGUI.frmAddModifyProduct.resources
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmProductSupplier.resources
 C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddModifyProdSupp.resources
+C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddModifyPackProdSupp.resources

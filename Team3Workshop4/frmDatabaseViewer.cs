@@ -28,22 +28,21 @@ namespace Team3Workshop4
             // gets width of grid for calculating even column widths;
             int dgvWidth = packagesGrid.Width;
 
-        // Set DataGridViewer sources, display without extra fields
+            // Set DataGridViewer sources, display without extra fields
             // Packages
-            
             packagesGrid.DataSource = TravelSource.GetPackages();
-            
 
             // Products
             productsGrid.DataSource = TravelSource.GetProducts();
-            
 
             // Products_Suppliers
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
-            
 
             // Suppliers
             suppliersGrid.DataSource = TravelSource.GetSuppliers();
+
+            // Packages_Products_Suppliers
+            dgvPacksProdsSupps.DataSource = TravelSource.GetPacksProdsSupps();
 
             // Auto-scale columns to be at least as long as their data
             productsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -58,7 +57,7 @@ namespace Team3Workshop4
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //// Functions for Packages       
+        //// Functions for Packages
         private void modPackageButton_Click(object sender, EventArgs e)
         {
             selectedPackage = TravelSource.FindPackage((int)packagesGrid.SelectedRows[0].Cells[0].Value);
@@ -120,6 +119,53 @@ namespace Team3Workshop4
         private void DisplayPackages()
         {
             packagesGrid.DataSource = TravelSource.GetPackages();
+        }
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //// Functions for Packages_Products_Suppliers      
+        private void btnAddPackProdSupp_Click(object sender, EventArgs e)
+        {
+            frmAddModifyPackProdSupp form = new frmAddModifyPackProdSupp();
+            DialogResult result = form.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                TravelSource.AddToPackProdSupps(form.entry);
+            }
+        }
+
+        private void btnModPackProdSupp_Click(object sender, EventArgs e)
+        {
+            frmAddModifyPackProdSupp form = new frmAddModifyPackProdSupp();
+            DialogResult result = form.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+
+            }
+        }
+
+        
+        private void btnRemPackProdSupp_Click(object sender, EventArgs e)
+        {
+            int selectedRowPPSId = (int)dgvPacksProdsSupps.CurrentRow.Cells[0].Value; // gets the PackageProductSupplerId of the current row
+            PackagesProductsSupplier selectedPPS = TravelSource.GetPackProdSuppFromId(selectedRowPPSId);
+
+            // Based on the code from remPackageButton_Click()
+            if (selectedPackage != null)
+            {
+                DialogResult answer = MessageBox.Show(
+                    $"Do you really want to delete the entry at PackageProductSupplierId #{selectedPPS.PackageProductSupplierId}?",
+                    "Confirm Deletion of Entry", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                if (answer == DialogResult.Yes) // user confirms
+                {
+                    TravelSource.DeletePackage(selectedPackage);
+                    DisplayPackages();
+                }
+                // user cancels; action is canceled.
+            }
         }
     }
 }

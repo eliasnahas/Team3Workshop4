@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControl1 = new TabControl();
+            tabControl = new TabControl();
             tabPackages = new TabPage();
+            remPackageButton = new Button();
+            modPackageButton = new Button();
+            addPackageButton = new Button();
             packagesGrid = new DataGridView();
             tabProducts = new TabPage();
             remProdButton = new Button();
@@ -47,11 +50,11 @@
             button2 = new Button();
             button3 = new Button();
             tabPackProdSupp = new TabPage();
-            packProdSuppGrid = new DataGridView();
-            addPackageButton = new Button();
-            modPackageButton = new Button();
-            remPackageButton = new Button();
-            tabControl1.SuspendLayout();
+            dgvPacksProdsSupps = new DataGridView();
+            btnAddPackProdSupp = new Button();
+            btnRemPackProdSupp = new Button();
+            btnModPackProdSupp = new Button();
+            tabControl.SuspendLayout();
             tabPackages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)packagesGrid).BeginInit();
             tabProducts.SuspendLayout();
@@ -61,21 +64,21 @@
             tabSuppliers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)suppliersGrid).BeginInit();
             tabPackProdSupp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)packProdSuppGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPacksProdsSupps).BeginInit();
             SuspendLayout();
             // 
-            // tabControl1
+            // tabControl
             // 
-            tabControl1.Controls.Add(tabPackages);
-            tabControl1.Controls.Add(tabProducts);
-            tabControl1.Controls.Add(tabProdSupp);
-            tabControl1.Controls.Add(tabSuppliers);
-            tabControl1.Controls.Add(tabPackProdSupp);
-            tabControl1.Location = new Point(12, 12);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(821, 518);
-            tabControl1.TabIndex = 0;
+            tabControl.Controls.Add(tabPackages);
+            tabControl.Controls.Add(tabProducts);
+            tabControl.Controls.Add(tabProdSupp);
+            tabControl.Controls.Add(tabSuppliers);
+            tabControl.Controls.Add(tabPackProdSupp);
+            tabControl.Location = new Point(12, 12);
+            tabControl.Name = "tabControl";
+            tabControl.SelectedIndex = 0;
+            tabControl.Size = new Size(821, 518);
+            tabControl.TabIndex = 0;
             // 
             // tabPackages
             // 
@@ -90,6 +93,36 @@
             tabPackages.TabIndex = 0;
             tabPackages.Text = "Packages";
             tabPackages.UseVisualStyleBackColor = true;
+            // 
+            // remPackageButton
+            // 
+            remPackageButton.Location = new Point(480, 461);
+            remPackageButton.Name = "remPackageButton";
+            remPackageButton.Size = new Size(107, 23);
+            remPackageButton.TabIndex = 3;
+            remPackageButton.Text = "Remove Package";
+            remPackageButton.UseVisualStyleBackColor = true;
+            remPackageButton.Click += remPackageButton_Click;
+            // 
+            // modPackageButton
+            // 
+            modPackageButton.Location = new Point(350, 461);
+            modPackageButton.Name = "modPackageButton";
+            modPackageButton.Size = new Size(107, 23);
+            modPackageButton.TabIndex = 2;
+            modPackageButton.Text = "Modify Package";
+            modPackageButton.UseVisualStyleBackColor = true;
+            modPackageButton.Click += modPackageButton_Click;
+            // 
+            // addPackageButton
+            // 
+            addPackageButton.Location = new Point(223, 461);
+            addPackageButton.Name = "addPackageButton";
+            addPackageButton.Size = new Size(107, 23);
+            addPackageButton.TabIndex = 1;
+            addPackageButton.Text = "Add Package";
+            addPackageButton.UseVisualStyleBackColor = true;
+            addPackageButton.Click += addPackageButton_Click;
             // 
             // packagesGrid
             // 
@@ -251,7 +284,10 @@
             // 
             // tabPackProdSupp
             // 
-            tabPackProdSupp.Controls.Add(packProdSuppGrid);
+            tabPackProdSupp.Controls.Add(btnAddPackProdSupp);
+            tabPackProdSupp.Controls.Add(dgvPacksProdsSupps);
+            tabPackProdSupp.Controls.Add(btnRemPackProdSupp);
+            tabPackProdSupp.Controls.Add(btnModPackProdSupp);
             tabPackProdSupp.Location = new Point(4, 24);
             tabPackProdSupp.Name = "tabPackProdSupp";
             tabPackProdSupp.Size = new Size(813, 490);
@@ -259,55 +295,55 @@
             tabPackProdSupp.Text = "Packages_products_suppliers";
             tabPackProdSupp.UseVisualStyleBackColor = true;
             // 
-            // packProdSuppGrid
+            // dgvPacksProdsSupps
             // 
-            packProdSuppGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            packProdSuppGrid.Location = new Point(0, 0);
-            packProdSuppGrid.Name = "packProdSuppGrid";
-            packProdSuppGrid.RowHeadersWidth = 51;
-            packProdSuppGrid.Size = new Size(813, 455);
-            packProdSuppGrid.TabIndex = 1;
+            dgvPacksProdsSupps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPacksProdsSupps.Location = new Point(0, 0);
+            dgvPacksProdsSupps.Name = "dgvPacksProdsSupps";
+            dgvPacksProdsSupps.RowHeadersWidth = 51;
+            dgvPacksProdsSupps.Size = new Size(813, 455);
+            dgvPacksProdsSupps.TabIndex = 1;
             // 
-            // addPackageButton
+            // btnAddPackProdSupp
             // 
-            addPackageButton.Location = new Point(223, 461);
-            addPackageButton.Name = "addPackageButton";
-            addPackageButton.Size = new Size(107, 22);
-            addPackageButton.TabIndex = 1;
-            addPackageButton.Text = "Add Package";
-            addPackageButton.UseVisualStyleBackColor = true;
-            addPackageButton.Click += addPackageButton_Click;
+            btnAddPackProdSupp.Location = new Point(99, 461);
+            btnAddPackProdSupp.Name = "btnAddPackProdSupp";
+            btnAddPackProdSupp.Size = new Size(199, 23);
+            btnAddPackProdSupp.TabIndex = 13;
+            btnAddPackProdSupp.Text = "Add Package Product Supplier";
+            btnAddPackProdSupp.UseVisualStyleBackColor = true;
+            btnAddPackProdSupp.Click += btnAddPackProdSupp_Click;
             // 
-            // modPackageButton
+            // btnRemPackProdSupp
             // 
-            modPackageButton.Location = new Point(350, 461);
-            modPackageButton.Name = "modPackageButton";
-            modPackageButton.Size = new Size(107, 22);
-            modPackageButton.TabIndex = 2;
-            modPackageButton.Text = "Modify Package";
-            modPackageButton.UseVisualStyleBackColor = true;
-            modPackageButton.Click += modPackageButton_Click;
+            btnRemPackProdSupp.Location = new Point(509, 461);
+            btnRemPackProdSupp.Name = "btnRemPackProdSupp";
+            btnRemPackProdSupp.Size = new Size(199, 23);
+            btnRemPackProdSupp.TabIndex = 12;
+            btnRemPackProdSupp.Text = "Remove Package Product Supplier";
+            btnRemPackProdSupp.UseVisualStyleBackColor = true;
+            btnRemPackProdSupp.Click += btnRemPackProdSupp_Click;
             // 
-            // remPackageButton
+            // btnModPackProdSupp
             // 
-            remPackageButton.Location = new Point(480, 461);
-            remPackageButton.Name = "remPackageButton";
-            remPackageButton.Size = new Size(107, 22);
-            remPackageButton.TabIndex = 3;
-            remPackageButton.Text = "Remove Package";
-            remPackageButton.UseVisualStyleBackColor = true;
-            remPackageButton.Click += remPackageButton_Click;
+            btnModPackProdSupp.Location = new Point(304, 461);
+            btnModPackProdSupp.Name = "btnModPackProdSupp";
+            btnModPackProdSupp.Size = new Size(199, 23);
+            btnModPackProdSupp.TabIndex = 11;
+            btnModPackProdSupp.Text = "Modify Package Product Supplier";
+            btnModPackProdSupp.UseVisualStyleBackColor = true;
+            btnModPackProdSupp.Click += btnModPackProdSupp_Click;
             // 
             // frmDatabaseViewer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(845, 571);
-            Controls.Add(tabControl1);
+            Controls.Add(tabControl);
             Name = "frmDatabaseViewer";
             Text = "Database Viewer";
             Load += MainForm_Load;
-            tabControl1.ResumeLayout(false);
+            tabControl.ResumeLayout(false);
             tabPackages.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)packagesGrid).EndInit();
             tabProducts.ResumeLayout(false);
@@ -317,13 +353,13 @@
             tabSuppliers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)suppliersGrid).EndInit();
             tabPackProdSupp.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)packProdSuppGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPacksProdsSupps).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TabControl tabControl1;
+        private TabControl tabControl;
         private TabPage tabPackages;
         private TabPage tabProducts;
         private TabPage tabProdSupp;
@@ -333,7 +369,7 @@
         private DataGridView productsGrid;
         private DataGridView prodSuppGrid;
         private DataGridView suppliersGrid;
-        private DataGridView packProdSuppGrid;
+        private DataGridView dgvPacksProdsSupps;
         private Button addPackageButton;
         private Button modPackageButton;
         private Button remPackageButton;
@@ -346,5 +382,8 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button btnAddPackProdSupp;
+        private Button btnRemPackProdSupp;
+        private Button btnModPackProdSupp;
     }
 }
