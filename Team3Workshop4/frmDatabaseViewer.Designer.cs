@@ -41,7 +41,7 @@
             addProdButton = new Button();
             tabProdSupp = new TabPage();
             remProdSuppButton = new Button();
-            prodSuppGrid = new DataGridView();
+            dgvProductSupplier = new DataGridView();
             modProdSuppButton = new Button();
             addProdSuppButton = new Button();
             tabSuppliers = new TabPage();
@@ -57,7 +57,7 @@
             tabProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
             tabProdSupp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)prodSuppGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductSupplier).BeginInit();
             tabSuppliers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)suppliersGrid).BeginInit();
             tabPackProdSupp.SuspendLayout();
@@ -188,7 +188,7 @@
             // tabProdSupp
             // 
             tabProdSupp.Controls.Add(remProdSuppButton);
-            tabProdSupp.Controls.Add(prodSuppGrid);
+            tabProdSupp.Controls.Add(dgvProductSupplier);
             tabProdSupp.Controls.Add(modProdSuppButton);
             tabProdSupp.Controls.Add(addProdSuppButton);
             tabProdSupp.Location = new Point(4, 24);
@@ -206,15 +206,16 @@
             remProdSuppButton.TabIndex = 6;
             remProdSuppButton.Text = "Remove Product Supplier";
             remProdSuppButton.UseVisualStyleBackColor = true;
+            remProdSuppButton.Click += remProdSuppButton_Click;
             // 
-            // prodSuppGrid
+            // dgvProductSupplier
             // 
-            prodSuppGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            prodSuppGrid.Location = new Point(0, 0);
-            prodSuppGrid.Name = "prodSuppGrid";
-            prodSuppGrid.RowHeadersWidth = 51;
-            prodSuppGrid.Size = new Size(813, 455);
-            prodSuppGrid.TabIndex = 1;
+            dgvProductSupplier.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductSupplier.Location = new Point(0, 0);
+            dgvProductSupplier.Name = "dgvProductSupplier";
+            dgvProductSupplier.RowHeadersWidth = 51;
+            dgvProductSupplier.Size = new Size(813, 455);
+            dgvProductSupplier.TabIndex = 1;
             // 
             // modProdSuppButton
             // 
@@ -224,6 +225,7 @@
             modProdSuppButton.TabIndex = 5;
             modProdSuppButton.Text = "Modify Product Supplier";
             modProdSuppButton.UseVisualStyleBackColor = true;
+            modProdSuppButton.Click += modProdSuppButton_Click;
             // 
             // addProdSuppButton
             // 
@@ -233,6 +235,7 @@
             addProdSuppButton.TabIndex = 4;
             addProdSuppButton.Text = "Add Product Supplier";
             addProdSuppButton.UseVisualStyleBackColor = true;
+            addProdSuppButton.Click += addProdSuppButton_Click;
             // 
             // tabSuppliers
             // 
@@ -317,7 +320,7 @@
             tabProducts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
             tabProdSupp.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)prodSuppGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductSupplier).EndInit();
             tabSuppliers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)suppliersGrid).EndInit();
             tabPackProdSupp.ResumeLayout(false);
@@ -335,7 +338,7 @@
         private TabPage tabPackProdSupp;
         private DataGridView packagesGrid;
         private DataGridView dgvProduct;
-        private DataGridView prodSuppGrid;
+        private DataGridView dgvProductSupplier;
         private DataGridView suppliersGrid;
         private DataGridView packProdSuppGrid;
         private Button addPackageButton;

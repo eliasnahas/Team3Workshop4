@@ -1,4 +1,4 @@
-﻿namespace TravelExpertsGUI
+﻿namespace Team3Workshop4
 {
     partial class frmAddModifyProductSupplier
     {

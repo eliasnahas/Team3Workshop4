@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExpertsData;
 
-namespace TravelExpertsGUI
+namespace Team3Workshop4
 {
     public partial class frmAddModifyProductSupplier : Form
     {
-        int psId;
+        int ProductSupplierId;
         int ProductId;
         int SupplierId;
         public bool isAdd;
@@ -115,7 +115,7 @@ namespace TravelExpertsGUI
                 txtProductSupplierID.Text = ProdSupp.ProductSupplierId.ToString();
                 ProductId = ProdSupp.ProductSupplierId;
                 SupplierId = ProdSupp.ProductSupplierId;
-                psId = ProdSupp.ProductSupplierId;
+                ProductSupplierId = ProdSupp.ProductSupplierId;
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
 

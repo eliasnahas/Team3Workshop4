@@ -19,10 +19,17 @@ namespace Team3Workshop4
         {
             InitializeComponent();
         }
-        // product variables
+        // product variables Jack
         private Product? selectedProduct = null;
-        string p;
-        int pp;
+        string productID;
+        int productIDNum;
+        string productSupplierID;
+        int productSupplierIDNum;
+
+        // Product Supplier Variables Jack
+        private ProductsSupplier? ProductsSupplier = null;
+        private Supplier? selectedSupplier = null;
+
 
         private Package selectedPackage = null!;
 
@@ -44,7 +51,7 @@ namespace Team3Workshop4
 
 
             // Products_Suppliers
-            prodSuppGrid.DataSource = TravelSource.GetProdSupps();
+            dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
 
 
             // Suppliers
@@ -52,7 +59,7 @@ namespace Team3Workshop4
 
             // Auto-scale columns to be at least as long as their data
             dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            prodSuppGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvProductSupplier.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             suppliersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // except packages
@@ -127,6 +134,20 @@ namespace Team3Workshop4
             packagesGrid.DataSource = TravelSource.GetPackages();
         }
 
+        // method for displaying product table
+        private void DisplayProduct()
+        {
+            dgvProduct.DataSource = TravelSource.GetProducts();
+        }
+        // method for displaying Product Supplier table
+        private void DisplayProductSupplier()
+        {
+            dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
+        }
+
+        // product table controls
+
+        // product add
         private void addProdButton_Click(object sender, EventArgs e)
         {
             frmAddModifyProduct secondForm = new frmAddModifyProduct();
@@ -140,17 +161,17 @@ namespace Team3Workshop4
                 {
                     db.Products.Add(selectedProduct);
                     db.SaveChanges();
-                    dgvProduct.DataSource = TravelSource.GetProducts();
                 }
+                DisplayProduct();
             }
         }
-
+        // product modify
         private void modProdButton_Click(object sender, EventArgs e)
         {
-            p = dgvProduct.CurrentRow.Cells[0].Value.ToString();
-            pp = Convert.ToInt32(p);
+            productID = dgvProduct.CurrentRow.Cells[0].Value.ToString();
+            productIDNum = Convert.ToInt32(productID);
             TravelExpertsContext prod = new TravelExpertsContext();
-            selectedProduct = prod.Products.Find(pp);
+            selectedProduct = prod.Products.Find(productIDNum);
             frmAddModifyProduct secondForm = new frmAddModifyProduct();
             secondForm.isAdd = false;
             secondForm.product = selectedProduct;
@@ -167,17 +188,77 @@ namespace Team3Workshop4
             }
         }
 
+        // product remove
         private void remProdButton_Click(object sender, EventArgs e)
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                p = dgvProduct.CurrentRow.Cells[0].Value.ToString();
-                pp = Convert.ToInt32(p);
-                selectedProduct = db.Products.Find(pp);
+                productID = dgvProduct.CurrentRow.Cells[0].Value.ToString();
+                productIDNum = Convert.ToInt32(productID);
+                selectedProduct = db.Products.Find(productIDNum);
                 db.Products.Remove(selectedProduct);
                 db.SaveChanges();
             }
             dgvProduct.DataSource = TravelSource.GetProducts();
+        }
+
+
+        // Add ProductSupplier
+        private void addProdSuppButton_Click(object sender, EventArgs e)
+        {
+            frmAddModifyProductSupplier ProdSuppForm = new frmAddModifyProductSupplier();
+            ProdSuppForm.isAdd = true;
+            DialogResult result = ProdSuppForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                ProductsSupplier = ProdSuppForm.ProdSupp;
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.ProductsSuppliers.Add(ProductsSupplier);
+                    db.SaveChanges();
+                    
+                }
+                dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
+            }
+        }
+
+        // modify ProductSupplier 
+        private void modProdSuppButton_Click(object sender, EventArgs e)
+        {
+            productSupplierID = dgvProductSupplier.CurrentRow.Cells[0].Value.ToString();
+            productSupplierIDNum = Convert.ToInt32(productSupplierID);
+            TravelExpertsContext prodSupp = new TravelExpertsContext();
+            ProductsSupplier = prodSupp.ProductsSuppliers.Find(productSupplierIDNum);
+
+            frmAddModifyProductSupplier ProdSuppForm = new frmAddModifyProductSupplier();
+            ProdSuppForm.isAdd = false;
+            ProdSuppForm.ProdSupp = ProductsSupplier;
+            DialogResult result = ProdSuppForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+
+                    db.ProductsSuppliers.Update(ProdSuppForm.ProdSupp);
+                    db.SaveChanges();
+                    dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
+                }
+            }
+        }
+
+        // Remove ProductSupplier
+        private void remProdSuppButton_Click(object sender, EventArgs e)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                productSupplierID = dgvProductSupplier.CurrentRow.Cells[0].Value.ToString();
+                productSupplierIDNum = Convert.ToInt32(productSupplierID);
+                ProductsSupplier = db.ProductsSuppliers.Find(productSupplierIDNum);
+                db.ProductsSuppliers.Remove(ProductsSupplier);
+                db.SaveChanges();
+            }
+            dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
         }
     }
 }

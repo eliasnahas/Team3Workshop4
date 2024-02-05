@@ -202,3 +202,4 @@ C:\Users\jackl_r09cfe9\Source\Repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8
 C:\Users\jackl_r09cfe9\Source\Repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\ref\Team3Workshop4.dll
 C:\Users\jackl_r09cfe9\Source\Repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddModifyProduct.resources
 C:\Users\jackl_r09cfe9\Source\Repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddModify.resources
+C:\Users\jackl_r09cfe9\Source\Repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddModifyProductSupplier.resources

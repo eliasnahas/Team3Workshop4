@@ -34,31 +34,46 @@ namespace Team3Workshop4
                 DisplayProduct();
             }
         }
-
+        // confirm and send data to main page
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (isAdd)
+            if (Validator.IsPresent(txtProductName))
             {
-                using (TravelExpertsContext db = new TravelExpertsContext())
+                if (isAdd)
                 {
-                    product = new Product();
-                    GetProductData();
-                    DialogResult = DialogResult.OK; // close the form
+                    try
+                    {
+                        using (TravelExpertsContext db = new TravelExpertsContext())
+                        {
+                            product = new Product();
+                            GetProductData();
+                            DialogResult = DialogResult.OK; // close the form
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error when retrieving customer data: " +
+                            ex.Message, ex.GetType().ToString());
+                    }
                 }
-            }
-            else
-            {
-                GetProductData();
-                DialogResult = DialogResult.OK;
+                else
+                {
+                    GetProductData();
+                    DialogResult = DialogResult.OK;
+                } 
             }
         }
+        // get product name
         private void GetProductData()
         {
             if (product != null)
             {
-                product.ProdName = txtProductName.Text;
+                
+                product.ProdName = txtProductName.Text; 
+
             }
         }
+        // Display Product with information
         private void DisplayProduct()
         {
             if (product != null)
@@ -69,6 +84,7 @@ namespace Team3Workshop4
             }
         }
 
+        // exit the program
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
