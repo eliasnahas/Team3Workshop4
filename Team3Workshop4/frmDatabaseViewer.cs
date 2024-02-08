@@ -1,14 +1,18 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExpertsData;
+using TravelExpertsGUI;
 using TravelSources;
 
 namespace Team3Workshop4
@@ -18,6 +22,7 @@ namespace Team3Workshop4
         public frmDatabaseViewer()
         {
             InitializeComponent();
+            UpdateDataGridView();
         }
 
         private Package selectedPackage = null!;
@@ -28,9 +33,9 @@ namespace Team3Workshop4
             // gets width of grid for calculating even column widths;
             int dgvWidth = packagesGrid.Width;
 
-        // Set DataGridViewer sources, display without extra fields
+            // Set DataGridViewer sources, display without extra fields
             // Packages
-            
+
             packagesGrid.DataSource = TravelSource.GetPackages();
 
             // Products
@@ -41,7 +46,7 @@ namespace Team3Workshop4
             prodSuppGrid.DataSource = TravelSource.GetProdSupps();
 
             // Suppliers
-            suppliersGrid.DataSource = TravelSource.GetSuppliers();
+            dgvSuppliers.DataSource = TravelSource.GetSuppliers();
 
         }
 
@@ -106,6 +111,82 @@ namespace Team3Workshop4
         private void DisplayPackages()
         {
             packagesGrid.DataSource = TravelSource.GetPackages();
+        }
+
+
+        // author: Gurleen
+        // date: Jan 30, 2023
+        private void btnAddSup_Click(object sender, EventArgs e)
+        {
+            frmAddSupplier addSupplierForm = new frmAddSupplier();
+            addSupplierForm.ShowDialog();
+
+            UpdateDataGridView();
+        }
+
+        private void UpdateDataGridView()
+        {
+            TravelSource.GetSuppliers();
+            {
+                // Bind the list of suppliers to the DataGridView
+                dgvSuppliers.DataSource = TravelSource.GetSuppliers();
+            }
+        }
+
+        private void btnModifySup_Click(object sender, EventArgs e)
+        {
+            if (dgvSuppliers.SelectedRows.Count > 0)
+            {
+                int supplierId = (int)dgvSuppliers.SelectedRows[0].Cells["SupplierId"].Value;
+
+                using (var context = new TravelExpertsContext())
+                {
+                    Supplier selectedSupplier = context.Suppliers.Find(supplierId);
+
+                    if (selectedSupplier != null)
+                    {
+                        frmModifySupplier modifySupplierForm = new frmModifySupplier(selectedSupplier);
+                        modifySupplierForm.ShowDialog();
+
+                        UpdateDataGridView();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to find the selected supplier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a supplier to modify.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnRemoveSup_Click(object sender, EventArgs e)
+        {
+            if (dgvSuppliers.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this supplier?",
+                   "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    int supplierId = (int)dgvSuppliers.SelectedRows[0].Cells["SupplierId"].Value;
+                    using (var context = new TravelExpertsContext())
+                    {
+                        Supplier selectedSupplier = context.Suppliers.Find(supplierId);
+                        context.Entry(selectedSupplier).State = EntityState.Deleted;
+                        context.SaveChanges();
+                    }
+
+                    UpdateDataGridView();
+
+                }
+                else
+                {
+                    MessageBox.Show("Please select a supplier to modify.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
