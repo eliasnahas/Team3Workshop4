@@ -2577,11 +2577,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\Team3Workshop4\\Team3Workshop4.csproj",
+      "projectUniqueName": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\Team3Workshop4\\Team3Workshop4.csproj",
       "projectName": "Team3Workshop4",
-      "projectPath": "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\Team3Workshop4\\Team3Workshop4.csproj",
+      "projectPath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\Team3Workshop4\\Team3Workshop4.csproj",
       "packagesPath": "C:\\Users\\orangentle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\Team3Workshop4\\obj\\",
+      "outputPath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\Team3Workshop4\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2602,11 +2602,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\TravelExpertsData\\TravelExpertsData.csproj": {
-              "projectPath": "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\TravelExpertsData\\TravelExpertsData.csproj"
+            "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\TravelExpertsData\\TravelExpertsData.csproj": {
+              "projectPath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\TravelExpertsData\\TravelExpertsData.csproj"
             },
-            "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\TravelSources\\TravelSources.csproj": {
-              "projectPath": "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\TravelSources\\TravelSources.csproj"
+            "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\TravelSources\\TravelSources.csproj": {
+              "projectPath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\TravelSources\\TravelSources.csproj"
             }
           }
         }

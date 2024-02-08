@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TyPG6JNAx8micuWJas3XA5pAV9Nn3HoFu9Y7GV3vwmTPAOzqUTGZWNUIPl9Sz0SaT/3PjyihR4BC/T/6cE/ReQ==",
+  "dgSpecHash": "uYfvxeF9EUTSpX19FRxiA8slQoPw0avsPle6CmPGN3/WBPTWOf6Pb5m8bDL8VJoZIGdfJjIsQpk4nw7ziOz0xg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\TravelExpertsData\\TravelExpertsData.csproj",
+  "projectFilePath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\TravelExpertsData\\TravelExpertsData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\orangentle\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\orangentle\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -278,3 +278,5 @@ C:\Users\orangentle\Downloads\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\
 C:\Users\orangentle\Downloads\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.pdb
 C:\Users\orangentle\Downloads\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.genruntimeconfig.cache
 C:\Users\orangentle\Downloads\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\ref\Team3Workshop4.dll
+C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddSupplier.resources
+C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmModifySupplier.resources

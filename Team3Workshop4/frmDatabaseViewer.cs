@@ -135,57 +135,47 @@ namespace Team3Workshop4
 
         private void btnModifySup_Click(object sender, EventArgs e)
         {
-            if (dgvSuppliers.SelectedRows.Count > 0)
-            {
-                int supplierId = (int)dgvSuppliers.SelectedRows[0].Cells["SupplierId"].Value;
+            int supplierId = (int)dgvSuppliers.CurrentRow.Cells[0].Value;
 
-                using (var context = new TravelExpertsContext())
+            using (var context = new TravelExpertsContext())
+            {
+                Supplier selectedSupplier = context.Suppliers.Find(supplierId);
+
+                if (selectedSupplier != null)
                 {
-                    Supplier selectedSupplier = context.Suppliers.Find(supplierId);
+                    frmModifySupplier modifySupplierForm = new frmModifySupplier(selectedSupplier);
+                    modifySupplierForm.ShowDialog();
 
-                    if (selectedSupplier != null)
-                    {
-                        frmModifySupplier modifySupplierForm = new frmModifySupplier(selectedSupplier);
-                        modifySupplierForm.ShowDialog();
-
-                        UpdateDataGridView();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Unable to find the selected supplier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    UpdateDataGridView();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Please select a supplier to modify.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    MessageBox.Show("Unable to find the selected supplier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void btnRemoveSup_Click(object sender, EventArgs e)
         {
-            if (dgvSuppliers.SelectedRows.Count > 0)
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this supplier?",
+                "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                DialogResult result = MessageBox.Show("Are you sure you want to delete this supplier?",
-                   "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+                int supplierId = (int)dgvSuppliers.CurrentRow.Cells[0].Value;
+                using (var context = new TravelExpertsContext())
                 {
-                    int supplierId = (int)dgvSuppliers.SelectedRows[0].Cells["SupplierId"].Value;
-                    using (var context = new TravelExpertsContext())
-                    {
-                        Supplier selectedSupplier = context.Suppliers.Find(supplierId);
-                        context.Entry(selectedSupplier).State = EntityState.Deleted;
-                        context.SaveChanges();
-                    }
-
-                    UpdateDataGridView();
-
+                    Supplier selectedSupplier = context.Suppliers.Find(supplierId);
+                    context.Entry(selectedSupplier).State = EntityState.Deleted;
+                    context.SaveChanges();
                 }
-                else
-                {
-                    MessageBox.Show("Please select a supplier to modify.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+
+                UpdateDataGridView();
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a supplier to modify.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
