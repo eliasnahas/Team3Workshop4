@@ -7,6 +7,9 @@
     <Compile Update="frmAddModifyProduct.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmAddSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmDatabaseViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -14,6 +17,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmAddModifyPackProdSupp.cs">
+    <Compile Update="frmModifySupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmProductSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
