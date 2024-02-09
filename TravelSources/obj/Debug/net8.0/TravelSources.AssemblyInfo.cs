@@ -14,7 +14,15 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TravelSources")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a2b9c81efeec6222373c2bd5269652654bd9560")]
+=======
+<<<<<<< HEAD
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+072108573a2ef179a93211fd41d4888af38d554e")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+100fcd742c713a0a51d1f09f8a34e5f0ecee490c")]
+>>>>>>> Lance-branch
+>>>>>>> Gurleen-branch
 [assembly: System.Reflection.AssemblyProductAttribute("TravelSources")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TravelSources")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
