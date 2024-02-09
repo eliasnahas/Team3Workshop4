@@ -133,12 +133,9 @@ C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\bin\Debug\net8.0-windo
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\bin\Debug\net8.0-windows\TravelSources.pdb
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmDatabaseViewer.resources
 C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\TravelExpertsGUI.frmAddModifyProduct.resources
+C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmProductSupplier.resources
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\TravelExpertsGUI.frmAddModifyProduct.resources
 C:\Users\skorp\source\repos\Team3Workshop4\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmProductSupplier.resources
-<<<<<<< HEAD
-C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddModifyProdSupp.resources
-C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddModifyPackProdSupp.resources
-=======
 C:\Users\lotus\Desktop\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.csproj.AssemblyReference.cache
 C:\Users\lotus\Desktop\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddModifyPackage.resources
 C:\Users\lotus\Desktop\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\TravelExpertsGUI.frmAddModifyProduct.resources
@@ -281,6 +278,3 @@ C:\Users\orangentle\Downloads\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\
 C:\Users\orangentle\Downloads\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.pdb
 C:\Users\orangentle\Downloads\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.genruntimeconfig.cache
 C:\Users\orangentle\Downloads\w4 - Copy\Team3Workshop4\obj\Debug\net8.0-windows\ref\Team3Workshop4.dll
-C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmAddSupplier.resources
-C:\Users\orangentle\Documents\GitHub\VStudio\Team3Workshop4\obj\Debug\net8.0-windows\Team3Workshop4.frmModifySupplier.resources
->>>>>>> supplier_branch

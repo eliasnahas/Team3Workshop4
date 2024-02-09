@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rnMJrD9VWeLmzYyYo5tCQVWHfkR6mbObyrQrkTPxz1a//yyWCTna+m063341qJtES/slMwsAqvUVDXkaR/CObQ==",
+  "dgSpecHash": "EUhmNz3h1lmoopCaN/txA+2jxDEb9drKmuDL6OepopteI9NhTQu/JbuEx/L3L06+5veZMKiP1P4mqO1DaoZaPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\orangentle\\Documents\\GitHub\\VStudio\\Team3Workshop4\\Team3Workshop4.csproj",
+  "projectFilePath": "C:\\Users\\orangentle\\Downloads\\w4 - Copy\\Team3Workshop4\\Team3Workshop4.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\orangentle\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\orangentle\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
