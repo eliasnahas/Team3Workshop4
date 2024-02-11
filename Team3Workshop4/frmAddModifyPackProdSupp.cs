@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Castle.Components.DictionaryAdapter.Xml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,11 +35,11 @@ namespace Team3Workshop4
                 comboProdSuppId.ValueMember = "ProductSupplierId";
                 comboProdSuppId.DisplayMember = "ProductSupplierId";
             }
-            if (entry != null)
+            if (entry != null) // if 'Add' pressed
             {
                 LoadSelectedEntry();
             }
-            else
+            else // if 'Modify' pressed
             {
                 InsertNewId();
             }
@@ -74,25 +75,6 @@ namespace Team3Workshop4
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-        }
-
-
-        // Functions to show the PackageName/ProductSupplierName for their respective ID
-        private void comboPackageId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                int selectedPackageId = Convert.ToInt32(comboPackageId.GetItemText(comboPackageId.SelectedItem!)); // comedy
-                textPackageName.Text = db.Packages
-                    .Find(selectedPackageId)! // find the matching package in the db
-                    .PkgName // get its package name
-                    .ToString(); // make string to set in textPackageName
-            }
-            
-        }
-        private void comboProdSuppId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -31,8 +31,6 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            textPackageName = new TextBox();
-            textProdSuppName = new TextBox();
             btnAccept = new Button();
             btnCancel = new Button();
             comboPackageId = new ComboBox();
@@ -70,28 +68,11 @@
             label3.TabIndex = 2;
             label3.Text = "ProductSupplierId:";
             // 
-            // textPackageName
-            // 
-            textPackageName.Enabled = false;
-            textPackageName.Location = new Point(333, 64);
-            textPackageName.Name = "textPackageName";
-            textPackageName.ReadOnly = true;
-            textPackageName.Size = new Size(124, 23);
-            textPackageName.TabIndex = 4;
-            // 
-            // textProdSuppName
-            // 
-            textProdSuppName.Location = new Point(333, 110);
-            textProdSuppName.Name = "textProdSuppName";
-            textProdSuppName.ReadOnly = true;
-            textProdSuppName.Size = new Size(124, 23);
-            textProdSuppName.TabIndex = 5;
-            // 
             // btnAccept
             // 
-            btnAccept.Location = new Point(18, 161);
+            btnAccept.Location = new Point(35, 154);
             btnAccept.Name = "btnAccept";
-            btnAccept.Size = new Size(151, 23);
+            btnAccept.Size = new Size(117, 23);
             btnAccept.TabIndex = 9;
             btnAccept.Text = "&Accept";
             btnAccept.UseVisualStyleBackColor = true;
@@ -99,9 +80,9 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(306, 161);
+            btnCancel.Location = new Point(197, 154);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(151, 23);
+            btnCancel.Size = new Size(113, 23);
             btnCancel.TabIndex = 10;
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -114,7 +95,6 @@
             comboPackageId.Name = "comboPackageId";
             comboPackageId.Size = new Size(74, 23);
             comboPackageId.TabIndex = 11;
-            comboPackageId.SelectedIndexChanged += comboPackageId_SelectedIndexChanged;
             // 
             // comboProdSuppId
             // 
@@ -123,7 +103,6 @@
             comboProdSuppId.Name = "comboProdSuppId";
             comboProdSuppId.Size = new Size(74, 23);
             comboProdSuppId.TabIndex = 12;
-            comboProdSuppId.SelectedIndexChanged += comboProdSuppId_SelectedIndexChanged;
             // 
             // textPackProdSuppId
             // 
@@ -137,14 +116,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(484, 196);
+            ClientSize = new Size(344, 196);
             Controls.Add(textPackProdSuppId);
             Controls.Add(comboProdSuppId);
             Controls.Add(comboPackageId);
             Controls.Add(btnCancel);
             Controls.Add(btnAccept);
-            Controls.Add(textProdSuppName);
-            Controls.Add(textPackageName);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -160,8 +137,6 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textPackageName;
-        private TextBox textProdSuppName;
         private Button btnAccept;
         private Button btnCancel;
         private ComboBox comboPackageId;
