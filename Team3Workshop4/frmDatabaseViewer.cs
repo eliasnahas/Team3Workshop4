@@ -24,8 +24,20 @@ namespace Team3Workshop4
             InitializeComponent();
             UpdateDataGridView();
         }
+        // product variables Jack
+        private Product? selectedProduct = null;
+        string productID;
+        int productIDNum;
+        string productSupplierID;
+        int productSupplierIDNum;
+
+        // Product Supplier Variables Jack
+        private ProductsSupplier? ProductsSupplier = null;
+        private Supplier? selectedSupplier = null;
+
 
         private Package selectedPackage = null!;
+
 
         // Operations done when the Database Viewer loads
         private void MainForm_Load(object sender, EventArgs e)
@@ -34,15 +46,19 @@ namespace Team3Workshop4
             int dgvWidth = packagesGrid.Width;
 
             // Set DataGridViewer sources, display without extra fields
+            // Set DataGridViewer sources, display without extra fields
             // Packages
-            
+
             packagesGrid.DataSource = TravelSource.GetPackages();
 
+
             // Products
-            productsGrid.DataSource = TravelSource.GetProducts();
+            dgvProduct.DataSource = TravelSource.GetProducts();
+
 
             // Products_Suppliers
-            prodSuppGrid.DataSource = TravelSource.GetProdSupps();
+            dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
+
 
             // Suppliers
             dgvSuppliers.DataSource = TravelSource.GetSuppliers();
@@ -51,8 +67,8 @@ namespace Team3Workshop4
             dgvPacksProdsSupps.DataSource = TravelSource.GetPacksProdsSupps();
 
             // Auto-scale columns to be at least as long as their data
-            productsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            prodSuppGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvProductSupplier.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvSuppliers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // except packages
@@ -238,6 +254,132 @@ namespace Team3Workshop4
                 }
                 // user cancels; action is canceled.
             }
+        }
+        // method for displaying product table
+        private void DisplayProduct()
+        {
+            dgvProduct.DataSource = TravelSource.GetProducts();
+        }
+        // method for displaying Product Supplier table
+        private void DisplayProductSupplier()
+        {
+            dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
+        }
+
+        // product table controls
+
+        // product add
+        private void addProdButton_Click(object sender, EventArgs e)
+        {
+            frmAddModifyProduct secondForm = new frmAddModifyProduct();
+            secondForm.isAdd = true;
+            DialogResult result = secondForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                selectedProduct = secondForm.product;
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.Products.Add(selectedProduct);
+                    db.SaveChanges();
+                }
+                DisplayProduct();
+            }
+        }
+        // product modify
+        private void modProdButton_Click(object sender, EventArgs e)
+        {
+            productID = dgvProduct.CurrentRow.Cells[0].Value.ToString();
+            productIDNum = Convert.ToInt32(productID);
+            TravelExpertsContext prod = new TravelExpertsContext();
+            selectedProduct = prod.Products.Find(productIDNum);
+            frmAddModifyProduct secondForm = new frmAddModifyProduct();
+            secondForm.isAdd = false;
+            secondForm.product = selectedProduct;
+            DialogResult result = secondForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+
+                    db.Products.Update(secondForm.product);
+                    db.SaveChanges();
+                    dgvProduct.DataSource = TravelSource.GetProducts();
+                }
+            }
+        }
+
+        // product remove
+        private void remProdButton_Click(object sender, EventArgs e)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                productID = dgvProduct.CurrentRow.Cells[0].Value.ToString();
+                productIDNum = Convert.ToInt32(productID);
+                selectedProduct = db.Products.Find(productIDNum);
+                db.Products.Remove(selectedProduct);
+                db.SaveChanges();
+            }
+            dgvProduct.DataSource = TravelSource.GetProducts();
+        }
+
+
+        // Add ProductSupplier
+        private void addProdSuppButton_Click(object sender, EventArgs e)
+        {
+            frmAddModifyProductSupplier ProdSuppForm = new frmAddModifyProductSupplier();
+            ProdSuppForm.isAdd = true;
+            DialogResult result = ProdSuppForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                ProductsSupplier = ProdSuppForm.ProdSupp;
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    db.ProductsSuppliers.Add(ProductsSupplier);
+                    db.SaveChanges();
+                    
+                }
+                dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
+            }
+        }
+
+        // modify ProductSupplier 
+        private void modProdSuppButton_Click(object sender, EventArgs e)
+        {
+            productSupplierID = dgvProductSupplier.CurrentRow.Cells[0].Value.ToString();
+            productSupplierIDNum = Convert.ToInt32(productSupplierID);
+            TravelExpertsContext prodSupp = new TravelExpertsContext();
+            ProductsSupplier = prodSupp.ProductsSuppliers.Find(productSupplierIDNum);
+
+            frmAddModifyProductSupplier ProdSuppForm = new frmAddModifyProductSupplier();
+            ProdSuppForm.isAdd = false;
+            ProdSuppForm.ProdSupp = ProductsSupplier;
+            DialogResult result = ProdSuppForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+
+                    db.ProductsSuppliers.Update(ProdSuppForm.ProdSupp);
+                    db.SaveChanges();
+                    dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
+                }
+            }
+        }
+
+        // Remove ProductSupplier
+        private void remProdSuppButton_Click(object sender, EventArgs e)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                productSupplierID = dgvProductSupplier.CurrentRow.Cells[0].Value.ToString();
+                productSupplierIDNum = Convert.ToInt32(productSupplierID);
+                ProductsSupplier = db.ProductsSuppliers.Find(productSupplierIDNum);
+                db.ProductsSuppliers.Remove(ProductsSupplier);
+                db.SaveChanges();
+            }
+            dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
         }
     }
 }

@@ -8,15 +8,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmAddSupplier.cs">
+    <Compile Update="frmAddModifyProductSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmDatabaseViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmAddModifyPackage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="frmAddModifyProdSupp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmModifySupplier.cs">
