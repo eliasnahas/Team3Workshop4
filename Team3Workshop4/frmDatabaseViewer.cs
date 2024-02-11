@@ -53,7 +53,7 @@ namespace Team3Workshop4
             // Auto-scale columns to be at least as long as their data
             productsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             prodSuppGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            suppliersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvSuppliers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // except packages
             // Stretch last 2 columns to *just* fit in its dgv
