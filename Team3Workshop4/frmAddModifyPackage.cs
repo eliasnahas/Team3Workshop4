@@ -29,7 +29,6 @@ namespace Team3Workshop4
             if (isAdd)
             {
                 Text = "Add Package";
-                btnEditProducts.Enabled = false;
             }
             else
             {

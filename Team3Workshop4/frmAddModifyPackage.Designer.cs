@@ -42,7 +42,6 @@
             label6 = new Label();
             label7 = new Label();
             btnAccept = new Button();
-            btnEditProducts = new Button();
             btnCancel = new Button();
             lvProducts = new ListView();
             Products = new ColumnHeader();
@@ -182,15 +181,6 @@
             btnAccept.UseVisualStyleBackColor = true;
             btnAccept.Click += btnAccept_Click;
             // 
-            // btnEditProducts
-            // 
-            btnEditProducts.Location = new Point(12, 403);
-            btnEditProducts.Name = "btnEditProducts";
-            btnEditProducts.Size = new Size(137, 41);
-            btnEditProducts.TabIndex = 15;
-            btnEditProducts.Text = "&Edit Products";
-            btnEditProducts.UseVisualStyleBackColor = true;
-            // 
             // btnCancel
             // 
             btnCancel.Location = new Point(519, 465);
@@ -232,7 +222,6 @@
             ClientSize = new Size(625, 518);
             Controls.Add(lvProducts);
             Controls.Add(btnCancel);
-            Controls.Add(btnEditProducts);
             Controls.Add(btnAccept);
             Controls.Add(label7);
             Controls.Add(txtPkgAgencyCommission);
@@ -273,7 +262,6 @@
         private Label label6;
         private Label label7;
         private Button btnAccept;
-        private Button btnEditProducts;
         private Button btnCancel;
         private ListView lvProducts;
         private ColumnHeader Products;

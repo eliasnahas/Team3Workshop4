@@ -52,6 +52,12 @@ public partial class Customer
     [StringLength(30)]
     public string Password { get; set; }
 
+    [Required(ErrorMessage = "Please confirm your password")]
+    [Display(Name = "Confirm Password")]
+    [Compare("Password")]
+    [NotMapped]
+    public string ConfirmPassword { get; set; }
+
     [ForeignKey("AgentId")]
     [InverseProperty("Customers")]
     public virtual Agent? Agent { get; set; }
