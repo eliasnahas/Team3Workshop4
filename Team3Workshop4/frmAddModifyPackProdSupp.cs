@@ -14,7 +14,7 @@ namespace Team3Workshop4
 {
     public partial class frmAddModifyPackProdSupp : Form
     {
-        public PackagesProductsSupplier? entry; // The currently selected entry (if it exists)
+        public PackagesProductsSupplier? entry = new(); // The currently selected entry (if it exists)
         public int? entryIndex; // The index of the currently selected entry (if it exists)
 
         public frmAddModifyPackProdSupp()
@@ -34,16 +34,19 @@ namespace Team3Workshop4
                 comboProdSuppId.DataSource = db.ProductsSuppliers.ToList();
                 comboProdSuppId.ValueMember = "ProductSupplierId";
                 comboProdSuppId.DisplayMember = "ProductSupplierId";
-            }
-            if (entry != null) // if 'Add' pressed
-            {
-                LoadSelectedEntry();
-            }
-            else // if 'Modify' pressed
-            {
-                InsertNewId();
+
+                if (entry != null) // if 'Modify' pressed
+                {
+                    LoadSelectedEntry();
+                }
+                if (entry.PackageProductSupplierId == 0) // if 'Add' pressed
+                {
+                    InsertNewId();
+                }
             }
         }
+
+        // Gets a new - 1 incremented from the highest value ID - for PackageProductSupplierID
         private void InsertNewId()
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
@@ -51,7 +54,7 @@ namespace Team3Workshop4
                 int NewPPSId = db.PackagesProductsSuppliers
                                 .OrderByDescending(pps => pps.PackageProductSupplierId)
                                 .FirstOrDefault()!.PackageProductSupplierId;
-                textPackProdSuppId.Text = NewPPSId.ToString();
+                textPackProdSuppId.Text = (NewPPSId + 1).ToString();
             }
         }
         private void LoadSelectedEntry()
@@ -67,8 +70,17 @@ namespace Team3Workshop4
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            if (comboPackageId.Text == "0" || comboProdSuppId.Text == "0")
+            {
+                MessageBox.Show("Please change all IDs to values other than 0.", "Invalid ID", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
+                return;
+            }
+            entry!.PackageId = Convert.ToInt32(comboPackageId.Text);
+            entry.ProductSupplierId = Convert.ToInt32(comboProdSuppId.Text);
 
-
+            
             this.DialogResult = DialogResult.OK;
         }
 

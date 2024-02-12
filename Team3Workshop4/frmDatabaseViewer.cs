@@ -21,7 +21,7 @@ namespace Team3Workshop4
         public frmDatabaseViewer()
         {
             InitializeComponent();
-            UpdateDataGridView();
+            RefreshSuppliers();
         }
         // product variables Jack
         private Product? selectedProduct = null;
@@ -283,23 +283,15 @@ namespace Team3Workshop4
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //// Functions for Suppliers tab
-        // author: Gurleen
+        // author: Gurleen Dhillon
         private void btnAddSup_Click(object sender, EventArgs e)
         {
             frmAddSupplier addSupplierForm = new frmAddSupplier();
             addSupplierForm.ShowDialog();
 
-            UpdateDataGridView();
+            RefreshSuppliers();
         }
 
-        private void UpdateDataGridView()
-        {
-            TravelSource.GetSuppliers();
-            {
-                // Bind the list of suppliers to the DataGridView
-                dgvSuppliers.DataSource = TravelSource.GetSuppliers();
-            }
-        }
 
         private void btnModifySup_Click(object sender, EventArgs e)
         {
@@ -314,7 +306,7 @@ namespace Team3Workshop4
                     frmModifySupplier modifySupplierForm = new frmModifySupplier(selectedSupplier);
                     modifySupplierForm.ShowDialog();
 
-                    UpdateDataGridView();
+                    RefreshSuppliers();
                 }
                 else
                 {
@@ -338,12 +330,21 @@ namespace Team3Workshop4
                     context.SaveChanges();
                 }
 
-                UpdateDataGridView();
+                RefreshSuppliers();
 
             }
             else
             {
                 MessageBox.Show("Please select a supplier to modify.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void RefreshSuppliers()
+        {
+            TravelSource.GetSuppliers();
+            {
+                // Bind the list of suppliers to the DataGridView
+                dgvSuppliers.DataSource = TravelSource.GetSuppliers();
             }
         }
 
@@ -355,20 +356,31 @@ namespace Team3Workshop4
         private void btnAddPackProdSupp_Click(object sender, EventArgs e)
         {
             frmAddModifyPackProdSupp form = new frmAddModifyPackProdSupp();
+            form.Text = "Add Package Product Supplier";
             DialogResult result = form.ShowDialog();
             if (result == DialogResult.OK)
             {
-                TravelSource.AddToPackProdSupps(form.entry);
+                TravelSource.AddToPackProdSupps(form.entry!);
+                DisplayPacksProdsSupps();
             }
         }
 
         private void btnModPackProdSupp_Click(object sender, EventArgs e)
         {
             frmAddModifyPackProdSupp form = new frmAddModifyPackProdSupp();
+            form.Text = "Modify Package Product Supplier";
+
+            int thisPackProdSuppId = (int)dgvPacksProdsSupps.CurrentRow.Cells[0].Value;
+
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                form.entry = db.PackagesProductsSuppliers.Find(thisPackProdSuppId);
+            }
             DialogResult result = form.ShowDialog();
             if (result == DialogResult.OK)
             {
-
+                TravelSource.ModifyPackProdSupp(form.entry!);
+                DisplayPacksProdsSupps();
             }
         }
 
@@ -378,19 +390,24 @@ namespace Team3Workshop4
             PackagesProductsSupplier selectedPPS = TravelSource.GetPackProdSuppFromId(selectedRowPPSId);
 
             // Based on the code from remPackageButton_Click()
-            if (selectedPackage != null)
-            {
                 DialogResult answer = MessageBox.Show(
                     $"Do you really want to delete the entry at PackageProductSupplierId #{selectedPPS.PackageProductSupplierId}?",
                     "Confirm Deletion of Entry", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
                 if (answer == DialogResult.Yes) // user confirms
                 {
-                    TravelSource.DeletePackage(selectedPackage);
-                    DisplayPackages();
+                    TravelSource.DeletePackProdSupp(selectedPPS);
+                    DisplayPacksProdsSupps();
                 }
                 // user cancels; action is canceled.
-            }
         }
+
+        private void DisplayPacksProdsSupps()
+        {
+            dgvPacksProdsSupps.DataSource = TravelSource.GetPacksProdsSupps();
+        }
+
+
+
     }
 }

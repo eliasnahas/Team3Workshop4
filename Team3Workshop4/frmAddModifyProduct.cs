@@ -87,7 +87,7 @@ namespace Team3Workshop4
         // exit the program
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

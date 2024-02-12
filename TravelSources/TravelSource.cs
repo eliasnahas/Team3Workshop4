@@ -3,6 +3,7 @@ using TravelExpertsData;
 using System.Linq;
 using GridData;
 using Microsoft.Identity.Client;
+using System.Linq.Expressions;
 namespace TravelSources
 {
     public static class TravelSource
@@ -82,6 +83,7 @@ namespace TravelSources
             {
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
+
                     db.Packages.Add(package);
                     db.SaveChanges();
                 }
@@ -135,15 +137,6 @@ namespace TravelSources
             {
                 Package? package = db.Packages.Find(packageId);
 
-                //var result = package?.ProductSuppliers
-                //            .Select(p => new ProdSuppNames
-                //            {
-                //                ProdName = p.Product?.ProdName,
-                //                SuppName = p.Supplier?.SupName
-                //            })
-                //            .ToList();
-
-                /// ^had to reimplement this due to the new context - Lance
                 var result = (from p in db.Packages
                               join pps in db.PackagesProductsSuppliers on p.PackageId equals pps.PackageId
                               join ps in db.ProductsSuppliers on pps.ProductSupplierId equals ps.ProductSupplierId
@@ -167,7 +160,7 @@ namespace TravelSources
                     PackageProductSupplierId = p.PackageProductSupplierId,
                     PackageId = p.PackageId,
                     ProductSupplierId = p.ProductSupplierId
-                }).ToList();
+                }).OrderBy(pps => pps.PackageId).ThenBy(pps => pps.PackageProductSupplierId).ToList();
                 return result;
             }
         }
@@ -185,7 +178,40 @@ namespace TravelSources
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                db.PackagesProductsSuppliers.Add(entry);
+                if (entry != null)
+                {
+                    db.PackagesProductsSuppliers.Add(entry);
+                    db.SaveChanges();
+                }
+            }
+        }
+        public static void ModifyPackProdSupp(PackagesProductsSupplier entry)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var dbEntry = db.PackagesProductsSuppliers.FirstOrDefault(row => row.PackageProductSupplierId == entry.PackageProductSupplierId);
+                
+                if (dbEntry != null)
+                {
+                    dbEntry.ProductSupplierId = entry.ProductSupplierId;
+                    dbEntry.PackageId = entry.PackageId;
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception) 
+                    {
+                        throw; // replace with textbox handling after finding what error it *should* throw
+                    }
+                }
+            }
+        }
+
+        public static void DeletePackProdSupp(PackagesProductsSupplier entry)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                db.PackagesProductsSuppliers.Remove(entry); 
                 db.SaveChanges();
             }
         }

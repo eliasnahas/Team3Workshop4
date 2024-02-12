@@ -106,6 +106,7 @@
             // 
             // textPackProdSuppId
             // 
+            textPackProdSuppId.Enabled = false;
             textPackProdSuppId.Location = new Point(231, 18);
             textPackProdSuppId.Name = "textPackProdSuppId";
             textPackProdSuppId.ReadOnly = true;

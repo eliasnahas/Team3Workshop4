@@ -60,7 +60,7 @@ namespace Team3Workshop4
                     ProdSupp = new ProductsSupplier();
                     GetProductData();
                     DialogResult = DialogResult.OK; // close the form
-                } 
+                }
             }
             else
             {
@@ -99,7 +99,7 @@ namespace Team3Workshop4
                 {
                     ProdSupp = new ProductsSupplier();
                     ProdSupp.ProductId = productid;
-                    ProdSupp.SupplierId = supplierid; 
+                    ProdSupp.SupplierId = supplierid;
                 }
                 else
                 {
@@ -121,6 +121,11 @@ namespace Team3Workshop4
 
                 }
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

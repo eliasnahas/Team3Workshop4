@@ -33,8 +33,8 @@ namespace Team3Workshop4
             txtSupName = new TextBox();
             btnAdd = new Button();
             btnCancel = new Button();
-            this.label3 = new Label();
-            this.label4 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             SuspendLayout();
             // 
             // txtSupID
@@ -74,32 +74,33 @@ namespace Team3Workshop4
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new Point(26, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new Size(67, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Supplier ID:";
+            label3.AutoSize = true;
+            label3.Location = new Point(26, 32);
+            label3.Name = "label3";
+            label3.Size = new Size(67, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Supplier ID:";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new Point(26, 73);
-            this.label4.Name = "label4";
-            this.label4.Size = new Size(88, 15);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Supplier Name:";
+            label4.AutoSize = true;
+            label4.Location = new Point(26, 73);
+            label4.Name = "label4";
+            label4.Size = new Size(88, 15);
+            label4.TabIndex = 5;
+            label4.Text = "Supplier Name:";
             // 
             // frmAddSupplier
             // 
-            ClientSize = new Size(391, 216);
-            Controls.Add(this.label4);
-            Controls.Add(this.label3);
+            ClientSize = new Size(365, 198);
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
             Controls.Add(txtSupName);
             Controls.Add(txtSupID);
             Name = "frmAddSupplier";
+            Text = "Add Supplier";
             ResumeLayout(false);
             PerformLayout();
         }
