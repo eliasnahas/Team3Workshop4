@@ -44,6 +44,14 @@ public partial class Customer
 
     public int? AgentId { get; set; }
 
+    [Required(ErrorMessage = "Please enter a username.")]
+    [StringLength(30)]
+    public string Username { get; set; }
+
+    [Required(ErrorMessage = "Please enter a password.")]
+    [StringLength(30)]
+    public string Password { get; set; }
+
     [ForeignKey("AgentId")]
     [InverseProperty("Customers")]
     public virtual Agent? Agent { get; set; }

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelExpertsData", "Travel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelSources", "TravelSources\TravelSources.csproj", "{6AB4389E-2B50-45C7-B24F-C4A3574C486D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExpertsMVC", "TravelExpertsMVC\TravelExpertsMVC.csproj", "{BB5606B0-5820-4207-B7F0-970AA71E4EED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6AB4389E-2B50-45C7-B24F-C4A3574C486D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AB4389E-2B50-45C7-B24F-C4A3574C486D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AB4389E-2B50-45C7-B24F-C4A3574C486D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5606B0-5820-4207-B7F0-970AA71E4EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5606B0-5820-4207-B7F0-970AA71E4EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5606B0-5820-4207-B7F0-970AA71E4EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5606B0-5820-4207-B7F0-970AA71E4EED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
