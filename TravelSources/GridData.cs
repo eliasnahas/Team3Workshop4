@@ -39,8 +39,16 @@ namespace GridData
         public decimal? PkgAgencyCommission { get; set; }
     }
 
+    public class ProductsSupplierBT
+    {
+        public int ProductSupplierId { get; set; }
 
-    // Custom class to display Product/Supplier Names for the Packages Add/Modify Form - By: Lance Salvador
+        public string ProdName { get; set; }
+
+        public string SupName { get; set; }
+    }
+
+    // Custom class to display Product/Supplier Names for the Packages Add/Modify Form
     public partial class ProdSuppNames
     {
         public string? ProdName { get; set; }
