@@ -8,7 +8,7 @@
     @if (User.Identity.IsAuthenticated)
     {
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Home" asp-action="Index" title="Welcome">
+            <a class="nav-link" asp-controller="Account" asp-action="CustomerInfo" title="Welcome">
                 Welcome @User.Identity.Name
             </a>
         </li>
