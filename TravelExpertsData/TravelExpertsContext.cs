@@ -56,8 +56,9 @@ public partial class TravelExpertsContext : DbContext
 
     public virtual DbSet<TripType> TripTypes { get; set; }
 
+    //Uncomment for Workshop4, keep commented for Workshop5 login to work
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["TravelExpertsConnection"].ConnectionString).UseLazyLoadingProxies();
+       => optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["TravelExpertsConnection"].ConnectionString).UseLazyLoadingProxies();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -240,6 +241,19 @@ public partial class TravelExpertsContext : DbContext
                 .HasName("aaaaaTripTypes_PK")
                 .IsClustered(false);
         });
+
+        // CustomerPackage - Code First Bridge Table for storing each customer's packages - By: Lance Salvador
+        modelBuilder.Entity<Package>()
+            .HasMany(p => p.Customers)
+            .WithMany(c => c.Packages)
+            .UsingEntity(
+                j =>
+                {
+                    j.Property("CustomersCustomerId").HasColumnName("CustomerId");
+                    j.Property("PackagesPackageId").HasColumnName("PackageId");
+                }
+            );
+           
 
         OnModelCreatingPartial(modelBuilder);
     }

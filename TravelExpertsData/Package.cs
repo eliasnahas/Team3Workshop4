@@ -34,4 +34,7 @@ public partial class Package
 
     [InverseProperty("Package")]
     public virtual ICollection<PackagesProductsSupplier> PackagesProductsSuppliers { get; set; } = new List<PackagesProductsSupplier>();
+
+    // link to Customer table for CustomerPackage - By: Lance Salvador
+    public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 }
