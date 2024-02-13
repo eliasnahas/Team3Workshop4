@@ -88,8 +88,8 @@
             tabPackages.Controls.Add(addPackageButton);
             tabPackages.Location = new Point(4, 24);
             tabPackages.Name = "tabPackages";
-            tabPackages.Padding = new Padding(3);
-            tabPackages.Size = new Size(813, 490);
+            tabPackages.Padding = new Padding(3, 4, 3, 4);
+            tabPackages.Size = new Size(930, 658);
             tabPackages.TabIndex = 0;
             tabPackages.Text = "Packages";
             tabPackages.UseVisualStyleBackColor = true;
@@ -108,10 +108,12 @@
             // 
             packagesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             packagesGrid.Location = new Point(0, 0);
+            packagesGrid.Margin = new Padding(3, 4, 3, 4);
+            packagesGrid.MultiSelect = false;
             packagesGrid.Name = "packagesGrid";
             packagesGrid.RowHeadersWidth = 51;
             packagesGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            packagesGrid.Size = new Size(813, 455);
+            packagesGrid.Size = new Size(929, 607);
             packagesGrid.TabIndex = 0;
             // 
             // modPackageButton
@@ -140,10 +142,11 @@
             tabProducts.Controls.Add(dgvProduct);
             tabProducts.Controls.Add(modProdButton);
             tabProducts.Controls.Add(addProdButton);
-            tabProducts.Location = new Point(4, 24);
+            tabProducts.Location = new Point(4, 29);
+            tabProducts.Margin = new Padding(3, 4, 3, 4);
             tabProducts.Name = "tabProducts";
-            tabProducts.Padding = new Padding(3);
-            tabProducts.Size = new Size(813, 490);
+            tabProducts.Padding = new Padding(3, 4, 3, 4);
+            tabProducts.Size = new Size(930, 658);
             tabProducts.TabIndex = 1;
             tabProducts.Text = "Products";
             tabProducts.UseVisualStyleBackColor = true;
@@ -152,7 +155,7 @@
             // 
             remProdButton.Location = new Point(481, 461);
             remProdButton.Name = "remProdButton";
-            remProdButton.Size = new Size(107, 23);
+            remProdButton.Size = new Size(122, 31);
             remProdButton.TabIndex = 6;
             remProdButton.Text = "Remove Product";
             remProdButton.UseVisualStyleBackColor = true;
@@ -172,7 +175,7 @@
             // 
             modProdButton.Location = new Point(353, 461);
             modProdButton.Name = "modProdButton";
-            modProdButton.Size = new Size(107, 23);
+            modProdButton.Size = new Size(122, 31);
             modProdButton.TabIndex = 5;
             modProdButton.Text = "Modify Product";
             modProdButton.UseVisualStyleBackColor = true;
@@ -182,7 +185,7 @@
             // 
             addProdButton.Location = new Point(225, 461);
             addProdButton.Name = "addProdButton";
-            addProdButton.Size = new Size(107, 23);
+            addProdButton.Size = new Size(122, 31);
             addProdButton.TabIndex = 4;
             addProdButton.Text = "Add Product";
             addProdButton.UseVisualStyleBackColor = true;
@@ -194,9 +197,10 @@
             tabProdSupp.Controls.Add(dgvProductSupplier);
             tabProdSupp.Controls.Add(modProdSuppButton);
             tabProdSupp.Controls.Add(addProdSuppButton);
-            tabProdSupp.Location = new Point(4, 24);
+            tabProdSupp.Location = new Point(4, 29);
+            tabProdSupp.Margin = new Padding(3, 4, 3, 4);
             tabProdSupp.Name = "tabProdSupp";
-            tabProdSupp.Size = new Size(813, 490);
+            tabProdSupp.Size = new Size(930, 658);
             tabProdSupp.TabIndex = 2;
             tabProdSupp.Text = "Products_suppliers";
             tabProdSupp.UseVisualStyleBackColor = true;
@@ -205,7 +209,7 @@
             // 
             remProdSuppButton.Location = new Point(489, 461);
             remProdSuppButton.Name = "remProdSuppButton";
-            remProdSuppButton.Size = new Size(154, 23);
+            remProdSuppButton.Size = new Size(176, 31);
             remProdSuppButton.TabIndex = 6;
             remProdSuppButton.Text = "Remove Product Supplier";
             remProdSuppButton.UseVisualStyleBackColor = true;
@@ -224,7 +228,7 @@
             // 
             modProdSuppButton.Location = new Point(329, 461);
             modProdSuppButton.Name = "modProdSuppButton";
-            modProdSuppButton.Size = new Size(154, 23);
+            modProdSuppButton.Size = new Size(176, 31);
             modProdSuppButton.TabIndex = 5;
             modProdSuppButton.Text = "Modify Product Supplier";
             modProdSuppButton.UseVisualStyleBackColor = true;
@@ -234,7 +238,7 @@
             // 
             addProdSuppButton.Location = new Point(169, 461);
             addProdSuppButton.Name = "addProdSuppButton";
-            addProdSuppButton.Size = new Size(154, 23);
+            addProdSuppButton.Size = new Size(176, 31);
             addProdSuppButton.TabIndex = 4;
             addProdSuppButton.Text = "Add Product Supplier";
             addProdSuppButton.UseVisualStyleBackColor = true;
@@ -248,7 +252,7 @@
             tabSuppliers.Controls.Add(btnAddSup);
             tabSuppliers.Location = new Point(4, 24);
             tabSuppliers.Name = "tabSuppliers";
-            tabSuppliers.Size = new Size(813, 490);
+            tabSuppliers.Size = new Size(930, 658);
             tabSuppliers.TabIndex = 3;
             tabSuppliers.Text = "Suppliers";
             tabSuppliers.UseVisualStyleBackColor = true;
@@ -300,7 +304,7 @@
             tabPackProdSupp.Controls.Add(dgvPacksProdsSupps);
             tabPackProdSupp.Location = new Point(4, 24);
             tabPackProdSupp.Name = "tabPackProdSupp";
-            tabPackProdSupp.Size = new Size(813, 490);
+            tabPackProdSupp.Size = new Size(930, 658);
             tabPackProdSupp.TabIndex = 4;
             tabPackProdSupp.Text = "Packages_products_suppliers";
             tabPackProdSupp.UseVisualStyleBackColor = true;
@@ -346,7 +350,7 @@
             // 
             // frmDatabaseViewer
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(845, 571);
             Controls.Add(tabControl);

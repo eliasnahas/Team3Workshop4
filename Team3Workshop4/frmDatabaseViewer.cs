@@ -45,11 +45,9 @@ namespace Team3Workshop4
             int dgvWidth = packagesGrid.Width;
 
             // Set DataGridViewer sources, display without extra fields
-            // Set DataGridViewer sources, display without extra fields
             // Packages
 
-            packagesGrid.DataSource = TravelSource.GetPackages();
-
+            DisplayPackages();
 
             // Products
             dgvProduct.DataSource = TravelSource.GetProducts();
@@ -83,7 +81,8 @@ namespace Team3Workshop4
         // author: Elias Nahas
         private void modPackageButton_Click(object sender, EventArgs e)
         {
-            selectedPackage = TravelSource.FindPackage((int)packagesGrid.SelectedRows[0].Cells[0].Value);
+            int packageId = (int)packagesGrid.SelectedRows[0].Cells[0].Value;
+            selectedPackage = TravelSource.FindPackage(packageId);
             if (selectedPackage != null)
             {
                 // display second form with current data
@@ -99,11 +98,12 @@ namespace Team3Workshop4
                     selectedPackage = addModifyPackageForm.package;
                     // perform the update
                     TravelSource.ModifyPackage(selectedPackage);
-                    DisplayPackages();
+                    DisplayPackages(selectedPackage.PackageId);
                 }
             }
         }
 
+        // Add new package - by: Elias Nahas
         private void addPackageButton_Click(object sender, EventArgs e)
         {
             // display second form to collect data
@@ -115,16 +115,18 @@ namespace Team3Workshop4
             DialogResult result = addModifyPackageForm.ShowDialog();
             if (result == DialogResult.OK) // second form collected data
             {
-                selectedPackage = addModifyPackageForm.package;
+                selectedPackage = addModifyPackageForm.package!;
                 // add it to the Packages table
                 TravelSource.AddPackage(selectedPackage);
-                DisplayPackages();
+                DisplayPackages(selectedPackage.PackageId);
             }
         }
 
+        // Delete package - by: Elias Nahas
         private void remPackageButton_Click(object sender, EventArgs e)
         {
-            selectedPackage = TravelSource.FindPackage((int)packagesGrid.SelectedRows[0].Cells[0].Value);
+            int packageId = (int)packagesGrid.SelectedRows[0].Cells[0].Value;
+            selectedPackage = TravelSource.FindPackage(packageId);
             if (selectedPackage != null)
             {
                 DialogResult answer = MessageBox.Show(
@@ -139,9 +141,24 @@ namespace Team3Workshop4
             }
         }
 
-        private void DisplayPackages()
+        // Displays and refreshes list of packages
+        private void DisplayPackages(int packageId = 0)
         {
             packagesGrid.DataSource = TravelSource.GetPackages();
+            // formatting the columns in short date time and currency formats
+            packagesGrid.Columns["PkgStartDate"].DefaultCellStyle.Format = "M/dd/yyyy";
+            packagesGrid.Columns["PkgEndDate"].DefaultCellStyle.Format = "M/dd/yyyy";
+            packagesGrid.Columns["PkgBasePrice"].DefaultCellStyle.Format = "c";
+            packagesGrid.Columns["PkgAgencyCommission"].DefaultCellStyle.Format = "c";
+            // selects the current package from the list
+            foreach (DataGridViewRow row in packagesGrid.Rows)
+            {
+                if ((int)row.Cells[0].Value == packageId)
+                {
+                    packagesGrid.ClearSelection();
+                    packagesGrid.CurrentCell = packagesGrid.Rows[row.Index].Cells[0];
+                }
+            }
         }
 
 
