@@ -4,6 +4,8 @@ using System.Linq;
 using GridData;
 using Microsoft.Identity.Client;
 using System.Linq.Expressions;
+using TravelExpertsData.Models;
+using System.Collections.Generic;
 namespace TravelSources
 {
     public static class TravelSource
@@ -219,6 +221,48 @@ namespace TravelSources
                 db.PackagesProductsSuppliers.Remove(entry); 
                 db.SaveChanges();
             }
+        }
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Functions for TravelExperts Website
+        // (containerized)
+
+
+        /// <summary>
+        /// Adds a new CustomerPackage entry into the database
+        /// </summary>
+        /// <param name="db">Context object</param>
+        /// <param name="customerPackage">CustomerPackage to add to the database</param>
+        /// By: Lance Salvador
+        public static void AddCustomerPackage(TravelExpertsContext db, CustomerPackage customerPackage)
+        {
+            db.CustomerPackages.Add(customerPackage);
+            db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Get Packages that belong to the given customerID
+        /// </summary>
+        /// <param name="db">Context object</param>
+        /// <param name="customerID">The ID of the Customer to query</param>
+        /// <returns>A list of packages that belond to the given customerID</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        /// By: Lance Salvador
+        public static List<Package> GetPackagesByCustomerPackage(TravelExpertsContext db, int customerID)
+        {
+            List<Package> packages = db.Packages
+                .Join(db.CustomerPackages, // Join tables to get the package data of only purchased packages
+                package => package.PackageId,
+                custPackage => custPackage.PackageId,
+                (package, custPackage) => new { package, custPackage })
+                    .Where(x => x.custPackage.CustomerId == customerID) // Only get purchased packages of this customer
+                    .Select(x => x.package) // select only the columns of Package (make List<Package> valid)
+                    .OrderBy(p => p.PackageId)
+                    .ToList();
+            return packages;
         }
     }
 

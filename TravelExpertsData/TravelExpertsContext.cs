@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
+using TravelExpertsData.Models;
 
 namespace TravelExpertsData;
 
@@ -29,6 +30,8 @@ public partial class TravelExpertsContext : DbContext
     public virtual DbSet<Class> Classes { get; set; }
 
     public virtual DbSet<CreditCard> CreditCards { get; set; }
+    
+    public virtual DbSet<CustomerPackage> CustomerPackages { get; set; }
 
     public virtual DbSet<Customer> Customers { get; set; }
 
