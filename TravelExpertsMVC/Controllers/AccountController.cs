@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Castle.Core.Resource;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -107,13 +108,13 @@ namespace TravelExpertsMVC.Controllers
             customer = CustomerDB.GetCustomer(this.db!);
             return View(customer);
         }
-        //public ActionResult CustomerInfo()
-        //{
-        //    int id = 144;
-        //    List<Customer> customer = null;
-        //    customer = CustomerDB.GetCustomerInfo(db!, id);
-        //    return View();
-        //}
+        public ActionResult CustomerInfo()
+        {
+            int pp = 104;
+            Customer? customer = null;
+            customer = CustomerDB.GetCustomerInfo(db!, pp);
+            return View(customer);
+        }
         //[HttpGet]
 
         public ActionResult Edit(int id)
@@ -121,8 +122,6 @@ namespace TravelExpertsMVC.Controllers
             Customer? customer = null;
             customer = CustomerDB.GetCustomerInfo(db!, id);
             return View(customer);
-
-            
         }
 
         [HttpPost]
@@ -133,6 +132,18 @@ namespace TravelExpertsMVC.Controllers
             return RedirectToAction(nameof(CustomerInformation));
         }
 
-
+        public ActionResult ChangePassword(int id)
+        {
+            int pp = 144;
+            Customer? customer = null;
+            customer = CustomerDB.GetCustomerInfo(db!, pp);
+            return View(customer);
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(int id, Customer newCustomerData)
+        {
+            CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);
+            return RedirectToAction(nameof(CustomerInformation));
+        }
     }
 }
