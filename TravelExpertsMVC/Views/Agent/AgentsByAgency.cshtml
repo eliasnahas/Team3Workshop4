@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="form-group">
+    <select id="uxAgencies" asp-items="ViewBag.Agencies" class="form-select"></select>
+</div>
+
+<div id="uxDisplay">
+    @await Component.InvokeAsync("AgentsByAgency", 1)
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#uxAgencies").change(function () {
+                var agencyId = $("#uxAgencies").val(); // value from the select element
+                $.ajax({
+                    method: 'GET',
+                    url: '/Agent/GetAgentsByAgency',
+                    data: { id: agencyId }
+                }).done(function (result, statusText, xhdr) {
+                    $("#uxDisplay").html(result);
+                });
+            });
+        });
+    </script>
+}
