@@ -9,11 +9,11 @@ namespace TravelExpertsMVC.Controllers
 {
     public class AccountController : Controller
     {
-        private TravelExpertsContext _db { get; set; }
+        private TravelExpertsContext db { get; set; }
 
         public AccountController(TravelExpertsContext db)
         {
-            _db = db;
+            this.db = db;
         }
 
         public IActionResult Login(string returnUrl = "")
@@ -28,7 +28,7 @@ namespace TravelExpertsMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginAsync(Customer customer) // data collected from the form
         {
-            Customer cust = CustomerDB.Authenticate(_db!, customer.Username, customer.Password);
+            Customer cust = CustomerDB.Authenticate(db!, customer.Username, customer.Password);
             if (cust == null) // no matching username/password
             {
                 return View(); // stay on the Login page
@@ -86,7 +86,7 @@ namespace TravelExpertsMVC.Controllers
             {
                 try
                 {
-                    CustomerDB.Add(_db!, customer);
+                    CustomerDB.Add(db!, customer);
                     return RedirectToAction("Login", "Account"); // redirects to Login page
                 }
                 catch
@@ -101,5 +101,38 @@ namespace TravelExpertsMVC.Controllers
                 return View(customer);
             }
         }
+        public ActionResult CustomerInformation()
+        {
+            List<Customer> customer = null;
+            customer = CustomerDB.GetCustomer(this.db!);
+            return View(customer);
+        }
+        //public ActionResult CustomerInfo()
+        //{
+        //    int id = 144;
+        //    List<Customer> customer = null;
+        //    customer = CustomerDB.GetCustomerInfo(db!, id);
+        //    return View();
+        //}
+        //[HttpGet]
+
+        public ActionResult Edit(int id)
+        {
+            Customer? customer = null;
+            customer = CustomerDB.GetCustomerInfo(db!, id);
+            return View(customer);
+
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, Customer newCustomerData)
+        {
+            CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);
+            return RedirectToAction(nameof(CustomerInformation));
+        }
+
+
     }
 }
