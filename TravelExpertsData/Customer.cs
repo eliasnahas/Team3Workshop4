@@ -12,33 +12,49 @@ public partial class Customer
     [Key]
     public int CustomerId { get; set; }
 
+    [Required(ErrorMessage = "Please enter your first name.")]
     [StringLength(25)]
     public string CustFirstName { get; set; } = null!;
 
+    [Required(ErrorMessage = "Please enter your last name.")]
     [StringLength(25)]
     public string CustLastName { get; set; } = null!;
 
+    [Required(ErrorMessage = "Please enter your address.")]
     [StringLength(75)]
     public string CustAddress { get; set; } = null!;
 
+    [Required(ErrorMessage = "Please enter your city.")]
     [StringLength(50)]
     public string CustCity { get; set; } = null!;
 
-    [StringLength(2)]
+    [Required(ErrorMessage = "Please enter your province")]
+    [StringLength(2, MinimumLength = 2, ErrorMessage = "Province code must be exactly 2 characters.")]
     public string CustProv { get; set; } = null!;
 
+    [Required(ErrorMessage = "Please enter your province.")]
+    [RegularExpression(@"^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$", 
+        ErrorMessage = "Please enter a valid postal code: 'A1A 1A1'.")]
     [StringLength(7)]
     public string CustPostal { get; set; } = null!;
 
+    [Required(ErrorMessage = "Please enter your country.")]
     [StringLength(25)]
     public string? CustCountry { get; set; }
 
+    
+    [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Please enter a valid phone number.")]
     [StringLength(20)]
     public string? CustHomePhone { get; set; }
 
+    
+    [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Please enter a valid phone number.")]
     [StringLength(20)]
     public string CustBusPhone { get; set; } = null!;
 
+    
+    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", 
+        ErrorMessage = "Please enter a valid email address: 'example@google.com'.")]
     [StringLength(50)]
     public string CustEmail { get; set; } = null!;
 
@@ -49,14 +65,15 @@ public partial class Customer
     public string Username { get; set; }
 
     [Required(ErrorMessage = "Please enter a password.")]
-    [StringLength(30)]
+    [StringLength(30, ErrorMessage = "Password must be less than 30 characters.")]
     public string Password { get; set; }
 
     [Required(ErrorMessage = "Please confirm your password")]
     [Display(Name = "Confirm Password")]
-    [Compare("Password")]
+    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
     [NotMapped]
     public string ConfirmPassword { get; set; }
+
 
     [ForeignKey("AgentId")]
     [InverseProperty("Customers")]
