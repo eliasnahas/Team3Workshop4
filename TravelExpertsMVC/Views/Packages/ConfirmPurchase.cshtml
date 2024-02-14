@@ -1,0 +1,13 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@if (Model.errorFound)
+{
+    <h1 class="text-danger">An error occurred. Please try again.</h1>
+}
+else
+{
+    <h1 class="text-confirm">Package purchased successfully.</h1>
+}

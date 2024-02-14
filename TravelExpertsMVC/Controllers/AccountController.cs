@@ -11,11 +11,11 @@ namespace TravelExpertsMVC.Controllers
 {
     public class AccountController : Controller
     {
-        private TravelExpertsContext _db { get; set; }
+        private TravelExpertsContext db { get; set; }
 
         public AccountController(TravelExpertsContext db)
         {
-            _db = db;
+            this.db = db;
         }
 
         public IActionResult Login(string returnUrl = "")
@@ -30,7 +30,7 @@ namespace TravelExpertsMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginAsync(Customer customer) // data collected from the form
         {
-            Customer cust = CustomerDB.Authenticate(_db!, customer.Username, customer.Password);
+            Customer cust = CustomerDB.Authenticate(db!, customer.Username, customer.Password);
             if (cust == null) // no matching username/password
             {
                 return View(); // stay on the Login page
@@ -38,6 +38,9 @@ namespace TravelExpertsMVC.Controllers
             // customer != null
             // Add to the session the customer's ID as CustomerId
             HttpContext.Session.SetInt32("CustomerId", cust.CustomerId);
+
+            // Store Id in TempData for Package leasing (-Lance)
+            TempData["customerID"] = cust.CustomerId;
 
             List<Claim> claims = new List<Claim>()
             {
@@ -88,7 +91,7 @@ namespace TravelExpertsMVC.Controllers
             {
                 try
                 {
-                    CustomerDB.Add(_db!, customer);
+                    CustomerDB.Add(db!, customer);
                     return RedirectToAction("Login", "Account"); // redirects to Login page
                 }
                 catch
@@ -114,7 +117,7 @@ namespace TravelExpertsMVC.Controllers
             int? custId = HttpContext.Session.GetInt32("ID");
             try
             {
-                packages = TravelSource.GetPackagesByCustomerPackage(_db, (int)custId!);
+                packages = TravelSource.GetPackagesByCustomerPackage(db, (int)custId!);
             }
             catch
             {
