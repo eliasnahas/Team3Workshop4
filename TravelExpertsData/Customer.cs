@@ -71,6 +71,5 @@ public partial class Customer
     [InverseProperty("Customer")]
     public virtual ICollection<CustomersReward> CustomersRewards { get; set; } = new List<CustomersReward>();
 
-    // Link to Package table for CustomerPackage - By: Lance Salvador
-    public virtual ICollection<Package> Packages { get; set; } = new List<Package>();
+
 }

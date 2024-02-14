@@ -4,16 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace TravelExpertsData.Models;
+namespace TravelExpertsData;
 
-[PrimaryKey("CustomerId", "PackageId")]
+[Keyless]
 [Table("CustomerPackage")]
-[Index("PackageId", Name = "IX_CustomerPackage_PackageId")]
 public partial class CustomerPackage
 {
-    [Key]
     public int CustomerId { get; set; }
 
-    [Key]
     public int PackageId { get; set; }
+
+    [ForeignKey("CustomerId")]
+    public virtual Customer Customer { get; set; } = null!;
+
+    [ForeignKey("PackageId")]
+    public virtual Package Package { get; set; } = null!;
 }
