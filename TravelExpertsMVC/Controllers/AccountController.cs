@@ -1,10 +1,12 @@
 ﻿using Castle.Core.Resource;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using TravelExpertsData;
+using TravelSources;
 
 namespace TravelExpertsMVC.Controllers
 {
@@ -144,6 +146,16 @@ namespace TravelExpertsMVC.Controllers
         {
             CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);
             return RedirectToAction(nameof(CustomerInformation));
+        }
+
+         // "My Packages" page - By: Lance Salvador
+        [Authorize]
+        public ActionResult MyPackages()
+        {
+            List<Package> packages;
+            int? custId = HttpContext.Session.GetInt32("ID");
+            packages = TravelSource.GetPackagesByCustomerPackage(_db, (int)custId!);
+            return View(packages);
         }
     }
 }
