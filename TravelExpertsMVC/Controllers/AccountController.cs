@@ -112,7 +112,14 @@ namespace TravelExpertsMVC.Controllers
         {
             List<Package> packages;
             int? custId = HttpContext.Session.GetInt32("ID");
-            packages = TravelSource.GetPackagesByCustomerPackage(_db, (int)custId!);
+            try
+            {
+                packages = TravelSource.GetPackagesByCustomerPackage(_db, (int)custId!);
+            }
+            catch
+            {
+                return View();
+            }
             return View(packages);
         }
     }

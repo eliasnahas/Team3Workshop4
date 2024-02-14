@@ -35,6 +35,11 @@
                                 @(controller == "Home" && action == "Contact" ? "active" : "")"
                                 asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link
+                                @(controller == "Home" && action == "Contact" ? "active" : "")"
+                                asp-area="" asp-controller="Packages" asp-action="">Travel Packages</a>
+                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
