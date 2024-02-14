@@ -78,7 +78,7 @@
             tabControl.Margin = new Padding(3, 2, 3, 2);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(719, 403);
+            tabControl.Size = new Size(734, 405);
             tabControl.TabIndex = 0;
             // 
             // tabPackages
@@ -91,7 +91,7 @@
             tabPackages.Margin = new Padding(3, 2, 3, 2);
             tabPackages.Name = "tabPackages";
             tabPackages.Padding = new Padding(3);
-            tabPackages.Size = new Size(711, 375);
+            tabPackages.Size = new Size(726, 377);
             tabPackages.TabIndex = 0;
             tabPackages.Text = "Packages";
             tabPackages.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             packagesGrid.Name = "packagesGrid";
             packagesGrid.RowHeadersWidth = 51;
             packagesGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            packagesGrid.Size = new Size(711, 341);
+            packagesGrid.Size = new Size(726, 343);
             packagesGrid.TabIndex = 0;
             // 
             // modPackageButton
@@ -372,7 +372,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(736, 412);
+            ClientSize = new Size(756, 417);
             Controls.Add(tabControl);
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmDatabaseViewer";
