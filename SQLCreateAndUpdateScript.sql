@@ -12,10 +12,12 @@
 
   CREATE TABLE CustomerPackage
   (
-    CustomerId INT NOT NULL,
-    PackageId INT NOT NULL,
-    FOREIGN KEY (CustomerId)
-    REFERENCES Customers(CustomerId),
-    FOREIGN KEY (PackageId)
-    REFERENCES Packages(PackageId)
+	CustomerPackageId INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	CustomerId INT NOT NULL,
+	PackageId INT NOT NULL,
+	FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId),
+	FOREIGN KEY (PackageId) REFERENCES Packages(PackageId)
   )
+
+  ALTER TABLE Customers
+  ALTER COLUMN CustEmail nvarchar(50) NULL;
