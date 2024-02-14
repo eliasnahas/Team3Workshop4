@@ -109,6 +109,7 @@ namespace TravelExpertsMVC.Controllers
                 return View(customer);
             }
         }
+        // Customerinfo Page - By: Jack
         [Authorize]
         public ActionResult CustomerInfo()
         {
@@ -152,9 +153,13 @@ namespace TravelExpertsMVC.Controllers
         public ActionResult MyPackages()
         {
             List<Package> packages;
-            int? custId = HttpContext.Session.GetInt32("ID");
+            int? custId = HttpContext.Session.GetInt32("CustomerId");
             packages = TravelSource.GetPackagesByCustomerPackage(db, (int)custId!);
             return View(packages);
+        }
+        public ActionResult DeletePackages()
+        {
+            return View();
         }
     }
 }
