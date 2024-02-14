@@ -14,6 +14,7 @@ namespace TravelExpertsMVC.Controllers
         }
 
         // Will be called from Ajax function
+        // "Contact Us" page - By: Elias Nahas
         public IActionResult GetAgentsByAgency(int id)
         {
             // Invoke the view component
@@ -22,6 +23,7 @@ namespace TravelExpertsMVC.Controllers
 
         // [HttpGet]
         // Get a list of Agents by Agency ID
+        // "Contact Us" page - By: Elias Nahas
         public IActionResult AgentsByAgency(int id = 1)
         {
             try

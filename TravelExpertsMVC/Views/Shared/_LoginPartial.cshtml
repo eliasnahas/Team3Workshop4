@@ -1,4 +1,4 @@
-﻿@{
+@{
     string controller =
         ViewContext.RouteData.Values["controller"].ToString();
     string action =
@@ -28,7 +28,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link
-                @(controller == "Account" && action == "Register" ? "active" : "")"
+                @(controller == "Account" && action == "Create" ? "active" : "")"
                asp-controller="Account" asp-action="Register">Register</a>
         </li>
     }

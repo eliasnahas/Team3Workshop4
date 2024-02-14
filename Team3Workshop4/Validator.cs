@@ -279,5 +279,31 @@ namespace Team3Workshop4
             }
             return isValid;
         }
+
+        /// <summary>
+        /// test if a date occurs before another date
+        /// </summary>
+        /// <param name="dateEarlier">earlier date to test</param>
+        /// <param name="dateLater"></param>
+        /// <returns></returns>
+        public static bool IsValidDateRange(DateTimePicker? dateEarlier, DateTimePicker? dateLater)
+        {
+            bool isValid = true;
+            DateTime? valueEarlier; // parsed value if successful
+            DateTime? valueLater;
+            if (dateEarlier.Value != null && dateLater.Value != null)
+            {
+                valueEarlier = dateEarlier.Value;
+                valueLater = dateLater.Value;
+
+                if (valueEarlier > valueLater)
+                {
+                    isValid = false;
+                    MessageBox.Show($"{dateEarlier.Tag} must be earlier than {dateLater.Tag}");
+                }
+            }
+            return isValid;
+        }
+
     } // class
 } // namespace

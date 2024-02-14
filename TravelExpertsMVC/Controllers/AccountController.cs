@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using TravelExpertsData;
+using TravelSources;
 
 namespace TravelExpertsMVC.Controllers
 {
@@ -18,6 +20,7 @@ namespace TravelExpertsMVC.Controllers
             this.db = db;
         }
 
+        // "Login" page - By: Elias Nahas
         public IActionResult Login(string returnUrl = "")
         {
             if (!returnUrl.IsNullOrEmpty())
@@ -27,6 +30,7 @@ namespace TravelExpertsMVC.Controllers
             return View();
         }
 
+        // "Login" page - By: Elias Nahas
         [HttpPost]
         public async Task<IActionResult> LoginAsync(Customer customer) // data collected from the form
         {
@@ -71,6 +75,7 @@ namespace TravelExpertsMVC.Controllers
             return View();
         }
 
+        //
         public ActionResult Register(string returnUrl = "")
         {
             if (!returnUrl.IsNullOrEmpty())
@@ -88,8 +93,9 @@ namespace TravelExpertsMVC.Controllers
             {
                 try
                 {
-                    CustomerDB.Add(db!, customer);
-                    return RedirectToAction("Login", "Account"); // redirects to Login page
+                    db.Customers.Add(customer);
+                    db.SaveChanges();
+                    return RedirectToAction("Login", "Account");
                 }
                 catch
                 {
@@ -139,6 +145,16 @@ namespace TravelExpertsMVC.Controllers
         {
             CustomerDB.ChangePassword(db!, id, newCustomerData);
             return RedirectToAction(nameof(CustomerInfo));
+        }
+
+         // "My Packages" page - By: Lance Salvador
+        [Authorize]
+        public ActionResult MyPackages()
+        {
+            List<Package> packages;
+            int? custId = HttpContext.Session.GetInt32("ID");
+            packages = TravelSource.GetPackagesByCustomerPackage(db, (int)custId!);
+            return View(packages);
         }
     }
 }

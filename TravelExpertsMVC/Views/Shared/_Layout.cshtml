@@ -51,6 +51,16 @@
                                asp-area="" asp-controller="Account" asp-action="Register">Add Me Please!</a>
                         </li>
 
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link
+                                    @(controller == "Account" && action == "MyPackages" ? "active" : "")"
+                                        asp-area="" asp-controller="Account" asp-action="MyPackages">
+                                    My Packages
+                                </a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
