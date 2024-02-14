@@ -66,6 +66,7 @@ namespace TravelExpertsMVC.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("CustomerId");
+            TempData.Clear();
             return RedirectToAction("Index", "Home");
         }
 
@@ -114,7 +115,7 @@ namespace TravelExpertsMVC.Controllers
         public ActionResult MyPackages()
         {
             List<Package> packages;
-            int? custId = HttpContext.Session.GetInt32("ID");
+            int? custId = HttpContext.Session.GetInt32("CustomerId");
             try
             {
                 packages = TravelSource.GetPackagesByCustomerPackage(db, (int)custId!);

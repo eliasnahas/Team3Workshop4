@@ -3,9 +3,9 @@
 *@
 @{
 }
-@if (Model.errorFound)
+@if (ViewBag.errorFound != null)
 {
-    <h1 class="text-danger">An error occurred. Please try again.</h1>
+    <h1 class="text-danger">An error occurred. Please Re-login and try again.</h1>
 }
 else
 {

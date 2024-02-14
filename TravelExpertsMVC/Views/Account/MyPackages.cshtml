@@ -1,16 +1,15 @@
 ﻿@model IEnumerable<TravelExpertsData.Package>
 
+@using Microsoft.AspNetCore.Http;
+
 @{
     ViewData["Title"] = "MyPackages";
 }
 
-<h1>MyPackages</h1>
+<h1>Packages for @User.Identity!.Name </h1>
 
 @if(Model != null)
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
     <table class="table">
         <thead>
             <tr>
@@ -35,7 +34,7 @@
                 <th>
                 @Html.DisplayNameFor(model => model.PkgAgencyCommission)
                 </th>
-                <th></th>
+                
             </tr>
         </thead>
         <tbody>
@@ -63,11 +62,11 @@
                     <td>
                     @Html.DisplayFor(modelItem => item.PkgAgencyCommission)
                     </td>
-                    <td>
+                    @* <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
+                    </td> *@
                 </tr>
         }
         </tbody>
@@ -75,5 +74,5 @@
 }
 else 
 {
-    <h1 class="bg-danger text-light">No packages purchased.</h1>
+    <h1 class="bg-danger text-light">No packages found. Please Re-Login and try again.</h1>
 }

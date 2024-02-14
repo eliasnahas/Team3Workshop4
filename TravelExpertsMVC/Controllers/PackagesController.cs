@@ -29,14 +29,15 @@ namespace TravelExpertsMVC.Controllers
             CustomerPackage custPack = new();
             if (TempData["customerID"] != null)
             {
-                custPack.CustomerId = (int)TempData["customerID"]!;
+                custPack.CustomerId = (int)TempData["customerID"]!; // Grab customerID from TempData
+                TempData["customerID"] = custPack.CustomerId; // Re-add to TempData for later packages
                 custPack.PackageId = packageId;
                 Package package = PackageDB.FindPackage(db, packageId);
                 TravelSource.AddCustomerPackage(db, custPack);
                 return View();
             }
-            bool errorFound = true;
-            return View(errorFound);
+            ViewBag.errorFound = true;
+            return View();
         }
     }
 }
