@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using TravelExpertsData;
@@ -70,6 +71,7 @@ namespace TravelExpertsMVC.Controllers
             return View();
         }
 
+        //
         public ActionResult Register(string returnUrl = "")
         {
             if (!returnUrl.IsNullOrEmpty())
@@ -87,8 +89,9 @@ namespace TravelExpertsMVC.Controllers
             {
                 try
                 {
-                    CustomerDB.Add(db!, customer);
-                    return RedirectToAction("Login", "Account"); // redirects to Login page
+                    db.Customers.Add(customer);
+                    db.SaveChanges();
+                    return RedirectToAction("Login", "Account");
                 }
                 catch
                 {
@@ -102,6 +105,42 @@ namespace TravelExpertsMVC.Controllers
                 return View(customer);
             }
         }
+
+        //DIDN'T WANT TO DELETE SO HAD TO COMMENT OUT FOR DATABASE TO UPDATE - Gurleen
+
+
+        //public ActionResult Register(string returnUrl = "")
+        //{
+        //    if (!returnUrl.IsNullOrEmpty())
+        //    {
+        //        TempData["ReturnUrl"] = returnUrl;
+        //    }
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Register(Customer customer)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            CustomerDB.Add(db!, customer);
+        //            return RedirectToAction("Login", "Account"); // redirects to Login page
+        //        }
+        //        catch
+        //        {
+        //            TempData["Message"] = "Database connection error. Try again later.";
+        //            TempData["IsError"] = true;
+        //            return View(customer);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return View(customer);
+        //    }
+        //}
         public ActionResult CustomerInformation()
         {
             List<Customer> customer = null;
