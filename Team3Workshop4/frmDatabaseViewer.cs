@@ -141,7 +141,7 @@ namespace Team3Workshop4
             }
         }
 
-        // Displays and refreshes list of packages
+        // Displays and refreshes list of packages - by: Elias Nahas
         private void DisplayPackages(int packageId = 0)
         {
             packagesGrid.DataSource = TravelSource.GetPackages();

@@ -18,7 +18,7 @@ namespace TravelExpertsMVC.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult About()
         {
             return View();
         }

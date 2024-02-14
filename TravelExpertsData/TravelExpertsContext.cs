@@ -59,9 +59,9 @@ public partial class TravelExpertsContext : DbContext
 
     public virtual DbSet<TripType> TripTypes { get; set; }
 
-    //// *****************Uncomment  for Workshop4, keep commented for Workshop5 login to work
+    // Comment out the following two lines to run TravelExpertsMVC website
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //   => optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["TravelExpertsConnection"].ConnectionString).UseLazyLoadingProxies();
+    //    => optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["TravelExpertsConnection"].ConnectionString).UseLazyLoadingProxies();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

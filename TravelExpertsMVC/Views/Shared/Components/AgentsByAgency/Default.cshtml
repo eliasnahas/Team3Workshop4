@@ -1,0 +1,80 @@
+﻿@* By: Elias Nahas *@
+
+@model IEnumerable<TravelExpertsData.Agent>
+
+@{
+    Layout = null;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Agency.AgncyCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agency.AgncyAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agency.AgncyPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agency.AgncyFax)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.First().Agency.AgncyCity)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.First().Agency.AgncyAddress),
+                @Html.DisplayFor(model => model.First().Agency.AgncyPostal)
+            </td>
+            <td>
+                <a href="tel:@Html.DisplayFor(model => model.First().Agency.AgncyPhone)">@Html.DisplayFor(model => model.First().Agency.AgncyPhone)</a>
+            </td>
+            <td>
+                <a href="tel:@Html.DisplayFor(model => model.First().Agency.AgncyFax)">@Html.DisplayFor(model => model.First().Agency.AgncyFax)</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AgtFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgtBusPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgtEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgtPosition)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgtFirstName)
+                @Html.DisplayFor(modelItem => item.AgtMiddleInitial)
+                @Html.DisplayFor(modelItem => item.AgtLastName)
+            </td>
+            <td>
+                <a href="tel:@Html.DisplayFor(modelItem => item.AgtBusPhone)">@Html.DisplayFor(modelItem => item.AgtBusPhone)</a>
+            </td>
+            <td>
+                <a href="mailto:@Html.DisplayFor(modelItem => item.AgtEmail)">@Html.DisplayFor(modelItem => item.AgtEmail)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgtPosition)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
