@@ -108,41 +108,6 @@ namespace TravelExpertsMVC.Controllers
             }
         }
 
-        //DIDN'T WANT TO DELETE SO HAD TO COMMENT OUT FOR DATABASE TO UPDATE - Gurleen
-
-
-        //public ActionResult Register(string returnUrl = "")
-        //{
-        //    if (!returnUrl.IsNullOrEmpty())
-        //    {
-        //        TempData["ReturnUrl"] = returnUrl;
-        //    }
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Register(Customer customer)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            CustomerDB.Add(db!, customer);
-        //            return RedirectToAction("Login", "Account"); // redirects to Login page
-        //        }
-        //        catch
-        //        {
-        //            TempData["Message"] = "Database connection error. Try again later.";
-        //            TempData["IsError"] = true;
-        //            return View(customer);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return View(customer);
-        //    }
-        //}
         public ActionResult CustomerInformation()
         {
             List<Customer> customer = null;

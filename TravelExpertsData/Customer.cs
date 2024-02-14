@@ -13,48 +13,58 @@ public partial class Customer
     public int CustomerId { get; set; }
 
     [Required(ErrorMessage = "Please enter your first name.")]
+    [Display(Name = "First Name")]
     [StringLength(25)]
     public string CustFirstName { get; set; } = null!;
 
     [Required(ErrorMessage = "Please enter your last name.")]
+    [Display(Name = "Last Name")]
     [StringLength(25)]
     public string CustLastName { get; set; } = null!;
 
     [Required(ErrorMessage = "Please enter your address.")]
+    [Display(Name = "Address")]
     [StringLength(75)]
     public string CustAddress { get; set; } = null!;
 
     [Required(ErrorMessage = "Please enter your city.")]
+    [Display(Name = "City")]
     [StringLength(50)]
     public string CustCity { get; set; } = null!;
 
     [Required(ErrorMessage = "Please enter your province")]
+    [Display(Name = "Province")]
     [StringLength(2, MinimumLength = 2, ErrorMessage = "Province code must be exactly 2 characters.")]
     public string CustProv { get; set; } = null!;
 
-    [Required(ErrorMessage = "Please enter your province.")]
+    [Required(ErrorMessage = "Please enter your postal code.")]
+    [Display(Name = "Postal Code")]
     [RegularExpression(@"^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$", 
         ErrorMessage = "Please enter a valid postal code: 'A1A 1A1'.")]
     [StringLength(7)]
     public string CustPostal { get; set; } = null!;
 
     [Required(ErrorMessage = "Please enter your country.")]
+    [Display(Name = "Country")]
     [StringLength(25)]
     public string? CustCountry { get; set; }
 
     
     [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Please enter a valid phone number.")]
+    [Display(Name = "Home Phone")]
     [StringLength(20)]
     public string? CustHomePhone { get; set; }
 
     
     [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Please enter a valid phone number.")]
+    [Display(Name = "Business Phone")]
     [StringLength(20)]
     public string CustBusPhone { get; set; } = null!;
 
     
     [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", 
         ErrorMessage = "Please enter a valid email address: 'example@google.com'.")]
+    [Display(Name = "Email")]
     [StringLength(50)]
     public string CustEmail { get; set; } = null!;
 
