@@ -113,6 +113,7 @@ namespace TravelExpertsMVC.Controllers
                 return View(customer);
             }
         }
+        // Customerinfo Page - By: Jack
         [Authorize]
         public ActionResult CustomerInfo()
         {
@@ -166,6 +167,10 @@ namespace TravelExpertsMVC.Controllers
                 return View();
             }
             return View(packages);
+        }
+        public ActionResult DeletePackages()
+        {
+            return View();
         }
     }
 }

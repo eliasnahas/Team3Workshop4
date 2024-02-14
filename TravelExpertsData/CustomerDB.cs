@@ -39,8 +39,7 @@ namespace TravelExpertsData
             Customer? customer = db.Customers.Find(CustomerID);
             if (customer != null)
             {
-                //customer.CustomerId = newCustomer.CustomerId;
-                customer.CustFirstName = newCustomer.CustFirstName;
+                 customer.CustFirstName = newCustomer.CustFirstName;
                 customer.CustLastName = newCustomer.CustLastName;
                 customer.CustAddress = newCustomer.CustAddress;
                 customer.CustCity = newCustomer.CustCity;
@@ -50,9 +49,6 @@ namespace TravelExpertsData
                 customer.CustHomePhone = newCustomer.CustHomePhone;
                 customer.CustBusPhone = newCustomer.CustBusPhone;
                 customer.CustEmail = newCustomer.CustEmail;
-                //customer.AgentId = newCustomer.AgentId;
-                //customer.Username = newCustomer.Username;
-                //customer.Password = newCustomer.Password;
                 db.SaveChanges();
             }
         }
