@@ -4,99 +4,84 @@
     ViewData["Title"] = "CustomerInfo";
 }
 
-<h1>CustomerInfo</h1>
+<h1>My Information</h1>
 
 <div>
-    <h4>Customer</h4>
     <hr />
     <dl class="row">
-        @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerId)
-        </dt> *@
-        @* <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomerId)
-        </dd> *@
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustFirstName)
+            <label class="control-label">First Name</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustFirstName)
+            <input asp-for="CustFirstName" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustLastName)
+            <label class="control-label">Last Name</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustLastName)
+            <input asp-for="CustLastName" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustAddress)
+            <label class="control-label">Address</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustAddress)
+            <input asp-for="CustAddress" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustCity)
+            <label class="control-label">City</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustCity)
+            <input asp-for="CustCity" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustProv)
+            <label class="control-label">Province</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustProv)
+            <input asp-for="CustProv" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustPostal)
+            <label class="control-label">Postal Code</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustPostal)
+            <input asp-for="CustPostal" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustCountry)
+            <label class="control-label">Country</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustCountry)
+            <input asp-for="CustCountry" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustHomePhone)
+            <label class="control-label">Home Phone</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustHomePhone)
+            <input asp-for="CustHomePhone" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustBusPhone)
+            <label class="control-label">Business Phone</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustBusPhone)
+            <input asp-for="CustBusPhone" class="form-control" readonly />
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustEmail)
+            <label class="control-label">Email Address</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustEmail)
+            <input asp-for="CustEmail" class="form-control" readonly />
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AgentId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AgentId)
-        </dd>
-       @*  <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd> *@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.CustomerId }) |
-    <a asp-action="Index">Back to List</a>
+    
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }, new {@class="btn btn-primary"})
+    @Html.ActionLink("Change Password", "ChangePassword", new { id = Model.CustomerId }, new {@class="btn btn-primary"})
 </div>

@@ -130,15 +130,14 @@ namespace TravelExpertsMVC.Controllers
 
         public ActionResult ChangePassword(int id)
         {
-            int pp = 144;
             Customer? customer = null;
-            customer = CustomerDB.GetCustomerInfo(db!, pp);
+            customer = CustomerDB.GetCustomerInfo(db!, id);
             return View(customer);
         }
         [HttpPost]
         public ActionResult ChangePassword(int id, Customer newCustomerData)
         {
-            CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);
+            CustomerDB.ChangePassword(db!, id, newCustomerData);
             return RedirectToAction(nameof(CustomerInfo));
         }
     }

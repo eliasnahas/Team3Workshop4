@@ -11,22 +11,22 @@ public partial class Customer
 {
     [Key]
     public int CustomerId { get; set; }
-
+    [Required(ErrorMessage ="Please Enter a First Name")] 
     [StringLength(25)]
     public string CustFirstName { get; set; } = null!;
-
+    [Required(ErrorMessage = "Please Enter a Last Name")]
     [StringLength(25)]
     public string CustLastName { get; set; } = null!;
-
+    [Required(ErrorMessage = "Please Enter a Address")]
     [StringLength(75)]
     public string CustAddress { get; set; } = null!;
-
+    [Required(ErrorMessage = "Please Enter a City")]
     [StringLength(50)]
     public string CustCity { get; set; } = null!;
-
+    [Required(ErrorMessage = "Please Enter a Province")]
     [StringLength(2)]
     public string CustProv { get; set; } = null!;
-
+    [Required(ErrorMessage = "Please Enter a Postal Code")]
     [StringLength(7)]
     public string CustPostal { get; set; } = null!;
 
@@ -35,12 +35,12 @@ public partial class Customer
 
     [StringLength(20)]
     public string? CustHomePhone { get; set; }
-
+    [Required(ErrorMessage = "Please Enter a Business Phone")]
     [StringLength(20)]
     public string CustBusPhone { get; set; } = null!;
 
     [StringLength(50)]
-    public string CustEmail { get; set; } = null!;
+    public string? CustEmail { get; set; } = null!;
 
     public int? AgentId { get; set; }
 

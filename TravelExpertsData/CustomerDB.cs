@@ -50,7 +50,7 @@ namespace TravelExpertsData
                 customer.CustHomePhone = newCustomer.CustHomePhone;
                 customer.CustBusPhone = newCustomer.CustBusPhone;
                 customer.CustEmail = newCustomer.CustEmail;
-                customer.AgentId = newCustomer.AgentId;
+                //customer.AgentId = newCustomer.AgentId;
                 //customer.Username = newCustomer.Username;
                 //customer.Password = newCustomer.Password;
                 db.SaveChanges();
