@@ -34,7 +34,7 @@ namespace Team3Workshop4
             {
                 Text = "Modify Package";
                 DisplayPackage();
-                if (package.PkgStartDate != null)
+                if (package!.PkgStartDate != null)
                 {
                     dtpPkgStartDate.Format = DateTimePickerFormat.Short;
                 }
@@ -48,7 +48,7 @@ namespace Team3Workshop4
         // displays current package for Modify
         private void DisplayPackage()
         {
-            List<ProdSuppNames> prodSuppNames = TravelSource.GetProductsSupplierByPackage(package.PackageId);
+            List<ProdSuppNames> prodSuppNames = TravelSource.GetProductsSupplierByPackage(package!.PackageId)!;
             if (prodSuppNames != null)
             {
                 int i = 0;

@@ -1,6 +1,6 @@
 ﻿namespace Team3Workshop4
 {
-    partial class frmAddModifyProdSupp
+    partial class frmAddSupplier
     {
         /// <summary>
         /// Required designer variable.
@@ -26,20 +26,13 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
-            SuspendLayout();
-            // 
-            // frmAddModifyProdSupp
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "frmAddModifyProdSupp";
-            Text = "Add/Modify Product Supplier";
-            ResumeLayout(false);
-        }
+        
 
         #endregion
+
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
