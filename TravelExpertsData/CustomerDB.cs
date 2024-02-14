@@ -39,7 +39,7 @@ namespace TravelExpertsData
             Customer? customer = db.Customers.Find(CustomerID);
             if (customer != null)
             {
-                customer.CustomerId = newCustomer.CustomerId;
+                //customer.CustomerId = newCustomer.CustomerId;
                 customer.CustFirstName = newCustomer.CustFirstName;
                 customer.CustLastName = newCustomer.CustLastName;
                 customer.CustAddress = newCustomer.CustAddress;
@@ -51,7 +51,16 @@ namespace TravelExpertsData
                 customer.CustBusPhone = newCustomer.CustBusPhone;
                 customer.CustEmail = newCustomer.CustEmail;
                 customer.AgentId = newCustomer.AgentId;
-                customer.Username = newCustomer.Username;
+                //customer.Username = newCustomer.Username;
+                //customer.Password = newCustomer.Password;
+                db.SaveChanges();
+            }
+        }
+        public static void ChangePassword(TravelExpertsContext db, int CustomerID, Customer newCustomer)
+        {
+            Customer? customer = db.Customers.Find(CustomerID);
+            if (customer != null)
+            {
                 customer.Password = newCustomer.Password;
                 db.SaveChanges();
             }
