@@ -11,20 +11,32 @@ namespace TravelExpertsMVC.Controllers
 {
     public class PackagesController : Controller
     {
+        private TravelExpertsContext db { get; set; }
+
+        public PackagesController(TravelExpertsContext db)
+        {
+            this.db = db;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
         [Authorize]
-        public IActionResult ConfirmPurchase()
+        public IActionResult ConfirmPurchase(int packageId)
         {
-            return View();
-        }
-
-        public IActionResult ConfirmPurchase(int id)
-        {
-
+            CustomerPackage custPack = new();
+            if (TempData["customerID"] != null)
+            {
+                custPack.CustomerId = (int)TempData["customerID"]!; // Grab customerID from TempData
+                TempData["customerID"] = custPack.CustomerId; // Re-add to TempData for later packages
+                custPack.PackageId = packageId;
+                Package package = PackageDB.FindPackage(db, packageId);
+                TravelSource.AddCustomerPackage(db, custPack);
+                return View();
+            }
+            ViewBag.errorFound = true;
             return View();
         }
     }

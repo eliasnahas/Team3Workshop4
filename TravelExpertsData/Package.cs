@@ -33,6 +33,9 @@ public partial class Package
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
     [InverseProperty("Package")]
+    public virtual ICollection<CustomerPackage> CustomerPackages { get; set; } = new List<CustomerPackage>();
+
+    [InverseProperty("Package")]
     public virtual ICollection<PackagesProductsSupplier> PackagesProductsSuppliers { get; set; } = new List<PackagesProductsSupplier>();
 
 

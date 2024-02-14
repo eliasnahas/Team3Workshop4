@@ -96,6 +96,9 @@ public partial class Customer
     public virtual ICollection<CreditCard> CreditCards { get; set; } = new List<CreditCard>();
 
     [InverseProperty("Customer")]
+    public virtual ICollection<CustomerPackage> CustomerPackages { get; set; } = new List<CustomerPackage>();
+
+    [InverseProperty("Customer")]
     public virtual ICollection<CustomersReward> CustomersRewards { get; set; } = new List<CustomersReward>();
 
 

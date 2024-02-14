@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Travel Packages</h1>
+<div class="d-flex justify-content-center">
+    
+    <form class="d-flex justify-content-center" asp-action="ConfirmPurchase" method="post">
+        <div class="card m-2" style="width: 18rem;">
+            <img src="~/images/maldives.jpg" class="card-img-top h-100" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Caribbean New Year </h5>
+                <h6 class="card-subtitle mb-2 text-muted">$8,000</h6>
+                <p class="card-text">Cruise the Caribbean & Celebrate the New Year.</p>
+                @Html.ActionLink("Purchase", "ConfirmPurchase", "Packages", new { packageId = 1 }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    
+
+        <div class="card m-2" style="width: 18rem;">
+            <img src="~/images/amazonForestPeople.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Polynesian Paradise</h5>
+                <h6 class="card-subtitle mb-2 text-muted">$8,000</h6>
+                <p class="card-text">8 Day All Inclusive Hawaiian Vacation</p>
+                @Html.ActionLink("Purchase", "ConfirmPurchase", "Packages", new {packageId = 2}, new { @class = "btn btn-primary"}) 
+            </div>
+        </div>
+
+
+        <div class="card m-2" style="width: 18rem;">
+            <img src="~/images/akihabara.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Asian Expedition</h5>
+                <h6 class="card-subtitle mb-2 text-muted">$8,000</h6>
+                <p class="card-text">Airfaire, Hotel and Eco Tour.</p>
+                @Html.ActionLink("Purchase", "ConfirmPurchase", "Packages", new { packageId = 3 }, new { @class = "btn btn-primary" }) 
+            </div>
+        </div>
+
+        <div class="card m-2" style="width: 18rem;">
+            <img src="~/images/businessRestaurant.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">European Vacation</h5>
+                <h6 class="card-subtitle mb-2 text-muted">$8,000</h6>
+                <p class="card-text">Euro Tour with Rail Pass and Travel Insurance</p>
+                @Html.ActionLink("Purchase", "ConfirmPurchase", "Packages", new { packageId = 4 }, new { @class = "btn btn-primary" }) 
+            </div>
+        </div>
+    </form>
+</div>
