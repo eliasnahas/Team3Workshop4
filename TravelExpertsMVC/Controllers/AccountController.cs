@@ -20,6 +20,7 @@ namespace TravelExpertsMVC.Controllers
             this.db = db;
         }
 
+        // "Login" page - By: Elias Nahas
         public IActionResult Login(string returnUrl = "")
         {
             if (!returnUrl.IsNullOrEmpty())
@@ -29,6 +30,7 @@ namespace TravelExpertsMVC.Controllers
             return View();
         }
 
+        // "Login" page - By: Elias Nahas
         [HttpPost]
         public async Task<IActionResult> LoginAsync(Customer customer) // data collected from the form
         {
