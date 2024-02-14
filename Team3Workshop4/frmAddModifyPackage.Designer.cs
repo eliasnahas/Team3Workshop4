@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddModifyPackage));
             label1 = new Label();
             txtPkgName = new TextBox();
             label2 = new Label();
@@ -218,6 +219,8 @@
             AcceptButton = btnAccept;
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Center;
             CancelButton = btnCancel;
             ClientSize = new Size(625, 518);
             Controls.Add(lvProducts);

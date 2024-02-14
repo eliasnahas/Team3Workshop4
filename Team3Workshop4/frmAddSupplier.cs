@@ -29,6 +29,7 @@ namespace Team3Workshop4
 
         private void InitializeComponent()
         {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(frmAddSupplier));
             txtSupID = new TextBox();
             txtSupName = new TextBox();
             btnAdd = new Button();
@@ -41,7 +42,7 @@ namespace Team3Workshop4
             // 
             txtSupID.Location = new Point(151, 29);
             txtSupID.Name = "txtSupID";
-            txtSupID.Size = new Size(190, 23);
+            txtSupID.Size = new Size(190, 27);
             txtSupID.TabIndex = 0;
             txtSupID.TextChanged += txtSupID_TextChanged;
             // 
@@ -49,16 +50,16 @@ namespace Team3Workshop4
             // 
             txtSupName.Location = new Point(151, 70);
             txtSupName.Name = "txtSupName";
-            txtSupName.Size = new Size(190, 23);
+            txtSupName.Size = new Size(190, 27);
             txtSupName.TabIndex = 1;
             // 
             // btnAdd
             // 
             btnAdd.Location = new Point(26, 153);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 23);
+            btnAdd.Size = new Size(75, 33);
             btnAdd.TabIndex = 2;
-            btnAdd.Text = "Add";
+            btnAdd.Text = "&Add";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
@@ -66,9 +67,9 @@ namespace Team3Workshop4
             // 
             btnCancel.Location = new Point(266, 153);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(75, 33);
             btnCancel.TabIndex = 3;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
@@ -77,7 +78,7 @@ namespace Team3Workshop4
             label3.AutoSize = true;
             label3.Location = new Point(26, 32);
             label3.Name = "label3";
-            label3.Size = new Size(67, 15);
+            label3.Size = new Size(86, 20);
             label3.TabIndex = 4;
             label3.Text = "Supplier ID:";
             // 
@@ -86,12 +87,14 @@ namespace Team3Workshop4
             label4.AutoSize = true;
             label4.Location = new Point(26, 73);
             label4.Name = "label4";
-            label4.Size = new Size(88, 15);
+            label4.Size = new Size(111, 20);
             label4.TabIndex = 5;
             label4.Text = "Supplier Name:";
             // 
             // frmAddSupplier
             // 
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(365, 198);
             Controls.Add(label4);
             Controls.Add(label3);
