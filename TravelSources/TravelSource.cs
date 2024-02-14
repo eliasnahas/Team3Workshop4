@@ -4,7 +4,7 @@ using System.Linq;
 using GridData;
 using Microsoft.Identity.Client;
 using System.Linq.Expressions;
-using TravelExpertsData.Models;
+using TravelExpertsData;
 using System.Collections.Generic;
 namespace TravelSources
 {
