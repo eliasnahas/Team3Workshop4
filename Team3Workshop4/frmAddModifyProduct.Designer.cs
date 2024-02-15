@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddModifyProduct));
             txtProductName = new TextBox();
             label1 = new Label();
             btnConfirm = new Button();
@@ -38,11 +39,11 @@
             // 
             // txtProductName
             // 
-            txtProductName.Location = new Point(143, 62);
+            txtProductName.Location = new Point(186, 62);
             txtProductName.Margin = new Padding(4);
             txtProductName.MaxLength = 50;
             txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(127, 29);
+            txtProductName.Size = new Size(127, 34);
             txtProductName.TabIndex = 1;
             txtProductName.Tag = "Product Name";
             // 
@@ -52,7 +53,7 @@
             label1.Location = new Point(25, 65);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(113, 21);
+            label1.Size = new Size(142, 28);
             label1.TabIndex = 2;
             label1.Text = "Product Name:";
             // 
@@ -60,19 +61,19 @@
             // 
             btnConfirm.Location = new Point(25, 108);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(75, 34);
+            btnConfirm.Size = new Size(94, 37);
             btnConfirm.TabIndex = 3;
-            btnConfirm.Text = "Confirm";
+            btnConfirm.Text = "&Confirm";
             btnConfirm.UseVisualStyleBackColor = true;
             btnConfirm.Click += btnConfirm_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(195, 108);
+            btnCancel.Location = new Point(227, 108);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 34);
+            btnCancel.Size = new Size(86, 37);
             btnCancel.TabIndex = 4;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "C&ancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
@@ -82,26 +83,27 @@
             label2.Location = new Point(25, 20);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(86, 21);
+            label2.Size = new Size(109, 28);
             label2.TabIndex = 5;
             label2.Text = "Product ID:";
             // 
             // txtProductID
             // 
-            txtProductID.Location = new Point(143, 17);
+            txtProductID.Location = new Point(186, 17);
             txtProductID.Margin = new Padding(4);
             txtProductID.MaxLength = 50;
             txtProductID.Name = "txtProductID";
             txtProductID.ReadOnly = true;
-            txtProductID.Size = new Size(127, 29);
+            txtProductID.Size = new Size(127, 34);
             txtProductID.TabIndex = 6;
             txtProductID.Tag = "Product Name";
             // 
-            // frmAddModify
+            // frmAddModifyProduct
             // 
-            AutoScaleDimensions = new SizeF(9F, 21F);
+            AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(309, 153);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(334, 157);
             Controls.Add(txtProductID);
             Controls.Add(label2);
             Controls.Add(btnCancel);
@@ -110,7 +112,7 @@
             Controls.Add(txtProductName);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
-            Name = "frmAddModify";
+            Name = "frmAddModifyProduct";
             Text = "Form1";
             Load += frmAddModify_Load;
             ResumeLayout(false);

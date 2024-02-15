@@ -10,57 +10,75 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <label asp-for="CustFirstName" class="control-label">First Name</label>
-                <input asp-for="CustFirstName" class="form-control" />
+                <dt><label asp-for="CustFirstName" class="control-label">First Name</label></dt>
+                <input asp-for="CustFirstName" class="form-control" placeholder="Enter your First Name"/>
                 <span asp-validation-for="CustFirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustLastName" class="control-label">Last Name</label>
-                <input asp-for="CustLastName" class="form-control" />
+                <dt>
+                    <label asp-for="CustLastName" class="control-label">Last Name</label>
+                </dt>
+                <input asp-for="CustLastName" class="form-control" placeholder="Enter your Last Name" />
                 <span asp-validation-for="CustLastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustAddress" class="control-label">Address</label>
-                <input asp-for="CustAddress" class="form-control" />
+                <dt>
+                    <label asp-for="CustAddress" class="control-label">Address</label>
+                </dt>
+                <input asp-for="CustAddress" class="form-control" placeholder="Enter your Address" />
                 <span asp-validation-for="CustAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustCity" class="control-label">City</label>
-                <input asp-for="CustCity" class="form-control" />
+                <dt>
+                    <label asp-for="CustCity" class="control-label">City</label>
+                </dt>
+                <input asp-for="CustCity" class="form-control" placeholder="Enter your City" />
                 <span asp-validation-for="CustCity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustProv" class="control-label">Province</label>
-                <input asp-for="CustProv" class="form-control" />
+                <dt>
+                    <label asp-for="CustProv" class="control-label">Province</label>
+                </dt>
+                <input asp-for="CustProv" class="form-control" placeholder="Enter your Province" />
                 <span asp-validation-for="CustProv" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustPostal" class="control-label">Postal Code</label>
-                <input asp-for="CustPostal" class="form-control" />
+                <dt>
+                    <label asp-for="CustPostal" class="control-label">Postal Code</label>
+                </dt>
+                <input asp-for="CustPostal" class="form-control" placeholder="Enter your Postal Code" />
                 <span asp-validation-for="CustPostal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustCountry" class="control-label">Country</label>
-                <input asp-for="CustCountry" class="form-control" />
+                <dt>
+                    <label asp-for="CustCountry" class="control-label">Country</label>
+                </dt>
+                <input asp-for="CustCountry" class="form-control" placeholder="Enter your Country" />
                 <span asp-validation-for="CustCountry" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustHomePhone" class="control-label">Home Phone</label>
-                <input asp-for="CustHomePhone" class="form-control" />
+                <dt>
+                    <label asp-for="CustHomePhone" class="control-label">Home Phone</label>
+                </dt>
+                <input asp-for="CustHomePhone" class="form-control" placeholder="Enter your Home Phone (Optional)" />
                 <span asp-validation-for="CustHomePhone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustBusPhone" class="control-label">Business Phone</label>
-                <input asp-for="CustBusPhone" class="form-control" />
+                <dt>
+                    <label asp-for="CustBusPhone" class="control-label">Business Phone</label>
+                </dt>
+                <input asp-for="CustBusPhone" class="form-control" placeholder="Enter your Business Phone Number" />
                 <span asp-validation-for="CustBusPhone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CustEmail" class="control-label">Email</label>
-                <input asp-for="CustEmail" class="form-control" />
+                <dt>
+                    <label asp-for="CustEmail" class="control-label">Email</label>
+                </dt>
+                <input asp-for="CustEmail" class="form-control" placeholder="Enter your Email Address (Optional)" />
                 <span asp-validation-for="CustEmail" class="text-danger"></span>
             </div>
             

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModifySupplier));
             label1 = new Label();
             label2 = new Label();
             txtSupID = new TextBox();
@@ -39,40 +40,43 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(17, 33);
+            label1.Location = new Point(19, 44);
             label1.Name = "label1";
-            label1.Size = new Size(67, 15);
+            label1.Size = new Size(86, 20);
             label1.TabIndex = 0;
             label1.Text = "Supplier ID:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(17, 82);
+            label2.Location = new Point(19, 109);
             label2.Name = "label2";
-            label2.Size = new Size(88, 15);
+            label2.Size = new Size(111, 20);
             label2.TabIndex = 1;
             label2.Text = "Supplier Name:";
             // 
             // txtSupID
             // 
-            txtSupID.Location = new Point(131, 30);
+            txtSupID.Location = new Point(150, 40);
+            txtSupID.Margin = new Padding(3, 4, 3, 4);
             txtSupID.Name = "txtSupID";
-            txtSupID.Size = new Size(200, 23);
+            txtSupID.Size = new Size(228, 27);
             txtSupID.TabIndex = 2;
             // 
             // txtSupName
             // 
-            txtSupName.Location = new Point(131, 79);
+            txtSupName.Location = new Point(150, 105);
+            txtSupName.Margin = new Padding(3, 4, 3, 4);
             txtSupName.Name = "txtSupName";
-            txtSupName.Size = new Size(200, 23);
+            txtSupName.Size = new Size(228, 27);
             txtSupName.TabIndex = 3;
             // 
             // btnModify
             // 
-            btnModify.Location = new Point(17, 157);
+            btnModify.Location = new Point(19, 209);
+            btnModify.Margin = new Padding(3, 4, 3, 4);
             btnModify.Name = "btnModify";
-            btnModify.Size = new Size(75, 23);
+            btnModify.Size = new Size(86, 31);
             btnModify.TabIndex = 4;
             btnModify.Text = "Modify";
             btnModify.UseVisualStyleBackColor = true;
@@ -80,9 +84,10 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(256, 157);
+            btnCancel.Location = new Point(293, 209);
+            btnCancel.Margin = new Padding(3, 4, 3, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(86, 31);
             btnCancel.TabIndex = 5;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -90,15 +95,17 @@
             // 
             // frmModifySupplier
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(355, 204);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(406, 272);
             Controls.Add(btnCancel);
             Controls.Add(btnModify);
             Controls.Add(txtSupName);
             Controls.Add(txtSupID);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmModifySupplier";
             Text = "frmModifySupplier";
             ResumeLayout(false);

@@ -114,6 +114,7 @@ namespace TravelExpertsMVC.Controllers
                 return View(customer);
             }
         }
+        // Customerinfo Page - By: Jack
         [Authorize]
         public ActionResult CustomerInfo()
         {
@@ -179,6 +180,10 @@ namespace TravelExpertsMVC.Controllers
         {
             PackageDB.DeleteCustomerPackage(db, CustomerPackageId);
             return RedirectToAction(nameof(MyPackages));
+        }
+        public ActionResult DeletePackages()
+        {
+            return View();
         }
     }
 }
