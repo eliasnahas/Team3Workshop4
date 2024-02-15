@@ -29,11 +29,15 @@ namespace Team3Workshop4
             if (isAdd)
             {
                 Text = "Add Product Supplier";
+                lblProductSupplierID.Visible = false;
+                txtProductSupplierID.Visible = false;
                 DisplayProdSupp();
             }
             else // if false, display modify Product
             {
                 Text = "Modify Product Supplier";
+                lblProductSupplierID.Visible = true;
+                txtProductSupplierID.Visible = true;
                 DisplayProdSupp();
                 DisplayProductSupplier();
             }

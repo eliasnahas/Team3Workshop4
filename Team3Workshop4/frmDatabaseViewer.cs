@@ -211,15 +211,20 @@ namespace Team3Workshop4
         // Product Remove
         private void remProdButton_Click(object sender, EventArgs e)
         {
-            using (TravelExpertsContext db = new TravelExpertsContext())
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this product?",
+                "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                productID = dgvProduct.CurrentRow.Cells[0].Value.ToString();
-                productIDNum = Convert.ToInt32(productID);
-                selectedProduct = db.Products.Find(productIDNum);
-                db.Products.Remove(selectedProduct);
-                db.SaveChanges();
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    productID = dgvProduct.CurrentRow.Cells[0].Value.ToString();
+                    productIDNum = Convert.ToInt32(productID);
+                    selectedProduct = db.Products.Find(productIDNum);
+                    db.Products.Remove(selectedProduct);
+                    db.SaveChanges();
+                }
+                dgvProduct.DataSource = TravelSource.GetProducts(); 
             }
-            dgvProduct.DataSource = TravelSource.GetProducts();
         }
 
         // method for displaying product table
@@ -280,15 +285,20 @@ namespace Team3Workshop4
         // Remove ProductSupplier
         private void remProdSuppButton_Click(object sender, EventArgs e)
         {
-            using (TravelExpertsContext db = new TravelExpertsContext())
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this product Supplier?",
+                "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                productSupplierID = dgvProductSupplier.CurrentRow.Cells[0].Value.ToString();
-                productSupplierIDNum = Convert.ToInt32(productSupplierID);
-                ProductsSupplier = db.ProductsSuppliers.Find(productSupplierIDNum);
-                db.ProductsSuppliers.Remove(ProductsSupplier);
-                db.SaveChanges();
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    productSupplierID = dgvProductSupplier.CurrentRow.Cells[0].Value.ToString();
+                    productSupplierIDNum = Convert.ToInt32(productSupplierID);
+                    ProductsSupplier = db.ProductsSuppliers.Find(productSupplierIDNum);
+                    db.ProductsSuppliers.Remove(ProductsSupplier);
+                    db.SaveChanges();
+                }
+                dgvProductSupplier.DataSource = TravelSource.GetProdSupps(); 
             }
-            dgvProductSupplier.DataSource = TravelSource.GetProdSupps();
         }
 
         // method for displaying Product Supplier table

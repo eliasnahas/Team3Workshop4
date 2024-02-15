@@ -26,11 +26,15 @@ namespace Team3Workshop4
             if (isAdd)
             {
                 Text = "Add Product";
+                txtProductID.Visible = false;
+                lblProductID.Visible = false;
 
             }
             else // if false, display modify Product
             {
                 Text = "Modify Product";
+                txtProductID.Visible = true;
+                lblProductID.Visible = true;
                 DisplayProduct();
             }
         }
