@@ -33,7 +33,7 @@
             label1 = new Label();
             btnConfirm = new Button();
             btnCancel = new Button();
-            label2 = new Label();
+            lblProductID = new Label();
             txtProductID = new TextBox();
             SuspendLayout();
             // 
@@ -43,7 +43,7 @@
             txtProductName.Margin = new Padding(4);
             txtProductName.MaxLength = 50;
             txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(127, 34);
+            txtProductName.Size = new Size(127, 29);
             txtProductName.TabIndex = 1;
             txtProductName.Tag = "Product Name";
             // 
@@ -53,7 +53,7 @@
             label1.Location = new Point(25, 65);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(142, 28);
+            label1.Size = new Size(113, 21);
             label1.TabIndex = 2;
             label1.Text = "Product Name:";
             // 
@@ -77,15 +77,15 @@
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
-            // label2
+            // lblProductID
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(25, 20);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(109, 28);
-            label2.TabIndex = 5;
-            label2.Text = "Product ID:";
+            lblProductID.AutoSize = true;
+            lblProductID.Location = new Point(25, 20);
+            lblProductID.Margin = new Padding(4, 0, 4, 0);
+            lblProductID.Name = "lblProductID";
+            lblProductID.Size = new Size(86, 21);
+            lblProductID.TabIndex = 5;
+            lblProductID.Text = "Product ID:";
             // 
             // txtProductID
             // 
@@ -94,18 +94,18 @@
             txtProductID.MaxLength = 50;
             txtProductID.Name = "txtProductID";
             txtProductID.ReadOnly = true;
-            txtProductID.Size = new Size(127, 34);
+            txtProductID.Size = new Size(127, 29);
             txtProductID.TabIndex = 6;
             txtProductID.Tag = "Product Name";
             // 
             // frmAddModifyProduct
             // 
-            AutoScaleDimensions = new SizeF(11F, 28F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(334, 157);
             Controls.Add(txtProductID);
-            Controls.Add(label2);
+            Controls.Add(lblProductID);
             Controls.Add(btnCancel);
             Controls.Add(btnConfirm);
             Controls.Add(label1);
@@ -124,7 +124,7 @@
         private Label label1;
         private Button btnConfirm;
         private Button btnCancel;
-        private Label label2;
+        private Label lblProductID;
         private TextBox txtProductID;
     }
 }
