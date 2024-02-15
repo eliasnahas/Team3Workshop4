@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "MyPackages";
+    int packageIncrementalId = 0;
 }
 
 <h1>Packages for @User.Identity!.Name </h1>
@@ -34,12 +35,16 @@
                 <th>
                 @Html.DisplayNameFor(model => model.PkgAgencyCommission)
                 </th>
+                <th>
+
+                </th>
                 
             </tr>
         </thead>
         <tbody>
         @foreach (var item in Model)
         {
+                packageIncrementalId++;
                 <tr>
                     <td>
                     @Html.DisplayFor(modelItem => item.PackageId)
@@ -62,17 +67,26 @@
                     <td>
                     @Html.DisplayFor(modelItem => item.PkgAgencyCommission)
                     </td>
+                    <td>
+                    @Html.ActionLink("Remove", "DeletePackage", new { id=item.PackageId }, new { @class = "btn btn-secondary" })
+                    </td>
                     @* <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                     </td> *@
+                    
                 </tr>
         }
         </tbody>
     </table>
+    <div class="d-flex justify-content-end">
+        <label class="col-form-label p-2 fw-bold" for="totalCost">Total Cost: </label>
+        <input class="form-control form-inline col-2 w-25" value="@packageIncrementalId" name="totalCost" readonly />  
+    </div>
 }
 else 
 {
     <h1 class="bg-danger text-light">No packages found. Please Re-Login and try again.</h1>
 }
+
+

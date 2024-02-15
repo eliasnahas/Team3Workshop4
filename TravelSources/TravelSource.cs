@@ -6,6 +6,7 @@ using Microsoft.Identity.Client;
 using System.Linq.Expressions;
 using TravelExpertsData;
 using System.Collections.Generic;
+using System.Numerics;
 namespace TravelSources
 {
     public static class TravelSource
@@ -248,11 +249,12 @@ namespace TravelSources
         /// </summary>
         /// <param name="db">Context object</param>
         /// <param name="customerID">The ID of the Customer to query</param>
-        /// <returns>A list of packages that belond to the given customerID</returns>
+        /// <returns>A list of packages that belong to the given customerID, and the total cost owed.</returns>
         /// <exception cref="NotImplementedException"></exception>
         /// By: Lance Salvador
-        public static List<Package> GetPackagesByCustomerPackage(TravelExpertsContext db, int customerID)
+        public static (List<Package>, decimal) GetPackagesDataByCustomerPackage(TravelExpertsContext db, int customerID)
         {
+            
             List<Package> packages = db.Packages
                 .Join(db.CustomerPackages, // Join tables to get the package data of only purchased packages
                 package => package.PackageId,
@@ -262,7 +264,19 @@ namespace TravelSources
                     .Select(x => x.package) // select only the columns of Package (make List<Package> valid)
                     .OrderBy(p => p.PackageId)
                     .ToList();
-            return packages;
+            decimal totalCost = 0;
+            foreach(Package package in packages)
+            {
+                if(package.PkgAgencyCommission != null)
+                {
+                    totalCost += (int)(package.PkgBasePrice + package.PkgAgencyCommission);
+                }
+                else
+                {
+                    totalCost += package.PkgBasePrice;
+                }
+            }
+            return (packages, totalCost);
         }
     }
 

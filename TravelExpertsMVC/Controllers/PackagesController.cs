@@ -18,19 +18,21 @@ namespace TravelExpertsMVC.Controllers
             this.db = db;
         }
 
+        // Available Packages page
         public IActionResult Index()
         {
             return View();
         }
 
+
+        // Assigns the given package to the signed in user, and displays a page for confirming the purchase
         [Authorize]
         public IActionResult ConfirmPurchase(int packageId)
         {
             CustomerPackage custPack = new();
-            if (TempData["customerID"] != null)
+            if (ViewBag.customerId != null) 
             {
-                custPack.CustomerId = (int)TempData["customerID"]!; // Grab customerID from TempData
-                TempData["customerID"] = custPack.CustomerId; // Re-add to TempData for later packages
+                custPack.CustomerId = ViewBag.customerId; // Grab customerID from ViewBag
                 custPack.PackageId = packageId;
                 Package package = PackageDB.FindPackage(db, packageId);
                 TravelSource.AddCustomerPackage(db, custPack);
