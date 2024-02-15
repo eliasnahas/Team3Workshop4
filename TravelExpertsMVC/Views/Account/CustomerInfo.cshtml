@@ -8,80 +8,64 @@
 
 <div>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            <label class="control-label">First Name</label>
-        </dt>
-        <dd class = "col-sm-10">
-            <input asp-for="CustFirstName" class="form-control" readonly />
-        </dd>
+    <h4>Basic Info</h4>
+        <dl class="row col-8">
 
-        <dt class = "col-sm-2">
-            <label class="control-label">Last Name</label>
-        </dt>
-        <dd class = "col-sm-10">
-            <input asp-for="CustLastName" class="form-control" readonly />
-        </dd>
-
-        <dt class = "col-sm-2">
-            <label class="control-label">Address</label>
-        </dt>
-        <dd class = "col-sm-10">
-            <input asp-for="CustAddress" class="form-control" readonly />
-        </dd>
-
-        <dt class = "col-sm-2">
-            <label class="control-label">City</label>
-        </dt>
-        <dd class = "col-sm-10">
-            <input asp-for="CustCity" class="form-control" readonly />
-        </dd>
-
-        <dt class = "col-sm-2">
-            <label class="control-label">Province</label>
-        </dt>
-        <dd class = "col-sm-10">
-            <input asp-for="CustProv" class="form-control" readonly />
-        </dd>
-
-        <dt class = "col-sm-2">
-            <label class="control-label">Postal Code</label>
-        </dt>
-        <dd class = "col-sm-10">
-            <input asp-for="CustPostal" class="form-control" readonly />
-        </dd>
-
-        <dt class = "col-sm-2">
-            <label class="control-label">Country</label>
-        </dt>
-        <dd class = "col-sm-10">
-            <input asp-for="CustCountry" class="form-control" readonly />
-        </dd>
-
-        <dt class = "col-sm-2">
-            <label class="control-label">Home Phone</label>
-        </dt>
-        <dd class = "col-sm-10">
+            <div class="form-group col-md-4">
+                <dt><label class="control-label">First Name</label></dt>
+                <input asp-for="CustFirstName" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-4">
+                <dt><label class="control-label">Last Name</label></dt>
+                <input asp-for="CustLastName" class="form-control" readonly />
+            </div>
+        </dl>
+    <h4>Contact Info</h4>
+    <dl class="row col-8">
+        <div class="form-group col-md-4">
+            <dt><label class="control-label">Home Phone</label></dt>
             <input asp-for="CustHomePhone" class="form-control" readonly />
-        </dd>
-
-        <dt class = "col-sm-2">
-            <label class="control-label">Business Phone</label>
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="form-group col-md-4">
+            <dt><label class="control-label">Business Phone</label></dt>
             <input asp-for="CustBusPhone" class="form-control" readonly />
-        </dd>
-
-        <dt class = "col-sm-2">
-            <label class="control-label">Email Address</label>
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="form-group col-md-8">
+            <dt><label class="control-label">Email Address</label></dt>
             <input asp-for="CustEmail" class="form-control" readonly />
-        </dd>
+        </div>
+
+    </dl>
+    <h4>Addresses</h4>
+    <dl class="row col-8">
+        <div class="form-group col-md-8">
+            <dt><label class="control-label">Address</label></dt>
+            <input asp-for="CustAddress" class="form-control" readonly />
+        </div>
+    </dl>
+    <dl class="row col-8">
+        <div class="form-group col-md-4">
+            <dt><label class="control-label">City</label></dt>
+            <input asp-for="CustCity" class="form-control" readonly />
+        </div>
+        <div class="form-group col-md-4">
+            <dt><label class="control-label">Province</label></dt>
+            <input asp-for="CustProv" class="form-control" readonly />
+        </div>
+     </dl>
+     <dl class="row col-8">
+        <div class="form-group col-md-4">
+            <dt><label class="control-label">Postal Code</label></dt>
+            <input asp-for="CustPostal" class="form-control" readonly />
+        </div>
+        <div class="form-group col-md-4">
+            <dt><label class="control-label">Country</label></dt>
+            <input asp-for="CustCountry" class="form-control" readonly />
+        </div>
     </dl>
 </div>
 <div>
     
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }, new {@class="btn btn-primary"})
+    @Html.ActionLink("Update My Info", "Edit", new { id = Model.CustomerId }, new {@class="btn btn-primary"})
     @Html.ActionLink("Change Password", "ChangePassword", new { id = Model.CustomerId }, new {@class="btn btn-primary"})
 </div>
