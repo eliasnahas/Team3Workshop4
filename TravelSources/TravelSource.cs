@@ -264,12 +264,12 @@ namespace TravelSources
                     .Select(x => x.package) // select only the columns of Package (make List<Package> valid)
                     .OrderBy(p => p.PackageId)
                     .ToList();
-            decimal totalCost = 0;
+            decimal totalCost = 0m;
             foreach(Package package in packages)
             {
                 if(package.PkgAgencyCommission != null)
                 {
-                    totalCost += (int)(package.PkgBasePrice + package.PkgAgencyCommission);
+                    totalCost += (decimal)(package.PkgBasePrice + package.PkgAgencyCommission);
                 }
                 else
                 {
