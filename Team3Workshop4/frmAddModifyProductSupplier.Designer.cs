@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddModifyProductSupplier));
             txtProductSupplierID = new TextBox();
-            label1 = new Label();
+            lblProductSupplierID = new Label();
             label2 = new Label();
             label3 = new Label();
             cboProductName = new ComboBox();
@@ -44,24 +44,24 @@
             txtProductSupplierID.Location = new Point(201, 22);
             txtProductSupplierID.Name = "txtProductSupplierID";
             txtProductSupplierID.ReadOnly = true;
-            txtProductSupplierID.Size = new Size(103, 34);
+            txtProductSupplierID.Size = new Size(103, 29);
             txtProductSupplierID.TabIndex = 0;
             // 
-            // label1
+            // lblProductSupplierID
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(32, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(187, 28);
-            label1.TabIndex = 1;
-            label1.Text = "Product Supplier ID:";
+            lblProductSupplierID.AutoSize = true;
+            lblProductSupplierID.Location = new Point(32, 25);
+            lblProductSupplierID.Name = "lblProductSupplierID";
+            lblProductSupplierID.Size = new Size(148, 21);
+            lblProductSupplierID.TabIndex = 1;
+            lblProductSupplierID.Text = "Product Supplier ID:";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(32, 74);
             label2.Name = "label2";
-            label2.Size = new Size(142, 28);
+            label2.Size = new Size(113, 21);
             label2.TabIndex = 2;
             label2.Text = "Product Name:";
             // 
@@ -70,7 +70,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(32, 119);
             label3.Name = "label3";
-            label3.Size = new Size(146, 28);
+            label3.Size = new Size(117, 21);
             label3.TabIndex = 3;
             label3.Text = "Supplier Name:";
             // 
@@ -79,7 +79,7 @@
             cboProductName.FormattingEnabled = true;
             cboProductName.Location = new Point(201, 74);
             cboProductName.Name = "cboProductName";
-            cboProductName.Size = new Size(334, 36);
+            cboProductName.Size = new Size(334, 29);
             cboProductName.TabIndex = 8;
             // 
             // cboSupplierName
@@ -87,7 +87,7 @@
             cboSupplierName.FormattingEnabled = true;
             cboSupplierName.Location = new Point(201, 119);
             cboSupplierName.Name = "cboSupplierName";
-            cboSupplierName.Size = new Size(334, 36);
+            cboSupplierName.Size = new Size(334, 29);
             cboSupplierName.TabIndex = 9;
             // 
             // btnConfirm
@@ -112,7 +112,7 @@
             // 
             // frmAddModifyProductSupplier
             // 
-            AutoScaleDimensions = new SizeF(11F, 28F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
@@ -123,7 +123,7 @@
             Controls.Add(cboProductName);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lblProductSupplierID);
             Controls.Add(txtProductSupplierID);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
@@ -138,7 +138,7 @@
         #endregion
 
         private TextBox txtProductSupplierID;
-        private Label label1;
+        private Label lblProductSupplierID;
         private Label label2;
         private Label label3;
         private ComboBox cboProductName;
