@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelExpertsData;
 
 /// Several classes made to avoid unnecessary fields being displayed in DataGridViews
 namespace GridData
@@ -62,5 +63,4 @@ namespace GridData
         public int PackageId { get; set; }
         public int ProductSupplierId { get; set; }
     }
-    
 }

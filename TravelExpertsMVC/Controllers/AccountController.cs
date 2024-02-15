@@ -1,4 +1,5 @@
 ﻿using Castle.Core.Resource;
+using GridData;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -14,12 +15,13 @@ namespace TravelExpertsMVC.Controllers
     public class AccountController : Controller
     {
         private TravelExpertsContext db { get; set; }
+        public List<Package> userPackages { get; set; } 
 
         public AccountController(TravelExpertsContext db)
         {
             this.db = db;
         }
-
+        
         // "Login" page - By: Elias Nahas
         public IActionResult Login(string returnUrl = "")
         {
@@ -43,8 +45,8 @@ namespace TravelExpertsMVC.Controllers
             // Add to the session the customer's ID as CustomerId
             HttpContext.Session.SetInt32("CustomerId", cust.CustomerId);
 
-            // Store Id in TempData for Package leasing (-Lance)
-            TempData["customerID"] = cust.CustomerId;
+            // Store Id in ViewBag for Package purchasing (-Lance)
+            TempData["CustId"] = cust.CustomerId;
 
             List<Claim> claims = new List<Claim>()
             {
@@ -70,7 +72,6 @@ namespace TravelExpertsMVC.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("CustomerId");
-            TempData.Clear();
             return RedirectToAction("Index", "Home");
         }
 
@@ -152,21 +153,33 @@ namespace TravelExpertsMVC.Controllers
             return RedirectToAction(nameof(CustomerInfo));
         }
 
+
          // "My Packages" page - By: Lance Salvador
         [Authorize]
         public ActionResult MyPackages()
         {
-            List<Package> packages;
+            decimal totalCost = 0m;
             int? custId = HttpContext.Session.GetInt32("CustomerId");
+
             try
             {
-                packages = TravelSource.GetPackagesByCustomerPackage(db, (int)custId!);
+                (userPackages, totalCost) = TravelSource.GetPackagesDataByCustomerId(db, (int)custId!);
             }
             catch
             {
                 return View();
             }
-            return View(packages);
+            finally
+            {
+                ViewBag.totalCost = totalCost.ToString("C");
+            }
+            return View(userPackages);
+        }
+
+        public ActionResult DeletePackage(int CustomerPackageId)
+        {
+            PackageDB.DeleteCustomerPackage(db, CustomerPackageId);
+            return RedirectToAction(nameof(MyPackages));
         }
         public ActionResult DeletePackages()
         {

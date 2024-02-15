@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,21 @@ namespace TravelSources
             }
             
             return result;
+        }
+
+        public static bool DeleteCustomerPackage(TravelExpertsContext db, int custPackID)
+        {
+            try
+            {
+                CustomerPackage custPack = db.CustomerPackages.Find(custPackID);
+                db.CustomerPackages.Remove(custPack);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
