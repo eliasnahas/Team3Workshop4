@@ -45,8 +45,8 @@ namespace TravelExpertsMVC.Controllers
             // Add to the session the customer's ID as CustomerId
             HttpContext.Session.SetInt32("CustomerId", cust.CustomerId);
 
-            // Store Id in ViewBag for Package leasing (-Lance)
-            ViewBag.CustomerId = cust.CustomerId;
+            // Store Id in ViewBag for Package purchasing (-Lance)
+            TempData["CustId"] = cust.CustomerId;
 
             List<Claim> claims = new List<Claim>()
             {
@@ -72,7 +72,6 @@ namespace TravelExpertsMVC.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("CustomerId");
-            TempData.Clear();
             return RedirectToAction("Index", "Home");
         }
 
@@ -163,7 +162,7 @@ namespace TravelExpertsMVC.Controllers
 
             try
             {
-                (userPackages, totalCost) = TravelSource.GetPackagesDataByCustomerPackage(db, (int)custId!);
+                (userPackages, totalCost) = TravelSource.GetPackagesDataByCustomerId(db, (int)custId!);
             }
             catch
             {

@@ -30,16 +30,23 @@ namespace TravelExpertsMVC.Controllers
         public IActionResult ConfirmPurchase(int packageId)
         {
             CustomerPackage custPack = new();
-            if (ViewBag.customerId != null) 
+            
+            try
             {
-                custPack.CustomerId = ViewBag.customerId; // Grab customerID from ViewBag
+                custPack.CustomerId = (int)TempData["CustId"]; // Grab customerID from TempData
+                TempData["CustId"] = custPack.CustomerId; // reset for next package purchase
                 custPack.PackageId = packageId;
-                Package package = PackageDB.FindPackage(db, packageId);
                 TravelSource.AddCustomerPackage(db, custPack);
                 return View();
+
             }
-            ViewBag.errorFound = true;
-            return View();
+            catch
+            {
+                TempData["PurchaseError"] = true;
+                return View();
+            } 
+            
+            
         }
     }
 }

@@ -252,7 +252,7 @@ namespace TravelSources
         /// <returns>A list of packages that belong to the given customerID, and the total cost owed.</returns>
         /// <exception cref="NotImplementedException"></exception>
         /// By: Lance Salvador
-        public static (List<Package>, decimal) GetPackagesDataByCustomerPackage(TravelExpertsContext db, int customerID)
+        public static (List<Package>, decimal) GetPackagesDataByCustomerId(TravelExpertsContext db, int customerID)
         {
             
             List<Package> packages = db.Packages

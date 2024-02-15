@@ -3,7 +3,7 @@
 *@
 @{
 }
-@if (ViewBag.errorFound != null)
+@if (TempData["PurchaseError"] != null)
 {
     <h1 class="text-danger">An error occurred. Please Re-login and try again.</h1>
 }
