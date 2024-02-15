@@ -105,7 +105,8 @@ namespace Team3Workshop4
                 Validator.IsPresent(txtPkgBasePrice) &&
                 Validator.IsNonNegativeDecimal(txtPkgBasePrice) &&
                 Validator.IsNonNegativeDecimal(txtPkgAgencyCommission) &&
-                Validator.IsValidDateRange(dtpPkgStartDate, dtpPkgEndDate)
+                Validator.IsValidDateRange(dtpPkgStartDate, dtpPkgEndDate) &&
+                Validator.IsDecimalLessThan(txtPkgAgencyCommission, txtPkgBasePrice)
                 )
             {
                 if (isAdd)
