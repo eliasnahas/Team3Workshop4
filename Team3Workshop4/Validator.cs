@@ -286,11 +286,11 @@ namespace Team3Workshop4
         /// <param name="dateEarlier">earlier date to test</param>
         /// <param name="dateLater"></param>
         /// <returns></returns>
-        public static bool IsValidDateRange(DateTimePicker? dateEarlier, DateTimePicker? dateLater)
+        public static bool IsValidDateRange(DateTimePicker dateEarlier, DateTimePicker dateLater)
         {
             bool isValid = true;
-            DateTime? valueEarlier; // parsed value if successful
-            DateTime? valueLater;
+            DateTime valueEarlier; // Earlier date
+            DateTime valueLater; // Later date
             if (dateEarlier.Value != null && dateLater.Value != null)
             {
                 valueEarlier = dateEarlier.Value;
@@ -300,6 +300,22 @@ namespace Team3Workshop4
                 {
                     isValid = false;
                     MessageBox.Show($"{dateEarlier.Tag} must be earlier than {dateLater.Tag}");
+                }
+            }
+            return isValid;
+        }
+
+        public static bool IsDecimalLessThan(TextBox txtBoxLower, TextBox txtBoxHigher)
+        {
+            bool isValid = true;
+            decimal valueLower;
+            decimal valueHigher;
+            if (Decimal.TryParse(txtBoxLower.Text, out valueLower) && Decimal.TryParse(txtBoxHigher.Text, out valueHigher))
+            {
+                if (valueLower > valueHigher)
+                {
+                    isValid = false;
+                    MessageBox.Show($"{txtBoxLower.Tag} must be lower than {txtBoxHigher.Tag}");
                 }
             }
             return isValid;
