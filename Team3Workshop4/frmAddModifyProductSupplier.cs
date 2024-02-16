@@ -61,9 +61,17 @@ namespace Team3Workshop4
             {
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
-                    ProdSupp = new ProductsSupplier();
-                    GetProductData();
-                    DialogResult = DialogResult.OK; // close the form
+                    if (db.ProductsSuppliers.Any(p=>p.ProductId == ProductId) && 
+                        (db.ProductsSuppliers.Any(s=>s.SupplierId == SupplierId)))
+                    {
+                        MessageBox.Show($"Product Supplier Already Exist \n Double Check if combination is correct");
+                    }
+                    else
+                    {
+                        ProdSupp = new ProductsSupplier();
+                        GetProductData();
+                        DialogResult = DialogResult.OK; // close the form 
+                    }
                 }
             }
             else

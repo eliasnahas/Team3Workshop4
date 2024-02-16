@@ -12,15 +12,23 @@ using TravelExpertsData;
 
 namespace Team3Workshop4
 {
+    /*
+     * Add.Edit form for Products
+     * Author: Jack
+     * Date: Jan 2024
+     * 
+     * 
+     */
     public partial class frmAddModifyProduct : Form
     {
         public bool isAdd;
         public Product? product;
+        string oldName;
         public frmAddModifyProduct()
         {
             InitializeComponent();
         }
-
+        // load form based on add or modify. add will load blank page, modifty will load form with data.
         private void frmAddModify_Load(object sender, EventArgs e)
         {
             if (isAdd)
@@ -45,26 +53,43 @@ namespace Team3Workshop4
             {
                 if (isAdd)
                 {
-                    try
+                    using (TravelExpertsContext db = new TravelExpertsContext())
                     {
-                        using (TravelExpertsContext db = new TravelExpertsContext())
+                        if (db.Products.Any(p => p.ProdName == txtProductName.Text.ToString()))
+                        {
+                            MessageBox.Show($"Product Name Already Exist \n Try Again with a Diffrent Name");
+                        }
+                        else
                         {
                             product = new Product();
                             GetProductData();
                             DialogResult = DialogResult.OK; // close the form
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error when retrieving customer data: " +
-                            ex.Message, ex.GetType().ToString());
+
                     }
                 }
                 else
                 {
-                    GetProductData();
-                    DialogResult = DialogResult.OK;
-                } 
+                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    {
+                        if (txtProductName.Text == oldName)
+                        {
+                            MessageBox.Show("No Change Has Been Made");
+                        }
+                        else
+                        {
+                            if (db.Products.Any(p => p.ProdName == txtProductName.Text.ToString()))
+                            {
+                                MessageBox.Show($"Product Name Already Exist \n Try Again with a Diffrent Name");
+                            }
+                            else
+                            {
+                                GetProductData();
+                                DialogResult = DialogResult.OK;
+                            }
+                        }
+                    }
+                }
             }
         }
         // get product name
@@ -84,6 +109,7 @@ namespace Team3Workshop4
             {
                 txtProductID.Text = product.ProductId.ToString();
                 txtProductName.Text = product.ProdName;
+                oldName = product.ProdName;
 
             }
         }
