@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using TravelExpertsData;
 using System.Collections.Generic;
 using System.Numerics;
+using Microsoft.EntityFrameworkCore;
 namespace TravelSources
 {
     public static class TravelSource
@@ -143,22 +144,38 @@ namespace TravelSources
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                Package? package = db.Packages.Find(packageId);
-
                 var result = (from p in db.Packages
                               join pps in db.PackagesProductsSuppliers on p.PackageId equals pps.PackageId
                               join ps in db.ProductsSuppliers on pps.ProductSupplierId equals ps.ProductSupplierId
-                              where p.PackageId == package!.PackageId
+                              where p.PackageId == packageId
                               select new ProdSuppNames
                               {
                                   ProdName = ps.Product!.ProdName,
                                   SuppName = ps.Supplier!.SupName
-                              }).ToList();
-
-
+                              }).OrderBy(ps => ps.ProdName).ThenBy(ps => ps.SuppName).ToList();
                 return result;
             }
         }
+
+        // Gets list of Products that are not in a Package by package ID - by: Elias Nahas
+        public static List<ProdSuppNames> GetRemainingProductsSuppliersByPackage(int packageId)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var psIDs = db.PackagesProductsSuppliers.Where(p => p.PackageId == packageId).Select(ps => ps.ProductSupplierId).ToList();
+
+                var psRemaining = db.ProductsSuppliers.Where(x => !psIDs.Contains(x.ProductSupplierId))
+                    .Select(ps => new ProdSuppNames
+                    {
+                        ProdName = ps.Product!.ProdName,
+                        SuppName = ps.Supplier!.SupName
+                    })
+                    .OrderBy(ps => ps.ProdName).ThenBy(ps => ps.SuppName).ToList();
+                return psRemaining;
+            }
+        }
+
+        // By: Lance Salvador
         public static List<PackProdSuppIds> GetPacksProdsSupps()
         {
             using (TravelExpertsContext db = new TravelExpertsContext())

@@ -29,6 +29,7 @@ namespace Team3Workshop4
             if (isAdd)
             {
                 Text = "Add Package";
+                btnEditProducts.Enabled = false;
             }
             else
             {
@@ -40,7 +41,7 @@ namespace Team3Workshop4
                 }
                 if (package.PkgEndDate != null)
                 {
-                    dtpPkgEndDate.Format = DateTimePickerFormat.Short; 
+                    dtpPkgEndDate.Format = DateTimePickerFormat.Short;
                 }
             }
         }
@@ -190,6 +191,27 @@ namespace Team3Workshop4
             if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
             {
                 dtpPkgEndDate.Format = DateTimePickerFormat.Custom;
+            }
+        }
+
+        private void btnEditProducts_Click(object sender, EventArgs e)
+        {
+            if (package != null)
+            {
+                List<ProdSuppNames>? packageProductSuppliers = TravelSource.GetProductsSupplierByPackage(package.PackageId);
+                List<ProdSuppNames> availableProductSuppliers = TravelSource.GetRemainingProductsSuppliersByPackage(package.PackageId);
+                frmEditPackageProducts editPackageProducts = new frmEditPackageProducts()
+                {
+                    packageProductSuppliers = packageProductSuppliers,
+                    availableProductSuppliers = availableProductSuppliers,
+                    packageId = package.PackageId
+                };
+                DialogResult result = editPackageProducts.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    lvProducts.Items.Clear();
+                    DisplayPackage();
+                }
             }
         }
     }
