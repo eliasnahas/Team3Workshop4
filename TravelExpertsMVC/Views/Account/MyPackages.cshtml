@@ -44,7 +44,6 @@
         <tbody>
         @foreach (var item in Model)
         {
-                packageIncrementalId++;
                 <tr>
                     <td>
                     @Html.DisplayFor(modelItem => item.PackageId)
@@ -67,9 +66,9 @@
                     <td>
                     @Html.DisplayFor(modelItem => item.PkgAgencyCommission)
                     </td>
-                    <td>
+                    @* <td>
                     @Html.ActionLink("Remove", "MyPackages", new { id=item.PackageId }, new { @class = "btn btn-secondary" })
-                    </td>
+                    </td> *@
                     @* <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
@@ -81,7 +80,7 @@
     </table>
     <div class="d-flex justify-content-end">
         <label class="col-form-label p-2 fw-bold" for="totalCost">Total Cost: </label>
-        <input class="form-control form-inline col-2 w-25" value="@packageIncrementalId" name="totalCost" readonly />  
+        <input class="form-control form-inline col-2 w-25" value="@ViewBag.totalCost" name="totalCost" readonly />  
     </div>
 }
 else 
