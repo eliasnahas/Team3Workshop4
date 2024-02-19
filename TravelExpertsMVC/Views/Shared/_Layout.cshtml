@@ -45,17 +45,7 @@
                                 @(controller == "Packages" && action == "Index" ? "active" : "")"
                                 asp-area="" asp-controller="Packages" asp-action="">Travel Packages</a>
                         </li>
-                        @* <li class="nav-item">
-                            <a class="nav-link
-                                @(controller == "Home" && action == "Contact" ? "active" : "")"
-                               asp-area="" asp-controller="Account" asp-action="CustomerInfo">Change Me Please!</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link
-                                @(controller == "Home" && action == "Contact" ? "active" : "")"
-                               asp-area="" asp-controller="Account" asp-action="Register">Add Me Please!</a>
-                        </li> *@
-
+                        
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -73,6 +63,13 @@
         </nav>
     </header>
     <div class="container">
+        @* for displaying error message and user response message *@
+        @if (TempData["Message"] != null)
+        {
+            <h4 class="@(TempData["IsError"] != null? "bg-danger": "bg-success")">
+                @TempData["Message"]
+            </h4>
+        }
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

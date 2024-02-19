@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using TravelExpertsData;
 
+
 namespace Team3Workshop4
 {
     /*
@@ -53,30 +54,9 @@ namespace Team3Workshop4
             {
                 if (isAdd)
                 {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    try
                     {
-                        if (db.Products.Any(p => p.ProdName == txtProductName.Text.ToString()))
-                        {
-                            MessageBox.Show($"Product Name Already Exist \n Try Again with a Diffrent Name");
-                        }
-                        else
-                        {
-                            product = new Product();
-                            GetProductData();
-                            DialogResult = DialogResult.OK; // close the form
-                        }
-
-                    }
-                }
-                else
-                {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
-                    {
-                        if (txtProductName.Text == oldName)
-                        {
-                            MessageBox.Show("No Change Has Been Made");
-                        }
-                        else
+                        using (TravelExpertsContext db = new TravelExpertsContext())
                         {
                             if (db.Products.Any(p => p.ProdName == txtProductName.Text.ToString()))
                             {
@@ -84,10 +64,47 @@ namespace Team3Workshop4
                             }
                             else
                             {
+                                product = new Product();
                                 GetProductData();
-                                DialogResult = DialogResult.OK;
+                                DialogResult = DialogResult.OK; // close the form
+                            }
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error when retrieving customer data: " +
+                            ex.Message, ex.GetType().ToString());
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        using (TravelExpertsContext db = new TravelExpertsContext())
+                        {
+                            if (txtProductName.Text == oldName)
+                            {
+                                MessageBox.Show("No Change Has Been Made");
+                            }
+                            else
+                            {
+                                if (db.Products.Any(p => p.ProdName == txtProductName.Text.ToString()))
+                                {
+                                    MessageBox.Show($"Product Name Already Exist \n Try Again with a Diffrent Name");
+                                }
+                                else
+                                {
+                                    GetProductData();
+                                    DialogResult = DialogResult.OK;
+                                }
                             }
                         }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Error when retrieving customer data: " +
+                            ex.Message, ex.GetType().ToString());
                     }
                 }
             }
@@ -97,8 +114,11 @@ namespace Team3Workshop4
         {
             if (product != null)
             {
-                
-                product.ProdName = txtProductName.Text; 
+
+                if (Validator.IsPresent(txtProductName))
+                {
+                    product.ProdName = txtProductName.Text; 
+                } 
 
             }
         }
