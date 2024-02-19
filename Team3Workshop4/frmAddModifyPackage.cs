@@ -4,6 +4,7 @@ using System;
 using TravelExpertsData;
 using TravelSources;
 using GridData;
+using Microsoft.Data.SqlClient;
 
 namespace Team3Workshop4
 {
@@ -49,7 +50,19 @@ namespace Team3Workshop4
         // displays current package for Modify
         private void DisplayPackage()
         {
-            List<ProdSuppNames> prodSuppNames = TravelSource.GetProductsSupplierByPackage(package!.PackageId)!;
+            List<ProdSuppNames>? prodSuppNames = null;
+            try
+            {
+                prodSuppNames = TravelSource.GetProductsSupplierByPackage(package!.PackageId)!;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error while retrieving package data: " + ex.Message, "Database Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+            }
             if (prodSuppNames != null)
             {
                 int i = 0;
@@ -198,8 +211,21 @@ namespace Team3Workshop4
         {
             if (package != null)
             {
-                List<ProdSuppNames>? packageProductSuppliers = TravelSource.GetProductsSupplierByPackage(package.PackageId);
-                List<ProdSuppNames> availableProductSuppliers = TravelSource.GetRemainingProductsSuppliersByPackage(package.PackageId);
+                List<ProdSuppNames>? packageProductSuppliers = null;
+                List<ProdSuppNames>? availableProductSuppliers = null;
+                try
+                {
+                    packageProductSuppliers = TravelSource.GetProductsSupplierByPackage(package.PackageId);
+                    availableProductSuppliers = TravelSource.GetRemainingProductsSuppliersByPackage(package.PackageId);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error while retrieving products data: " + ex.Message, "Database Error");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+                }
                 frmEditPackageProducts editPackageProducts = new frmEditPackageProducts()
                 {
                     packageProductSuppliers = packageProductSuppliers,

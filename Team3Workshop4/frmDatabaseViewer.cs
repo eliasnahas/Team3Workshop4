@@ -82,7 +82,18 @@ namespace Team3Workshop4
         private void modPackageButton_Click(object sender, EventArgs e)
         {
             int packageId = (int)packagesGrid.SelectedRows[0].Cells[0].Value;
-            selectedPackage = TravelSource.FindPackage(packageId);
+            try
+            {
+                selectedPackage = TravelSource.FindPackage(packageId);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error while retrieving package data: " + ex.Message, "Database Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+            }
             if (selectedPackage != null)
             {
                 // display second form with current data
@@ -97,7 +108,36 @@ namespace Team3Workshop4
                 {
                     selectedPackage = addModifyPackageForm.package;
                     // perform the update
-                    TravelSource.ModifyPackage(selectedPackage);
+                    try
+                    {
+                        TravelSource.ModifyPackage(selectedPackage);
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        string msg = "";
+                        if (ex.InnerException?.GetType() == typeof(SqlException))
+                        {
+                            var sqlException =
+                                (SqlException)ex.InnerException!;
+                            foreach (SqlError error in sqlException.Errors)
+                            {
+                                msg += $"ERROR CODE {error.Number}: {error.Message}\n";
+                            }
+                            MessageBox.Show(msg, "Database Error");
+                        }
+                        else if (ex.InnerException?.GetType() == typeof(ArgumentException))
+                        {
+                            MessageBox.Show("Error while modifying package: " + ex.InnerException.Message, "Database Error");
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error while modifying package: " + ex.Message, "Database Error");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+                    }
                     DisplayPackages(selectedPackage.PackageId);
                 }
             }
@@ -117,7 +157,29 @@ namespace Team3Workshop4
             {
                 selectedPackage = addModifyPackageForm.package!;
                 // add it to the Packages table
-                TravelSource.AddPackage(selectedPackage);
+                try
+                {
+                    TravelSource.AddPackage(selectedPackage);
+                }
+                catch (DbUpdateException ex)
+                {
+                    string msg = "";
+                    var sqlException =
+                        (SqlException)ex.InnerException!;
+                    foreach (SqlError error in sqlException.Errors)
+                    {
+                        msg += $"ERROR CODE {error.Number}: {error.Message}\n";
+                    }
+                    MessageBox.Show(msg, "Database Error");
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error while adding package: " + ex.Message, "Database Error");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+                }
                 DisplayPackages(selectedPackage.PackageId);
             }
         }
@@ -126,7 +188,18 @@ namespace Team3Workshop4
         private void remPackageButton_Click(object sender, EventArgs e)
         {
             int packageId = (int)packagesGrid.SelectedRows[0].Cells[0].Value;
-            selectedPackage = TravelSource.FindPackage(packageId);
+            try
+            {
+                selectedPackage = TravelSource.FindPackage(packageId);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error while retrieving package data: " + ex.Message, "Database Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+            }
             if (selectedPackage != null)
             {
                 DialogResult answer = MessageBox.Show(
@@ -135,7 +208,29 @@ namespace Team3Workshop4
                     MessageBoxIcon.Question);
                 if (answer == DialogResult.Yes) // user confirmed
                 {
-                    TravelSource.DeletePackage(selectedPackage);
+                    try
+                    {
+                        TravelSource.DeletePackage(selectedPackage);
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        string msg = "";
+                        var sqlException =
+                            (SqlException)ex.InnerException!;
+                        foreach (SqlError error in sqlException.Errors)
+                        {
+                            msg += $"ERROR CODE {error.Number}: {error.Message}\n";
+                        }
+                        MessageBox.Show(msg, "Database Error");
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error while deleting package: " + ex.Message, "Database Error");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+                    }
                     DisplayPackages();
                 }
             }
@@ -144,7 +239,18 @@ namespace Team3Workshop4
         // Displays and refreshes list of packages - by: Elias Nahas
         private void DisplayPackages(int packageId = 0)
         {
-            packagesGrid.DataSource = TravelSource.GetPackages();
+            try
+            {
+                packagesGrid.DataSource = TravelSource.GetPackages();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error while retrieving package data: " + ex.Message, "Database Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+            }
             // formatting the columns in short date time and currency formats
             packagesGrid.Columns["PkgStartDate"].DefaultCellStyle.Format = "M/dd/yyyy";
             packagesGrid.Columns["PkgEndDate"].DefaultCellStyle.Format = "M/dd/yyyy";

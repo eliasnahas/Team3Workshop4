@@ -122,6 +122,37 @@ namespace TravelSources
             }
         }
 
+        // Adds product from package - by: Elias Nahas
+        public static void AddPackageProduct(ProdSuppNames itemToTransfer, int packageId)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                Product prod = db.Products.Where(p => p.ProdName == itemToTransfer.ProdName).FirstOrDefault();
+                Supplier supp = db.Suppliers.Where(s => s.SupName == itemToTransfer.SuppName).FirstOrDefault();
+                ProductsSupplier prodSupp = db.ProductsSuppliers.Where(ps => ps.ProductId == prod.ProductId).Where(ps => ps.SupplierId == supp.SupplierId).FirstOrDefault();
+                PackagesProductsSupplier ppsToAdd = new PackagesProductsSupplier()
+                {
+                    PackageId = packageId,
+                    ProductSupplierId = prodSupp.ProductSupplierId
+                };
+                db.PackagesProductsSuppliers.Add(ppsToAdd);
+                db.SaveChanges();
+            }
+        }
+
+        // Removes product from package - by: Elias Nahas
+        public static void RemovePackageProduct(ProdSuppNames itemToTransfer, int packageId)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                Product prod = db.Products.Where(p => p.ProdName == itemToTransfer.ProdName).FirstOrDefault();
+                Supplier supp = db.Suppliers.Where(s => s.SupName == itemToTransfer.SuppName).FirstOrDefault();
+                ProductsSupplier prodSupp = db.ProductsSuppliers.Where(ps => ps.ProductId == prod.ProductId).Where(ps => ps.SupplierId == supp.SupplierId).FirstOrDefault();
+                PackagesProductsSupplier ppsToDelete = db.PackagesProductsSuppliers.Where(pps => packageId == packageId).Where(pps => pps.ProductSupplierId == prodSupp.ProductSupplierId).FirstOrDefault();
+                db.PackagesProductsSuppliers.Remove(ppsToDelete);
+                db.SaveChanges();
+            }
+        }
 
         // Gets suppliers from database - by: Gurleen Dhillon
         public static List<SupplierNameID>? GetSuppliers()

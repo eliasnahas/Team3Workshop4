@@ -1,4 +1,6 @@
 ﻿using GridData;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,31 +63,42 @@ namespace Team3Workshop4
                 ProdSuppNames itemToTransfer = availableProductSuppliers[idx];
                 if (itemToTransfer != null)
                 {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    try
                     {
-                        Product prod = db.Products.Where(p => p.ProdName == itemToTransfer.ProdName).FirstOrDefault();
-                        Supplier supp = db.Suppliers.Where(s => s.SupName == itemToTransfer.SuppName).FirstOrDefault();
-                        ProductsSupplier prodSupp = db.ProductsSuppliers.Where(ps => ps.ProductId == prod.ProductId).Where(ps => ps.SupplierId == supp.SupplierId).FirstOrDefault();
-                        PackagesProductsSupplier ppsToAdd = new PackagesProductsSupplier()
-                        {
-                            PackageId = packageId,
-                            ProductSupplierId = prodSupp.ProductSupplierId
-                        };
-                        db.PackagesProductsSuppliers.Add(ppsToAdd);
-                        db.SaveChanges();
-
-                        packageProductSuppliers.Add(itemToTransfer);
-                        availableProductSuppliers.Remove(itemToTransfer);
-                        packageProductSuppliers = packageProductSuppliers.OrderBy(i => i.ProdName).ThenBy(i => i.SuppName).ToList();
-                        availableProductSuppliers = availableProductSuppliers.OrderBy(i => i.ProdName).ThenBy(i => i.SuppName).ToList();
-                        dgvAddedProducts.DataSource = null;
-                        dgvAvailableProducts.DataSource = null;
-                        DisplayProducts();
+                        TravelSource.AddPackageProduct(itemToTransfer, packageId);
                     }
+                    catch (DbUpdateException ex)
+                    {
+                        string msg = "";
+                        var sqlException =
+                            (SqlException)ex.InnerException!;
+                        foreach (SqlError error in sqlException.Errors)
+                        {
+                            msg += $"ERROR CODE {error.Number}: {error.Message}\n";
+                        }
+                        MessageBox.Show(msg, "Database Error");
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error while adding product: " + ex.Message, "Database Error");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+                    }
+
+                    packageProductSuppliers.Add(itemToTransfer);
+                    availableProductSuppliers.Remove(itemToTransfer);
+                    packageProductSuppliers = packageProductSuppliers.OrderBy(i => i.ProdName).ThenBy(i => i.SuppName).ToList();
+                    availableProductSuppliers = availableProductSuppliers.OrderBy(i => i.ProdName).ThenBy(i => i.SuppName).ToList();
+                    dgvAddedProducts.DataSource = null;
+                    dgvAvailableProducts.DataSource = null;
+                    DisplayProducts();
                 }
             }
         }
 
+        // Remove Product from Package
         private void btnRemove_Click(object sender, EventArgs e)
         {
             int idx = dgvAddedProducts.CurrentCell.RowIndex;
@@ -94,23 +107,37 @@ namespace Team3Workshop4
                 ProdSuppNames itemToTransfer = packageProductSuppliers[idx];
                 if (itemToTransfer != null)
                 {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    try
                     {
-                        Product prod = db.Products.Where(p => p.ProdName == itemToTransfer.ProdName).FirstOrDefault();
-                        Supplier supp = db.Suppliers.Where(s => s.SupName == itemToTransfer.SuppName).FirstOrDefault();
-                        ProductsSupplier prodSupp = db.ProductsSuppliers.Where(ps => ps.ProductId == prod.ProductId).Where(ps => ps.SupplierId == supp.SupplierId).FirstOrDefault();
-                        PackagesProductsSupplier ppsToDelete = db.PackagesProductsSuppliers.Where(pps => packageId == packageId).Where(pps => pps.ProductSupplierId == prodSupp.ProductSupplierId).FirstOrDefault();
-                        db.PackagesProductsSuppliers.Remove(ppsToDelete);
-                        db.SaveChanges();
-
-                        packageProductSuppliers.Remove(itemToTransfer);
-                        availableProductSuppliers.Add(itemToTransfer);
-                        packageProductSuppliers = packageProductSuppliers.OrderBy(i => i.ProdName).ThenBy(i => i.SuppName).ToList();
-                        availableProductSuppliers = availableProductSuppliers.OrderBy(i => i.ProdName).ThenBy(i => i.SuppName).ToList();
-                        dgvAddedProducts.DataSource = null;
-                        dgvAvailableProducts.DataSource = null;
-                        DisplayProducts();
+                        TravelSource.RemovePackageProduct(itemToTransfer, packageId);
                     }
+                    catch (DbUpdateException ex)
+                    {
+                        string msg = "";
+                        var sqlException =
+                            (SqlException)ex.InnerException!;
+                        foreach (SqlError error in sqlException.Errors)
+                        {
+                            msg += $"ERROR CODE {error.Number}: {error.Message}\n";
+                        }
+                        MessageBox.Show(msg, "Database Error");
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error while deleting product: " + ex.Message, "Database Error");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+                    }
+
+                    packageProductSuppliers.Remove(itemToTransfer);
+                    availableProductSuppliers.Add(itemToTransfer);
+                    packageProductSuppliers = packageProductSuppliers.OrderBy(i => i.ProdName).ThenBy(i => i.SuppName).ToList();
+                    availableProductSuppliers = availableProductSuppliers.OrderBy(i => i.ProdName).ThenBy(i => i.SuppName).ToList();
+                    dgvAddedProducts.DataSource = null;
+                    dgvAvailableProducts.DataSource = null;
+                    DisplayProducts();
                 }
             }
         }
