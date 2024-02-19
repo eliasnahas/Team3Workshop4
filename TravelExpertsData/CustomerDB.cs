@@ -8,6 +8,7 @@ namespace TravelExpertsData
 {
     public static class CustomerDB
     {
+        // method for checking username and password
         public static Customer Authenticate(TravelExpertsContext db, string username, string password)
         {
             var customer = db.Customers.SingleOrDefault(cust => cust.Username == username 
@@ -49,6 +50,7 @@ namespace TravelExpertsData
                 db.SaveChanges();
             }
         }
+        // method for changing password
         public static void ChangePassword(TravelExpertsContext db, int CustomerID, Customer newCustomer)
         {
             Customer? customer = db.Customers.Find(CustomerID);

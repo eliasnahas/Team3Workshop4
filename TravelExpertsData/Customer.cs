@@ -48,13 +48,13 @@ public partial class Customer
     [StringLength(25)]
     public string? CustCountry { get; set; }
 
-    
+    [Phone]
     [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Please enter a valid phone number.")]
     [Display(Name = "Home Phone")]
     [StringLength(20)]
     public string? CustHomePhone { get; set; }
 
-    
+    [Phone]
     [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Please enter a valid phone number.")]
     [Display(Name = "Business Phone")]
     [StringLength(20)]
