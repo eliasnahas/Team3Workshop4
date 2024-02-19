@@ -44,7 +44,6 @@ public partial class Customer
     [StringLength(7)]
     public string CustPostal { get; set; } = null!;
 
-    [Required(ErrorMessage = "Please enter your country.")]
     [Display(Name = "Country")]
     [StringLength(25)]
     public string? CustCountry { get; set; }

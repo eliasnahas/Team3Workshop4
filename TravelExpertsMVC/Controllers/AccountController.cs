@@ -1,4 +1,5 @@
-﻿using Castle.Core.Resource;
+﻿using Azure.Identity;
+using Castle.Core.Resource;
 using GridData;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -95,13 +96,23 @@ namespace TravelExpertsMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Customer customer)
         {
+            
             if (ModelState.IsValid)
             {
                 try
-                {
-                    db.Customers.Add(customer);
-                    db.SaveChanges();
-                    return RedirectToAction("Login", "Account");
+                {   //Validation by Jack
+                    if (db.Customers.Any(c=>c.Username == customer.Username)) //validate if the username already exist in the database
+                    {
+                        TempData["Message"] = "Username already exist, try a differnet username.";
+                        TempData["IsError"] = true;
+                        return View(customer);
+                    } else
+                    {
+                        db.Customers.Add(customer);
+                        db.SaveChanges();
+                        return RedirectToAction("Login", "Account");
+                    }
+                    
                 }
                 catch
                 {
@@ -162,9 +173,7 @@ namespace TravelExpertsMVC.Controllers
         // post method for updating customer information
         public ActionResult Edit(int id, Customer newCustomerData)
         {
-            if (ModelState.IsValid)
-            {
-                try
+            try
                 {
                     CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);    // update database with the new customer info
                     TempData["Message"] = "Account Details has been successfully updated.";
@@ -178,11 +187,8 @@ namespace TravelExpertsMVC.Controllers
                     return View(newCustomerData);
                 }
 
-            }
-            else
-            {
-                return View(newCustomerData);
-            }
+            
+            
         }
         // update password
         public ActionResult ChangePassword(int id)
@@ -204,26 +210,20 @@ namespace TravelExpertsMVC.Controllers
         [HttpPost]
         public ActionResult ChangePassword(int id, Customer newCustomerData)
         {
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     CustomerDB.ChangePassword(db!, id, newCustomerData); // set new password
                     TempData["Message"] = "Password has been successfully changed.";
                     return RedirectToAction(nameof(CustomerInfo));
-            }
+                }
                 catch (Exception)
                 {
-
                 TempData["Message"] = "Database Connection Error, Try Again Later.";
                 TempData["IsError"] = true;
                 return View(newCustomerData);
-            }
-        } 
-            else
-            {
-                return View(newCustomerData);
-            }
+                }
+            
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
