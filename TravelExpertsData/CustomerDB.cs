@@ -21,11 +21,8 @@ namespace TravelExpertsData
             db.SaveChanges();
         }
 
-        public static List<Customer> GetCustomer(TravelExpertsContext db)
-        {
-            List<Customer> customer = db.Customers.Where(c=> c.CustomerId == 144).ToList();
-            return customer;
-        }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Code By Jack
         // method for get Customer Inforatiom
         public static Customer? GetCustomerInfo(TravelExpertsContext db, int CustomerID)
         {
@@ -39,7 +36,7 @@ namespace TravelExpertsData
             Customer? customer = db.Customers.Find(CustomerID);
             if (customer != null)
             {
-                 customer.CustFirstName = newCustomer.CustFirstName;
+                customer.CustFirstName = newCustomer.CustFirstName;
                 customer.CustLastName = newCustomer.CustLastName;
                 customer.CustAddress = newCustomer.CustAddress;
                 customer.CustCity = newCustomer.CustCity;
