@@ -57,7 +57,6 @@ public partial class Customer
     public string CustHomePhone { get; set; }
 
 
-    [Required(ErrorMessage = "Please enter your business phone number.")]
     [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid phone number.")]
     [Display(Name = "Business Phone")]
     [StringLength(20)]

@@ -84,7 +84,8 @@ namespace TravelExpertsMVC.Controllers
             return View();
         }
 
-        //
+        // Register Page - By: Gurleen
+        [HttpGet]
         public ActionResult Register(string returnUrl = "")
         {
             if (!returnUrl.IsNullOrEmpty())
@@ -105,7 +106,7 @@ namespace TravelExpertsMVC.Controllers
                 {   //Validation by Jack
                     if (db.Customers.Any(c=>c.Username == customer.Username)) //validate if the username already exist in the database
                     {
-                        TempData["Message"] = "Username already exist, try a differnet username.";
+                        TempData["Message"] = "Username already exist, try a different username.";
                         TempData["IsError"] = true;
                         return View(customer);
                     } else
@@ -227,9 +228,9 @@ namespace TravelExpertsMVC.Controllers
                 }
             
         }
-
-         // "My Packages" Page - By: Lance Salvador
-        [Authorize]
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // "My Packages" Page - By: Lance Salvador
+        
         public ActionResult MyPackages()
         {
             decimal totalCost = 0m;
@@ -250,10 +251,10 @@ namespace TravelExpertsMVC.Controllers
             return View(userPackages);
         }
 
-        public ActionResult DeletePackage(int CustomerPackageId)
-        {
-            PackageDB.DeleteCustomerPackage(db, CustomerPackageId);
-            return RedirectToAction(nameof(MyPackages));
-        }
+        //public ActionResult DeletePackage(int CustomerPackageId)
+        //{
+        //    PackageDB.DeleteCustomerPackage(db, CustomerPackageId);
+        //    return RedirectToAction(nameof(MyPackages));
+        //}
     }
 }

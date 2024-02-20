@@ -22,7 +22,7 @@ Author: Gurleen *@
             <div class="col-md-6">
                 <label for="UserName">Username*</label>
                 <input id="UserName" type="text" asp-for="Username" class="form-control"
-                        placeholder="Create a Username" />
+                        placeholder="Enter a Username" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="col-md-6">
@@ -78,21 +78,21 @@ Author: Gurleen *@
             <div class="col-md-6">
                 <label for="PostalCode">Postal Code</label>
                 <input id="PostalCode" type="text" asp-for="CustPostal" class="form-control"
-                        placeholder="Enter a valid Postal code" />
+                        placeholder="ex. 1A1 A1A" />
                 <span asp-validation-for="CustPostal" class="text-danger"></span>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="PhoneNumber">Phone Number</label>
+                <label for="PhoneNumber">Phone Number*</label>
                 <input id="PhoneNumber" type="text" asp-for="CustHomePhone" class="form-control"
-                        placeholder="Optional" />
+                        placeholder="ex. 1112223333" />
                 <span asp-validation-for="CustHomePhone" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label for="BusinessNumber">Business Phone Number</label>
                 <input id="BusinessNumber" type="text" asp-for="CustBusPhone" class="form-control"
-                        placeholder="Optional" />
+                        placeholder="ex. 1112223456 (Optional)" />
                 <span asp-validation-for="CustBusPhone" class="text-danger"></span>
             </div>
         </div>
