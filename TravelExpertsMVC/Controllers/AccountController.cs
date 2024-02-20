@@ -33,7 +33,7 @@ namespace TravelExpertsMVC.Controllers
             }
             return View();
         }
-
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // "Login" page - By: Elias Nahas
         [HttpPost]
         public async Task<IActionResult> LoginAsync(Customer customer) // data collected from the form
