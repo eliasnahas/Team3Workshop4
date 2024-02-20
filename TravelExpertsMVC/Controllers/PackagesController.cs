@@ -26,7 +26,6 @@ namespace TravelExpertsMVC.Controllers
 
 
         // Assigns the given package to the signed in user, and displays a page for confirming the purchase
-        [Authorize]
         public IActionResult ConfirmPurchase(int packageId)
         {
             CustomerPackage custPack = new();
@@ -34,19 +33,18 @@ namespace TravelExpertsMVC.Controllers
             try
             {
                 custPack.CustomerId = (int)TempData["CustId"]; // Grab customerID from TempData
-                TempData["CustId"] = custPack.CustomerId; // reset for next package purchase
-                custPack.PackageId = packageId;
-                TravelSource.AddCustomerPackage(db, custPack);
-                return View();
-
             }
             catch
             {
                 TempData["PurchaseError"] = true;
-                return View();
-            } 
-            
-            
+                return RedirectToAction("Login", "Account");
+            }
+            TempData["CustId"] = custPack.CustomerId; // reset for next package purchase
+            HttpContext.Session.GetInt32()
+            custPack.PackageId = packageId;
+            TravelSource.AddCustomerPackage(db, custPack);
+            return View();
+
         }
     }
 }
