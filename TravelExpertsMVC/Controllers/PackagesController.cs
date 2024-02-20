@@ -11,6 +11,9 @@ namespace TravelExpertsMVC.Controllers
 {
     public class PackagesController : Controller
     {
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// PackagesController.cs
+        /// By: Lance Salvador
         private TravelExpertsContext db { get; set; }
 
         public PackagesController(TravelExpertsContext db)
@@ -25,22 +28,23 @@ namespace TravelExpertsMVC.Controllers
         }
 
 
-        // Assigns the given package to the signed in user, and displays a page for confirming the purchase
+        // Assigns the given package to the signed in user,
+        // + displays page for confirming the purchase
         public IActionResult ConfirmPurchase(int packageId)
         {
             CustomerPackage custPack = new();
             
-            try
+            if(HttpContext.Session.GetInt32("CustomerId") != null)
             {
-                custPack.CustomerId = (int)TempData["CustId"]; // Grab customerID from TempData
+                custPack.CustomerId = (int)HttpContext.Session.GetInt32("CustomerId")!; // Grab customerID from TempData
             }
-            catch
+            else
             {
                 TempData["PurchaseError"] = true;
                 return RedirectToAction("Login", "Account");
             }
-            TempData["CustId"] = custPack.CustomerId; // reset for next package purchase
-            HttpContext.Session.GetInt32()
+            // TempData["CustId"] = custPack.CustomerId; // reset for next package purchase
+            
             custPack.PackageId = packageId;
             TravelSource.AddCustomerPackage(db, custPack);
             return View();

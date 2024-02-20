@@ -39,7 +39,7 @@ namespace TravelExpertsMVC.Controllers
             Customer cust = CustomerDB.Authenticate(db!, customer.Username, customer.Password);
             if (cust == null) // no matching username/password
             {
-                TempData["InvalidLogin"] = true;
+                TempData["InvalidLogin"] = true; // create tempdata for showing invalid login message
                 return View(); // stay on the Login page
             }
             // customer != null
@@ -156,7 +156,7 @@ namespace TravelExpertsMVC.Controllers
         }
 
 
-         // "My Packages" page - By: Lance Salvador
+         // "My Packages" Page - By: Lance Salvador
         [Authorize]
         public ActionResult MyPackages()
         {

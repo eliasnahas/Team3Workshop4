@@ -269,7 +269,7 @@ namespace TravelSources
             {
                 if(package.PkgAgencyCommission != null)
                 {
-                    totalCost += (decimal)(package.PkgBasePrice + package.PkgAgencyCommission);
+                    totalCost += (decimal)package.PkgBasePrice;
                 }
                 else
                 {

@@ -14,9 +14,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
+               @*  <th>
                 ID
-                </th>
+                </th> *@
                 <th>
                 Package Name
                 </th>
@@ -26,9 +26,9 @@
                 <th>
                 End Date
                 </th>
-                <th>
-                Desc.
-                </th>
+                @* <th>
+                Description
+                </th> *@
                 <th>
                 Price
                 </th>
@@ -45,27 +45,27 @@
         @foreach (var item in Model)
         {
                 <tr>
-                    <td>
+                    @* <td>
                     @Html.DisplayFor(modelItem => item.PackageId)
-                    </td>
+                    </td> *@
                     <td>
                     @Html.DisplayFor(modelItem => item.PkgName)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => @item.PkgStartDate!.Value.ToString("dd MMMM yyyy"))
+                    @Html.Raw(item.PkgStartDate!.Value.ToString("dd MMMM yyyy"))
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => @item.PkgEndDate!.Value.ToString("dd MMMM yyyy"))
+                    @Html.Raw(item.PkgEndDate!.Value.ToString("dd MMMM yyyy"))
                     </td>
-                    <td>
+                    @* <td>
                     @Html.DisplayFor(modelItem => item.PkgDesc)
-                    </td>
+                    </td> *@
                     <td>
-                    @Html.DisplayFor(modelItem => item.PkgBasePrice)
+                    @Html.Raw(item.PkgBasePrice.ToString("C"))
                     </td>
-                    <td>
+                    @* <td>
                     @Html.DisplayFor(modelItem => item.PkgAgencyCommission)
-                    </td>
+                    </td> *@
                     @* <td>
                     @Html.ActionLink("Remove", "MyPackages", new { id=item.PackageId }, new { @class = "btn btn-secondary" })
                     </td> *@
