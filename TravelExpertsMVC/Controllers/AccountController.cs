@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using System.Security.Claims;
 using TravelExpertsData;
 using TravelSources;
+using System.Diagnostics;
 
 namespace TravelExpertsMVC.Controllers
 {
@@ -173,7 +174,9 @@ namespace TravelExpertsMVC.Controllers
         // post method for updating customer information
         public ActionResult Edit(int id, Customer newCustomerData)
         {
-            try
+            if (ModelState.IsValid)
+            {
+                try
                 {
                     CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);    // update database with the new customer info
                     TempData["Message"] = "Account Details has been successfully updated.";
@@ -185,7 +188,12 @@ namespace TravelExpertsMVC.Controllers
                     TempData["Message"] = "Database Connection Error, Try Again Later.";
                     TempData["IsError"] = true;
                     return View(newCustomerData);
-                }
+                } 
+            }
+            else
+            {
+                return View(newCustomerData);
+            }
 
             
             
@@ -210,19 +218,32 @@ namespace TravelExpertsMVC.Controllers
         [HttpPost]
         public ActionResult ChangePassword(int id, Customer newCustomerData)
         {
-            
+            if (!String.IsNullOrWhiteSpace(newCustomerData.Password))
+            {
+                TempData["Message"] = "Password is empty";
+                return View(newCustomerData);
+            }
+            else
+            {
                 try
                 {
+
                     CustomerDB.ChangePassword(db!, id, newCustomerData); // set new password
                     TempData["Message"] = "Password has been successfully changed.";
                     return RedirectToAction(nameof(CustomerInfo));
+
                 }
                 catch (Exception)
                 {
-                TempData["Message"] = "Database Connection Error, Try Again Later.";
-                TempData["IsError"] = true;
-                return View(newCustomerData);
+                    TempData["Message"] = "Database Connection Error, Try Again Later.";
+                    TempData["IsError"] = true;
+                    return View(newCustomerData);
+
                 }
+            }
+            
+            
+            
             
         }
 
