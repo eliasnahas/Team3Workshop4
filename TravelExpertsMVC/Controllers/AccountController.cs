@@ -218,9 +218,10 @@ namespace TravelExpertsMVC.Controllers
         [HttpPost]
         public ActionResult ChangePassword(int id, Customer newCustomerData)
         {
-            if (!String.IsNullOrWhiteSpace(newCustomerData.Password))
+            if (String.IsNullOrWhiteSpace(newCustomerData.Password))
             {
-                TempData["Message"] = "Password is empty";
+                TempData["Message"] = "Password Entered is not valid";
+                TempData["IsError"] = true;
                 return View(newCustomerData);
             }
             else
