@@ -6,6 +6,16 @@
     ViewData["Title"] = "Login";
 }
 
+@if (TempData["PurchaseError"] != null)
+{
+        <h1 class="text-danger p-2">Please login before trying to purchase a package.</h1>
+}
+
+@if (TempData["InvalidLogin"] != null)
+{
+            <h1 class="text-danger p-2">Invalid login. Please try again.</h1>
+}
+
 <h3>@ViewData["Title"]</h3>
 <div class="row">
     <div class="col-md-4">
