@@ -49,15 +49,15 @@ public partial class Customer
     [StringLength(25)]
     public string CustCountry { get; set; }
 
-
-    [Required(ErrorMessage = "Please enter your phone number")]
-    [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid phone number.")]
+    [Phone]
+    [Required]
+    [RegularExpression("^[0-9]{10}$", ErrorMessage = "Please enter a valid phone number.")]
     [Display(Name = "Home Phone")]
     [StringLength(20)]
     public string CustHomePhone { get; set; }
 
-
-    [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid phone number.")]
+    [Phone]
+    [RegularExpression("^[0-9]{10}$", ErrorMessage = "Please enter a valid phone number.")]
     [Display(Name = "Business Phone")]
     [StringLength(20)]
     public string CustBusPhone { get; set; } = null!;
@@ -76,11 +76,12 @@ public partial class Customer
     [StringLength(30)]
     public string Username { get; set; }
 
-    [Required(ErrorMessage = "Please enter a password.")]
+    [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a password.")]
+    
     [StringLength(30, ErrorMessage = "Password must be less than 30 characters.")]
     public string Password { get; set; }
 
-    [Required(ErrorMessage = "Please confirm your password")]
+    [Required(AllowEmptyStrings = false, ErrorMessage = "Please confirm your password")]
     [Display(Name = "Confirm Password")]
     [Compare("Password", ErrorMessage = "Passwords do not match.")]
     [NotMapped]
