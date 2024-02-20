@@ -14,27 +14,27 @@
     <table class="table">
         <thead>
             <tr>
+               @*  <th>
+                ID
+                </th> *@
                 <th>
-                @Html.DisplayNameFor(model => model.PackageId)
+                Package Name
                 </th>
                 <th>
-                @Html.DisplayNameFor(model => model.PkgName)
+                Start Date
                 </th>
                 <th>
-                @Html.DisplayNameFor(model => model.PkgStartDate)
+                End Date
                 </th>
+                @* <th>
+                Description
+                </th> *@
                 <th>
-                @Html.DisplayNameFor(model => model.PkgEndDate)
+                Price
                 </th>
-                <th>
-                @Html.DisplayNameFor(model => model.PkgDesc)
-                </th>
-                <th>
-                @Html.DisplayNameFor(model => model.PkgBasePrice)
-                </th>
-                <th>
+                @* <th>
                 @Html.DisplayNameFor(model => model.PkgAgencyCommission)
-                </th>
+                </th> *@
                 <th>
 
                 </th>
@@ -44,32 +44,31 @@
         <tbody>
         @foreach (var item in Model)
         {
-                packageIncrementalId++;
                 <tr>
-                    <td>
+                    @* <td>
                     @Html.DisplayFor(modelItem => item.PackageId)
-                    </td>
+                    </td> *@
                     <td>
                     @Html.DisplayFor(modelItem => item.PkgName)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.PkgStartDate)
+                    @Html.Raw(item.PkgStartDate!.Value.ToString("dd MMMM yyyy"))
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.PkgEndDate)
+                    @Html.Raw(item.PkgEndDate!.Value.ToString("dd MMMM yyyy"))
                     </td>
-                    <td>
+                    @* <td>
                     @Html.DisplayFor(modelItem => item.PkgDesc)
-                    </td>
+                    </td> *@
                     <td>
-                    @Html.DisplayFor(modelItem => item.PkgBasePrice)
+                    @Html.Raw(item.PkgBasePrice.ToString("C"))
                     </td>
-                    <td>
+                    @* <td>
                     @Html.DisplayFor(modelItem => item.PkgAgencyCommission)
-                    </td>
-                    <td>
+                    </td> *@
+                    @* <td>
                     @Html.ActionLink("Remove", "MyPackages", new { id=item.PackageId }, new { @class = "btn btn-secondary" })
-                    </td>
+                    </td> *@
                     @* <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
@@ -81,7 +80,7 @@
     </table>
     <div class="d-flex justify-content-end">
         <label class="col-form-label p-2 fw-bold" for="totalCost">Total Cost: </label>
-        <input class="form-control form-inline col-2 w-25" value="@packageIncrementalId" name="totalCost" readonly />  
+        <input class="form-control form-inline col-2 w-25" value="@ViewBag.totalCost" name="totalCost" readonly />  
     </div>
 }
 else 

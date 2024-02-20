@@ -1,6 +1,4 @@
 Customer Registration: Gurleen
-Customer Login: Elias
-Purchase/View purchased Travel Packages: Lance
-View/Update Registered User Information: Jack
-
-Database Updating: whoever's done first lol
+Customer Login/Home Page: Elias
+Purchase/View Travel Packages: Lance
+View/Update Registered User Information (and logo): Jack

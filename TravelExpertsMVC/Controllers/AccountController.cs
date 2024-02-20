@@ -34,7 +34,7 @@ namespace TravelExpertsMVC.Controllers
             }
             return View();
         }
-
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // "Login" page - By: Elias Nahas
         [HttpPost]
         public async Task<IActionResult> LoginAsync(Customer customer) // data collected from the form
@@ -42,13 +42,14 @@ namespace TravelExpertsMVC.Controllers
             Customer cust = CustomerDB.Authenticate(db!, customer.Username, customer.Password);
             if (cust == null) // no matching username/password
             {
+                TempData["InvalidLogin"] = true; // create tempdata for showing invalid login message
                 return View(); // stay on the Login page
             }
             // customer != null
             // Add to the session the customer's ID as CustomerId
             HttpContext.Session.SetInt32("CustomerId", cust.CustomerId);
 
-            // Store Id in ViewBag for Package purchasing (-Lance)
+            // Store Id in TempData for Package purchasing (tried ViewBag but it didn't cooperate -Lance)
             TempData["CustId"] = cust.CustomerId;
 
             List<Claim> claims = new List<Claim>()
@@ -75,6 +76,7 @@ namespace TravelExpertsMVC.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("CustomerId");
+            TempData.Clear();
             return RedirectToAction("Index", "Home");
         }
 
@@ -83,7 +85,8 @@ namespace TravelExpertsMVC.Controllers
             return View();
         }
 
-        //
+        // Register Page - By: Gurleen
+        [HttpGet]
         public ActionResult Register(string returnUrl = "")
         {
             if (!returnUrl.IsNullOrEmpty())
@@ -104,7 +107,7 @@ namespace TravelExpertsMVC.Controllers
                 {   //Validation by Jack
                     if (db.Customers.Any(c=>c.Username == customer.Username)) //validate if the username already exist in the database
                     {
-                        TempData["Message"] = "Username already exist, try a differnet username.";
+                        TempData["Message"] = "Username already exist, try a different username.";
                         TempData["IsError"] = true;
                         return View(customer);
                     } else
@@ -241,10 +244,9 @@ namespace TravelExpertsMVC.Controllers
             
             
         }
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-         // "My Packages" page - By: Lance Salvador
-        [Authorize]
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // "My Packages" Page - By: Lance Salvador
+        
         public ActionResult MyPackages()
         {
             decimal totalCost = 0m;
@@ -265,14 +267,10 @@ namespace TravelExpertsMVC.Controllers
             return View(userPackages);
         }
 
-        public ActionResult DeletePackage(int CustomerPackageId)
-        {
-            PackageDB.DeleteCustomerPackage(db, CustomerPackageId);
-            return RedirectToAction(nameof(MyPackages));
-        }
-        public ActionResult DeletePackages()
-        {
-            return View();
-        }
+        //public ActionResult DeletePackage(int CustomerPackageId)
+        //{
+        //    PackageDB.DeleteCustomerPackage(db, CustomerPackageId);
+        //    return RedirectToAction(nameof(MyPackages));
+        //}
     }
 }
