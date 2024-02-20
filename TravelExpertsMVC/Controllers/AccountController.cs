@@ -174,8 +174,7 @@ namespace TravelExpertsMVC.Controllers
         // post method for updating customer information
         public ActionResult Edit(int id, Customer newCustomerData)
         {
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);    // update database with the new customer info
@@ -189,11 +188,6 @@ namespace TravelExpertsMVC.Controllers
                     TempData["IsError"] = true;
                     return View(newCustomerData);
                 } 
-            }
-            else
-            {
-                return View(newCustomerData);
-            }
 
             
             
