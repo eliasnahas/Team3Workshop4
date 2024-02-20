@@ -84,7 +84,7 @@ namespace TravelExpertsMVC.Controllers
         {
             return View();
         }
-
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Register Page - By: Gurleen
         [HttpGet]
         public ActionResult Register(string returnUrl = "")
@@ -120,6 +120,7 @@ namespace TravelExpertsMVC.Controllers
                 }
                 catch
                 {
+                    throw;
                     TempData["Message"] = "Database connection error. Try again later.";
                     TempData["IsError"] = true;
                     return View(customer);
