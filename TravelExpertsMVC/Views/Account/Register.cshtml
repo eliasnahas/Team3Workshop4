@@ -10,43 +10,37 @@ Author: Gurleen *@
 
 @if (TempData["SuccessMessageRegister"] != null)
 {
-    <div class="alert alert-success">
+        <div class="alert alert-success">
         @TempData["SuccessMessageRegister"]
-    </div>
+        </div>
 }
 <div class="container">
     <h1>@ViewData["Title"]</h1>
-    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
-    {
-        <div class="alert alert-success" role="alert">
-            @ViewBag.SuccessMessage
-        </div>
-    }
-    <form asp-controller="Account" asp-action="Register" method="post">
+    <form asp-controller="Account" asp-action="Register" method="post" id="registerForm">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="UserName">Username</label>
-                <input id="UserName" name="UserName" type="text" asp-for="Username" class="form-control"
+                <label for="UserName">Username*</label>
+                <input id="UserName" type="text" asp-for="Username" class="form-control"
                         placeholder="Create a Username" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label for="Email">Email</label>
                 <input id="Email" type="text" asp-for="CustEmail" class="form-control"
-                        placeholder="Optional" />
+                        placeholder="ex. example@google.com (Optional)" />
                 <span asp-validation-for="CustEmail" class="text-danger"></span>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="FirstName">First Name</label>
+                <label for="FirstName">First Name*</label>
                 <input id="FirstName" type="text" asp-for="CustFirstName" class="form-control"
                         placeholder="Enter your First Name" />
                 <span asp-validation-for="CustFirstName" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label for="LastName">Last Name</label>
+                <label for="LastName">Last Name*</label>
                 <input id="LastName" type="text" asp-for="CustLastName" class="form-control"
                         placeholder="Enter your Last Name" />
                 <span asp-validation-for="CustLastName" class="text-danger"></span>
@@ -54,13 +48,13 @@ Author: Gurleen *@
         </div>
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="Address">Address</label>
+                <label for="Address">Address*</label>
                 <input id="Address" type="text" asp-for="CustAddress" class="form-control"
                         placeholder="Enter your Address" />
                 <span asp-validation-for="CustAddress" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label for="City">City</label>
+                <label for="City">City*</label>
                 <input id="City" type="text" asp-for="CustCity" class="form-control"
                         placeholder="Enter your City" />
                 <span asp-validation-for="CustCity" class="text-danger"></span>
@@ -68,7 +62,7 @@ Author: Gurleen *@
         </div>
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="Country">Country</label>
+                <label for="Country">Country*</label>
                 <input id="Country" type="text" asp-for="CustCountry" class="form-control"
                         placeholder="Enter your Country" />
                 <span asp-validation-for="CustCountry" class="text-danger"></span>
@@ -76,7 +70,7 @@ Author: Gurleen *@
         </div>
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="Province">Province</label>
+                <label for="Province">Province*</label>
                 <input id="Province" type="text" asp-for="CustProv" class="form-control"
                         placeholder="Enter your Province" />
                 <span asp-validation-for="CustProv" class="text-danger"></span>

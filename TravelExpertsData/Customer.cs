@@ -39,33 +39,37 @@ public partial class Customer
 
     [Required(ErrorMessage = "Please enter your postal code.")]
     [Display(Name = "Postal Code")]
-    [RegularExpression(@"^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$", 
+    [RegularExpression(@"^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$",
         ErrorMessage = "Please enter a valid postal code: 'A1A 1A1'.")]
     [StringLength(7)]
     public string CustPostal { get; set; } = null!;
 
+    [Required(ErrorMessage = "Please enter your country.")]
     [Display(Name = "Country")]
     [StringLength(25)]
-    public string? CustCountry { get; set; }
+    public string CustCountry { get; set; }
 
-    [Phone]
-    [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Please enter a valid phone number.")]
+
+    [Required(ErrorMessage = "Please enter your phone number")]
+    [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid phone number.")]
     [Display(Name = "Home Phone")]
     [StringLength(20)]
-    public string? CustHomePhone { get; set; }
+    public string CustHomePhone { get; set; }
 
-    [Phone]
-    [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Please enter a valid phone number.")]
+
+    [Required(ErrorMessage = "Please enter your business phone number.")]
+    [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid phone number.")]
     [Display(Name = "Business Phone")]
     [StringLength(20)]
     public string CustBusPhone { get; set; } = null!;
 
-    
-    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", 
+
+    [Required(ErrorMessage = "Please enter your email address")]
+    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
         ErrorMessage = "Please enter a valid email address: 'example@google.com'.")]
     [Display(Name = "Email")]
     [StringLength(50)]
-    public string? CustEmail { get; set; } = null!;
+    public string CustEmail { get; set; } = null!;
 
     public int? AgentId { get; set; }
 
@@ -79,7 +83,7 @@ public partial class Customer
 
     [Required(ErrorMessage = "Please confirm your password")]
     [Display(Name = "Confirm Password")]
-    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+    [Compare("Password", ErrorMessage = "Passwords do not match.")]
     [NotMapped]
     public string ConfirmPassword { get; set; }
 
