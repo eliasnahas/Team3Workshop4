@@ -1,4 +1,5 @@
-﻿using Castle.Core.Resource;
+﻿using Azure.Identity;
+using Castle.Core.Resource;
 using GridData;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using System.Security.Claims;
 using TravelExpertsData;
 using TravelSources;
@@ -96,13 +98,23 @@ namespace TravelExpertsMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Customer customer)
         {
+            
             if (ModelState.IsValid)
             {
                 try
-                {
-                    db.Customers.Add(customer);
-                    db.SaveChanges();
-                    return RedirectToAction("Login", "Account");
+                {   //Validation by Jack
+                    if (db.Customers.Any(c=>c.Username == customer.Username)) //validate if the username already exist in the database
+                    {
+                        TempData["Message"] = "Username already exist, try a differnet username.";
+                        TempData["IsError"] = true;
+                        return View(customer);
+                    } else
+                    {
+                        db.Customers.Add(customer);
+                        db.SaveChanges();
+                        return RedirectToAction("Login", "Account");
+                    }
+                    
                 }
                 catch
                 {
@@ -116,45 +128,105 @@ namespace TravelExpertsMVC.Controllers
                 return View(customer);
             }
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Customerinfo Page - By: Jack
         [Authorize]
+        // Get Customer Information
         public ActionResult CustomerInfo()
         {
-            int? CustID = HttpContext.Session.GetInt32("CustomerId");
+            int? CustID = HttpContext.Session.GetInt32("CustomerId");   // get the customer id from session
             Customer? customer = null;
-            customer = CustomerDB.GetCustomerInfo(db!, (int)CustID);
+            try
+            {
+                customer = CustomerDB.GetCustomerInfo(db!, (int)CustID); // get customer data from database
+                
+            }
+            catch (Exception)
+            {
+
+                TempData["Message"] = "Database Connection Error, Try Again Later.";
+                TempData["IsError"] = true;
+                
+            }
             return View(customer);
         }
         //[HttpGet]
-
+        // Edit page for customer to update their information
         public ActionResult Edit(int id)
         {
             Customer? customer = null;
-            customer = CustomerDB.GetCustomerInfo(db!, id);
+            try
+            {
+                customer = CustomerDB.GetCustomerInfo(db!, id); // get customer information and display it
+                
+            }
+            catch (Exception)
+            {
+
+                TempData["Message"] = "Database Connection Error, Try Again Later.";
+                TempData["IsError"] = true;
+                
+            }
             return View(customer);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // post method for updating customer information
         public ActionResult Edit(int id, Customer newCustomerData)
         {
-            CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);
-            return RedirectToAction(nameof(CustomerInfo));
-        }
+            try
+                {
+                    CustomerDB.UpdateCustomerInfo(db!, id, newCustomerData);    // update database with the new customer info
+                    TempData["Message"] = "Account Details has been successfully updated.";
+                    return RedirectToAction(nameof(CustomerInfo));
+                }
+                catch (Exception)
+                {
 
+                    TempData["Message"] = "Database Connection Error, Try Again Later.";
+                    TempData["IsError"] = true;
+                    return View(newCustomerData);
+                }
+
+            
+            
+        }
+        // update password
         public ActionResult ChangePassword(int id)
         {
             Customer? customer = null;
-            customer = CustomerDB.GetCustomerInfo(db!, id);
+            try
+            {
+                customer = CustomerDB.GetCustomerInfo(db!, id); // display page for customer to update their password
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Database Connection Error, Try Again Later.";
+                TempData["IsError"] = true;
+
+            }
             return View(customer);
         }
+        // post method for update customer password
         [HttpPost]
         public ActionResult ChangePassword(int id, Customer newCustomerData)
         {
-            CustomerDB.ChangePassword(db!, id, newCustomerData);
-            return RedirectToAction(nameof(CustomerInfo));
+            
+                try
+                {
+                    CustomerDB.ChangePassword(db!, id, newCustomerData); // set new password
+                    TempData["Message"] = "Password has been successfully changed.";
+                    return RedirectToAction(nameof(CustomerInfo));
+                }
+                catch (Exception)
+                {
+                TempData["Message"] = "Database Connection Error, Try Again Later.";
+                TempData["IsError"] = true;
+                return View(newCustomerData);
+                }
+            
         }
-
 
          // "My Packages" Page - By: Lance Salvador
         [Authorize]

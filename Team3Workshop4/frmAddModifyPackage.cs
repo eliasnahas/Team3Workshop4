@@ -4,6 +4,7 @@ using System;
 using TravelExpertsData;
 using TravelSources;
 using GridData;
+using Microsoft.Data.SqlClient;
 
 namespace Team3Workshop4
 {
@@ -29,6 +30,7 @@ namespace Team3Workshop4
             if (isAdd)
             {
                 Text = "Add Package";
+                btnEditProducts.Enabled = false;
             }
             else
             {
@@ -40,7 +42,7 @@ namespace Team3Workshop4
                 }
                 if (package.PkgEndDate != null)
                 {
-                    dtpPkgEndDate.Format = DateTimePickerFormat.Short; 
+                    dtpPkgEndDate.Format = DateTimePickerFormat.Short;
                 }
             }
         }
@@ -48,7 +50,19 @@ namespace Team3Workshop4
         // displays current package for Modify
         private void DisplayPackage()
         {
-            List<ProdSuppNames> prodSuppNames = TravelSource.GetProductsSupplierByPackage(package!.PackageId)!;
+            List<ProdSuppNames>? prodSuppNames = null;
+            try
+            {
+                prodSuppNames = TravelSource.GetProductsSupplierByPackage(package!.PackageId)!;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error while retrieving package data: " + ex.Message, "Database Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+            }
             if (prodSuppNames != null)
             {
                 int i = 0;
@@ -105,7 +119,8 @@ namespace Team3Workshop4
                 Validator.IsPresent(txtPkgBasePrice) &&
                 Validator.IsNonNegativeDecimal(txtPkgBasePrice) &&
                 Validator.IsNonNegativeDecimal(txtPkgAgencyCommission) &&
-                Validator.IsValidDateRange(dtpPkgStartDate, dtpPkgEndDate)
+                Validator.IsValidDateRange(dtpPkgStartDate, dtpPkgEndDate) &&
+                Validator.IsDecimalLessThan(txtPkgAgencyCommission, txtPkgBasePrice)
                 )
             {
                 if (isAdd)
@@ -189,6 +204,40 @@ namespace Team3Workshop4
             if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
             {
                 dtpPkgEndDate.Format = DateTimePickerFormat.Custom;
+            }
+        }
+
+        private void btnEditProducts_Click(object sender, EventArgs e)
+        {
+            if (package != null)
+            {
+                List<ProdSuppNames>? packageProductSuppliers = null;
+                List<ProdSuppNames>? availableProductSuppliers = null;
+                try
+                {
+                    packageProductSuppliers = TravelSource.GetProductsSupplierByPackage(package.PackageId);
+                    availableProductSuppliers = TravelSource.GetRemainingProductsSuppliersByPackage(package.PackageId);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error while retrieving products data: " + ex.Message, "Database Error");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unanticipated error: " + ex.Message, ex.GetType().ToString());
+                }
+                frmEditPackageProducts editPackageProducts = new frmEditPackageProducts()
+                {
+                    packageProductSuppliers = packageProductSuppliers,
+                    availableProductSuppliers = availableProductSuppliers,
+                    packageId = package.PackageId
+                };
+                DialogResult result = editPackageProducts.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    lvProducts.Items.Clear();
+                    DisplayPackage();
+                }
             }
         }
     }

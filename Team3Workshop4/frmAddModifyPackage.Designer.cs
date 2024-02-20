@@ -47,6 +47,7 @@
             lvProducts = new ListView();
             Products = new ColumnHeader();
             Suppliers = new ColumnHeader();
+            btnEditProducts = new Button();
             SuspendLayout();
             // 
             // label1
@@ -214,6 +215,16 @@
             Suppliers.Text = "Suppliers";
             Suppliers.Width = 285;
             // 
+            // btnEditProducts
+            // 
+            btnEditProducts.Location = new Point(12, 405);
+            btnEditProducts.Name = "btnEditProducts";
+            btnEditProducts.Size = new Size(154, 41);
+            btnEditProducts.TabIndex = 18;
+            btnEditProducts.Text = "&Edit Products";
+            btnEditProducts.UseVisualStyleBackColor = true;
+            btnEditProducts.Click += btnEditProducts_Click;
+            // 
             // frmAddModifyPackage
             // 
             AcceptButton = btnAccept;
@@ -223,6 +234,7 @@
             BackgroundImageLayout = ImageLayout.Center;
             CancelButton = btnCancel;
             ClientSize = new Size(625, 518);
+            Controls.Add(btnEditProducts);
             Controls.Add(lvProducts);
             Controls.Add(btnCancel);
             Controls.Add(btnAccept);
@@ -269,5 +281,6 @@
         private ListView lvProducts;
         private ColumnHeader Products;
         private ColumnHeader Suppliers;
+        private Button btnEditProducts;
     }
 }

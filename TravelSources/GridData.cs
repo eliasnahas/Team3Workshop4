@@ -52,7 +52,9 @@ namespace GridData
     // Custom class to display Product/Supplier Names for the Packages Add/Modify Form
     public partial class ProdSuppNames
     {
+        [Display(Name = "Product")]
         public string? ProdName { get; set; }
+        [Display(Name = "Supplier")]
         public string? SuppName { get; set; }
 
     }
